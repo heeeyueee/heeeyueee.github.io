@@ -17,12 +17,30 @@
     </item>
     
     <item>
+      <title>CSS布局</title>
+      <link>https://heeeyueee.github.io/post/css%E5%B8%83%E5%B1%80/</link>
+      <pubDate>Sun, 08 Nov 2020 00:00:00 +0800</pubDate>
+      
+      <guid>https://heeeyueee.github.io/post/css%E5%B8%83%E5%B1%80/</guid>
+      <description>学习目前流动使用的三种布局: float flex grid float布局 float CSS属性指定一个元素应沿其容器的左侧或右侧放置，允许文本和内联元素环绕它。该元素从网页的正常流动(文档流)中移除，尽管仍然保持部分的流动性（与绝对定</description>
+    </item>
+    
+    <item>
       <title>HTML常用标签</title>
       <link>https://heeeyueee.github.io/post/html%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/</link>
       <pubDate>Sat, 07 Nov 2020 00:00:00 +0800</pubDate>
       
       <guid>https://heeeyueee.github.io/post/html%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>First</title>
+      <link>https://heeeyueee.github.io/post/first/</link>
+      <pubDate>Fri, 06 Nov 2020 00:00:00 +0800</pubDate>
+      
+      <guid>https://heeeyueee.github.io/post/first/</guid>
+      <description>首先，感谢提供Stack主题的作者~ 记录一下搭建过程 步骤： 使用scoop安装Hugo Scoop安装、配置与使用 Scoop是Windows的命令行安装程序，是一个强大的包管理工具。 安装 在Cmder的Po</description>
     </item>
     
     <item>

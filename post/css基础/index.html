@@ -88,7 +88,7 @@
     <header>
     <div class="container-lg clearfix">
         <div class="col-12 header">
-            <a class="title-main" href="https://heeeyueee.github.io/">moji code blog</a>
+            <a class="title-main" href="https://heeeyueee.github.io">moji code blog</a>
             
             <span class="title-sub">A minimal Hugo theme.</span>
             
@@ -107,16 +107,14 @@
         <a href="https://heeeyueee.github.io/post/css%E5%9F%BA%E7%A1%80/">CSS基础</a>
     </h2>
     <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-11-08</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1459 words</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/css">css</a>&nbsp;</span>
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-11-08</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1456 words</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/css">css</a>&nbsp;</span>
 
     </div>
     
     
     <div class="post-content markdown-body">
         <h2 id="css语法">CSS语法</h2>
-<ul>
-<li>
-<p>语法一:样式语法</p>
+<h3 id="语法一样式语法">语法一:样式语法</h3>
 <pre><code class="language-css">    选择器 {
     属性名: 属性值;
     /*注释*/
@@ -128,15 +126,13 @@
 <li>没有 // 注释</li>
 <li>最后一个分号可以省略，但建议不要省略</li>
 </ul>
-</li>
-<li>
-<p>语法二:at 语法</p>
+<h3 id="语法二at-语法">语法二:at 语法</h3>
 <pre><code class="language-css">@charset &quot;UTF-8&quot;;
 @import url(2.css);
 @media (min-width: 100px) and (max-width: 200px) {
   语法一
 }
-  
+
 </code></pre>
 <ul>
 <li>@charset, 定义样式表使用的字符集，但 UTF-8 是字符编码 encoding，@charset 必须放在第一行</li>
@@ -144,21 +140,13 @@
 <li>@media, 如果满足媒介查询的条件则条件规则组里的规则生效</li>
 <li>前两个 at 语法必须以分号 ; 结尾</li>
 </ul>
-</li>
-</ul>
 <h2 id="文档流和文本流">文档流和文本流</h2>
-<ul>
-<li>
-<p>文本流 Text flow</p>
+<h3 id="文本流-text-flow">文本流 Text flow</h3>
 <p>文本流是元素内部的一系列的字符的排列规则，简单来说是文档的读取和输出顺序，也就是我们通常看到的由左到右、由上而下的读取和输出形式，在网页中每个元素都是按照这个顺序进行排序和显示的，是单纯的相对于<strong>文字段落</strong>来说的，与容纳文字的元素无关。</p>
-</li>
-<li>
-<p>文档流 normal flow</p>
+<h3 id="文档流-normal-flow">文档流 normal flow</h3>
 <p>文档流,英文是normal flow,又翻译为常规流,标准流,正常流,普通流等。</p>
 <p>文档流指的是HTML中元素在计算布局排版的过程中,所有处于文档流中的元素会自动的从左到右(非块级元素),从上到下(块级元素)的排列规则。</p>
-</li>
-<li>
-<p>脱离文档流与脱离文本流</p>
+<h3 id="脱离文档流与脱离文本流">脱离文档流与脱离文本流</h3>
 <ul>
 <li>
 <p>使用浮动(float)</p>
@@ -180,17 +168,11 @@
 </ol>
 </li>
 </ul>
-</li>
-</ul>
 <h2 id="块级元素内联元素和行块元素">块级元素，内联元素和行块元素</h2>
-<ul>
-<li>
-<p>三者转换</p>
+<h3 id="三者转换">三者转换</h3>
 <p>可以通过CSS设置display属性来转换display：block、inline、inline-block。inline 元素从左到右，到达最右边才会换行
 block 元素从上到下，每一个都另起一行。inline-block 也是从左到右。</p>
-</li>
-<li>
-<p>宽度</p>
+<h3 id="宽度">宽度</h3>
 <ul>
 <li>
 <p>inline 宽度为内部 inline 元素的和，不能用 width 指定</p>
@@ -202,9 +184,7 @@ block 元素从上到下，每一个都另起一行。inline-block 也是从左�
 <p>inline-block 结合前两者特点，可用 width</p>
 </li>
 </ul>
-</li>
-<li>
-<p>高度</p>
+<h3 id="高度">高度</h3>
 <ul>
 <li>
 <p>inline 高度由 line-height 间接确定（与字体相关），跟 height 无关</p>
@@ -216,21 +196,13 @@ block 元素从上到下，每一个都另起一行。inline-block 也是从左�
 <p>inline-block 跟 block 类似，可以设置 height</p>
 </li>
 </ul>
-</li>
-</ul>
 <h2 id="css盒模型">CSS盒模型</h2>
-<ul>
-<li>
-<p>概念</p>
+<h3 id="概念">概念</h3>
 <p>外边距——&gt; 边框——&gt; 内边距——&gt;内容区</p>
 <p>CSS盒模型作用于可以放入内容的块级盒子，如div、span等等。<strong>一般使用border-box</strong></p>
-</li>
-<li>
-<p>元素</p>
+<h3 id="元素">元素</h3>
 <p>CSS盒子包含以下5个元素：width、height、padding、border、margin。</p>
-</li>
-<li>
-<p>标准盒模型（content-box ）替代（IE）的盒模型（border-box）</p>
+<h3 id="标准盒模型content-box-替代ie的盒模型border-box">标准盒模型（content-box ）替代（IE）的盒模型（border-box）</h3>
 <ul>
 <li>
 <p>标准盒模型（content-box ）content-box width = 内容宽度</p>
@@ -241,8 +213,6 @@ block 元素从上到下，每一个都另起一行。inline-block 也是从左�
 <p>border-box width = 内容宽度 + padding + border</p>
 <p><img class="img-zoomable" src="https://raw.githubusercontent.com/heeeyueee/pic/main/img/20201108124348.png" alt="" />
 </p>
-</li>
-</ul>
 </li>
 </ul>
 <p>​</p>
@@ -266,21 +236,16 @@ block 元素从上到下，每一个都另起一行。inline-block 也是从左�
 </li>
 </ul>
 <h2 id="margin-合并">margin 合并</h2>
-<ul>
-<li>父子 margin 合并,兄弟 margin 合并</li>
-<li>阻止合并
+<h3 id="父子-margin-合并兄弟-margin-合并">父子 margin 合并,兄弟 margin 合并</h3>
+<h3 id="阻止合并">阻止合并</h3>
 <ul>
 <li>父子合并用 padding / border 挡住</li>
 <li>父子合并用 overflow: hidden 挡住</li>
 <li>兄弟合并可以用 inline-block 消除</li>
 </ul>
-</li>
-<li>更多参考：<a href="https://segmentfault.com/a/1190000013735912" target="_blank">CSS margin合并问题</a></li>
-</ul>
+<h3 id="更多参考css-margin合并问题httpssegmentfaultcoma1190000013735912">更多参考：<a href="https://segmentfault.com/a/1190000013735912" target="_blank">CSS margin合并问题</a></h3>
 <h2 id="基本单位">基本单位</h2>
-<ul>
-<li>
-<p>颜色</p>
+<h3 id="颜色">颜色</h3>
 <table>
 <thead>
 <tr>
@@ -311,9 +276,7 @@ block 元素从上到下，每一个都另起一行。inline-block 也是从左�
 </tr>
 </tbody>
 </table>
-</li>
-<li>
-<p>长度单位</p>
+<h3 id="长度单位">长度单位</h3>
 <table>
 <thead>
 <tr>
@@ -328,7 +291,7 @@ block 元素从上到下，每一个都另起一行。inline-block 也是从左�
 </tr>
 <tr>
 <td>em</td>
-<td>在 font-size 中使用是相对于父元素的字体大小，在其他属性中使用是相对于自身的字体大小，如 width</td>
+<td>在 font-size 中使用是相对于父元素的字体大小，在其他属性中使用是相对于自身的字体大小</td>
 </tr>
 <tr>
 <td>rem</td>
@@ -348,8 +311,6 @@ block 元素从上到下，每一个都另起一行。inline-block 也是从左�
 </tr>
 </tbody>
 </table>
-</li>
-</ul>
 <hr>
 <h2 id="参考博客">参考博客</h2>
 <p><a href="https://juejin.im/post/6844904013360545800" target="_blank">HTML中的文档流和文本流</a></p>
@@ -429,6 +390,10 @@ block 元素从上到下，每一个都另起一行。inline-block 也是从左�
                 <a href="/tags/html/">HTML</a>
             </span>
             
+            <span>
+                <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
+            </span>
+            
         </div>
     </div>
     
@@ -438,17 +403,47 @@ block 元素从上到下，每一个都另起一行。inline-block 也是从左�
         <h3>TOC</h3>
         <nav id="TableOfContents">
   <ul>
-    <li><a href="#css语法">CSS语法</a></li>
-    <li><a href="#文档流和文本流">文档流和文本流</a>
+    <li><a href="#css语法">CSS语法</a>
       <ul>
-        <li></li>
+        <li><a href="#语法一样式语法">语法一:样式语法</a></li>
+        <li><a href="#语法二at-语法">语法二:at 语法</a></li>
       </ul>
     </li>
-    <li><a href="#块级元素内联元素和行块元素">块级元素，内联元素和行块元素</a></li>
-    <li><a href="#css盒模型">CSS盒模型</a></li>
+    <li><a href="#文档流和文本流">文档流和文本流</a>
+      <ul>
+        <li><a href="#文本流-text-flow">文本流 Text flow</a></li>
+        <li><a href="#文档流-normal-flow">文档流 normal flow</a></li>
+        <li><a href="#脱离文档流与脱离文本流">脱离文档流与脱离文本流</a></li>
+      </ul>
+    </li>
+    <li><a href="#块级元素内联元素和行块元素">块级元素，内联元素和行块元素</a>
+      <ul>
+        <li><a href="#三者转换">三者转换</a></li>
+        <li><a href="#宽度">宽度</a></li>
+        <li><a href="#高度">高度</a></li>
+      </ul>
+    </li>
+    <li><a href="#css盒模型">CSS盒模型</a>
+      <ul>
+        <li><a href="#概念">概念</a></li>
+        <li><a href="#元素">元素</a></li>
+        <li><a href="#标准盒模型content-box-替代ie的盒模型border-box">标准盒模型（content-box ）替代（IE）的盒模型（border-box）</a></li>
+      </ul>
+    </li>
     <li><a href="#overflow-溢出">overflow 溢出</a></li>
-    <li><a href="#margin-合并">margin 合并</a></li>
-    <li><a href="#基本单位">基本单位</a></li>
+    <li><a href="#margin-合并">margin 合并</a>
+      <ul>
+        <li><a href="#父子-margin-合并兄弟-margin-合并">父子 margin 合并,兄弟 margin 合并</a></li>
+        <li><a href="#阻止合并">阻止合并</a></li>
+        <li><a href="#更多参考css-margin合并问题httpssegmentfaultcoma1190000013735912">更多参考：<a href="https://segmentfault.com/a/1190000013735912">CSS margin合并问题</a></a></li>
+      </ul>
+    </li>
+    <li><a href="#基本单位">基本单位</a>
+      <ul>
+        <li><a href="#颜色">颜色</a></li>
+        <li><a href="#长度单位">长度单位</a></li>
+      </ul>
+    </li>
     <li><a href="#参考博客">参考博客</a></li>
   </ul>
 </nav>
@@ -529,6 +524,10 @@ block 元素从上到下，每一个都另起一行。inline-block 也是从左�
                 <a href="/tags/html/">HTML</a>
             </span>
             
+            <span>
+                <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
+            </span>
+            
         </div>
     </div>
     
@@ -538,17 +537,47 @@ block 元素从上到下，每一个都另起一行。inline-block 也是从左�
         <h3>TOC</h3>
         <nav id="TableOfContents">
   <ul>
-    <li><a href="#css语法">CSS语法</a></li>
-    <li><a href="#文档流和文本流">文档流和文本流</a>
+    <li><a href="#css语法">CSS语法</a>
       <ul>
-        <li></li>
+        <li><a href="#语法一样式语法">语法一:样式语法</a></li>
+        <li><a href="#语法二at-语法">语法二:at 语法</a></li>
       </ul>
     </li>
-    <li><a href="#块级元素内联元素和行块元素">块级元素，内联元素和行块元素</a></li>
-    <li><a href="#css盒模型">CSS盒模型</a></li>
+    <li><a href="#文档流和文本流">文档流和文本流</a>
+      <ul>
+        <li><a href="#文本流-text-flow">文本流 Text flow</a></li>
+        <li><a href="#文档流-normal-flow">文档流 normal flow</a></li>
+        <li><a href="#脱离文档流与脱离文本流">脱离文档流与脱离文本流</a></li>
+      </ul>
+    </li>
+    <li><a href="#块级元素内联元素和行块元素">块级元素，内联元素和行块元素</a>
+      <ul>
+        <li><a href="#三者转换">三者转换</a></li>
+        <li><a href="#宽度">宽度</a></li>
+        <li><a href="#高度">高度</a></li>
+      </ul>
+    </li>
+    <li><a href="#css盒模型">CSS盒模型</a>
+      <ul>
+        <li><a href="#概念">概念</a></li>
+        <li><a href="#元素">元素</a></li>
+        <li><a href="#标准盒模型content-box-替代ie的盒模型border-box">标准盒模型（content-box ）替代（IE）的盒模型（border-box）</a></li>
+      </ul>
+    </li>
     <li><a href="#overflow-溢出">overflow 溢出</a></li>
-    <li><a href="#margin-合并">margin 合并</a></li>
-    <li><a href="#基本单位">基本单位</a></li>
+    <li><a href="#margin-合并">margin 合并</a>
+      <ul>
+        <li><a href="#父子-margin-合并兄弟-margin-合并">父子 margin 合并,兄弟 margin 合并</a></li>
+        <li><a href="#阻止合并">阻止合并</a></li>
+        <li><a href="#更多参考css-margin合并问题httpssegmentfaultcoma1190000013735912">更多参考：<a href="https://segmentfault.com/a/1190000013735912">CSS margin合并问题</a></a></li>
+      </ul>
+    </li>
+    <li><a href="#基本单位">基本单位</a>
+      <ul>
+        <li><a href="#颜色">颜色</a></li>
+        <li><a href="#长度单位">长度单位</a></li>
+      </ul>
+    </li>
     <li><a href="#参考博客">参考博客</a></li>
   </ul>
 </nav>
@@ -564,7 +593,7 @@ block 元素从上到下，每一个都另起一行。inline-block 也是从左�
         <div class="col-12 footer">
             
             <span>&copy; 2020-2020
-                <a href="https://heeeyueee.github.io/">DSRKafuU</a>
+                <a href="https://heeeyueee.github.io">DSRKafuU</a>
                  | <a href="https://github.com/itsme/my_blog">Source code</a> 
                 | Powered by <a href="https://github.com/amzrk2/hugo-theme-fuji/"
                    target="_blank">Fuji-v2</a> &amp; <a href="https://gohugo.io/"
