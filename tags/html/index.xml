@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>HTML on moji code blog</title>
+    <link>http://heeeyueee.github.io/tags/html/</link>
+    <description>Recent content in HTML on moji code blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 07 Nov 2020 00:00:00 +0800</lastBuildDate><atom:link href="http://heeeyueee.github.io/tags/html/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HTML常用标签</title>
+      <link>http://heeeyueee.github.io/post/html%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/</link>
+      <pubDate>Sat, 07 Nov 2020 00:00:00 +0800</pubDate>
+      
+      <guid>http://heeeyueee.github.io/post/html%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>HTML入门</title>
+      <link>http://heeeyueee.github.io/post/html%E5%85%A5%E9%97%A8/</link>
+      <pubDate>Fri, 06 Nov 2020 00:00:00 +0800</pubDate>
+      
+      <guid>http://heeeyueee.github.io/post/html%E5%85%A5%E9%97%A8/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

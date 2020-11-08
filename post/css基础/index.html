@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="HandheldFriendly" content="True" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta name="generator" content="Hugo 0.77.0" />
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+
+<title>CSS基础 - moji code blog</title>
+
+
+<meta name="author" content="DSRKafuU" />
+
+
+<meta name="description" content="CSS基础知识" />
+
+
+<meta name="keywords" content="css" />
+
+<meta property="og:title" content="CSS基础" />
+<meta property="og:description" content="CSS基础知识" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://heeeyueee.github.io/post/css%E5%9F%BA%E7%A1%80/" />
+<meta property="og:image" content="http://heeeyueee.github.io/img/og.png"/>
+<meta property="article:published_time" content="2020-11-08T00:00:00+08:00" />
+<meta property="article:modified_time" content="2020-11-08T00:00:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://heeeyueee.github.io/img/og.png"/>
+
+<meta name="twitter:title" content="CSS基础"/>
+<meta name="twitter:description" content="CSS基础知识"/>
+
+
+
+<style>
+    @media (prefers-color-scheme: dark) {
+        body[data-theme='auto'] img {
+            filter: brightness(60%);
+        }
+    }
+
+    body[data-theme='dark'] img {
+        filter: brightness(60%);
+    }
+</style>
+
+
+
+<link rel="stylesheet" href="http://heeeyueee.github.io/assets/css/fuji.min.css" />
+
+
+
+
+
+</head>
+
+<body data-theme="auto">
+    <script data-cfasync="false">
+  
+  var fujiThemeData = localStorage.getItem('fuji_data-theme');
+  
+  if (!fujiThemeData) {
+    localStorage.setItem('fuji_data-theme', 'auto');
+  } else {
+    
+    if (fujiThemeData !== 'auto') {
+      document.body.setAttribute('data-theme', fujiThemeData === 'dark' ? 'dark' : 'light');
+    }
+  }
+</script>
+
+    <header>
+    <div class="container-lg clearfix">
+        <div class="col-12 header">
+            <a class="title-main" href="http://heeeyueee.github.io/">moji code blog</a>
+            
+            <span class="title-sub">A minimal Hugo theme.</span>
+            
+        </div>
+    </div>
+</header>
+
+    <main>
+        <div class="container-lg clearfix">
+            
+            <div class="col-12 col-md-9 float-left content">
+                
+<article>
+    
+    <h2 class="post-item post-title">
+        <a href="http://heeeyueee.github.io/post/css%E5%9F%BA%E7%A1%80/">CSS基础</a>
+    </h2>
+    <div class="post-item post-meta">
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-11-08</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1459 words</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/css">css</a>&nbsp;</span>
+
+    </div>
+    
+    
+    <div class="post-content markdown-body">
+        <h2 id="css语法">CSS语法</h2>
+<ul>
+<li>
+<p>语法一:样式语法</p>
+<pre><code class="language-css">    选择器 {
+    属性名: 属性值;
+    /*注释*/
+  }
+</code></pre>
+<ul>
+<li>所有符号都是英文符号，如果写错了，浏览器会警告</li>
+<li>区分大小写，a 和 A 是不同的东西</li>
+<li>没有 // 注释</li>
+<li>最后一个分号可以省略，但建议不要省略</li>
+</ul>
+</li>
+<li>
+<p>语法二:at 语法</p>
+<pre><code class="language-css">@charset &quot;UTF-8&quot;;
+@import url(2.css);
+@media (min-width: 100px) and (max-width: 200px) {
+  语法一
+}
+  
+</code></pre>
+<ul>
+<li>@charset, 定义样式表使用的字符集，但 UTF-8 是字符编码 encoding，@charset 必须放在第一行</li>
+<li>@import, 告诉 CSS 引擎引入一个外部样式表</li>
+<li>@media, 如果满足媒介查询的条件则条件规则组里的规则生效</li>
+<li>前两个 at 语法必须以分号 ; 结尾</li>
+</ul>
+</li>
+</ul>
+<h2 id="文档流和文本流">文档流和文本流</h2>
+<ul>
+<li>
+<p>文本流 Text flow</p>
+<p>文本流是元素内部的一系列的字符的排列规则，简单来说是文档的读取和输出顺序，也就是我们通常看到的由左到右、由上而下的读取和输出形式，在网页中每个元素都是按照这个顺序进行排序和显示的，是单纯的相对于<strong>文字段落</strong>来说的，与容纳文字的元素无关。</p>
+</li>
+<li>
+<p>文档流 normal flow</p>
+<p>文档流,英文是normal flow,又翻译为常规流,标准流,正常流,普通流等。</p>
+<p>文档流指的是HTML中元素在计算布局排版的过程中,所有处于文档流中的元素会自动的从左到右(非块级元素),从上到下(块级元素)的排列规则。</p>
+</li>
+<li>
+<p>脱离文档流与脱离文本流</p>
+<ul>
+<li>
+<p>使用浮动(float)</p>
+</li>
+<li>
+<p>使用绝对定位(position:absolute/fixed)</p>
+<h6 id="区别">区别</h6>
+<ol>
+<li>
+<p>浮动会使元素脱离文档流（其他块级元素计算高度时会忽略浮动元素）,但是不会脱离文本流,在于其他盒子的<strong>文本内容</strong>计算布局的时候,还是占位置的。</p>
+</li>
+<li>
+<p>绝对定位会使元素脱离文档流,同时也会脱离文本流, 在于其他盒子的文本内容计算布局的时候,不占位置。</p>
+</li>
+<li>
+<p><img class="img-zoomable" src="https://raw.githubusercontent.com/heeeyueee/pic/main/img/20201108122637.png" alt="" />
+</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="块级元素内联元素和行块元素">块级元素，内联元素和行块元素</h2>
+<ul>
+<li>
+<p>三者转换</p>
+<p>可以通过CSS设置display属性来转换display：block、inline、inline-block。inline 元素从左到右，到达最右边才会换行
+block 元素从上到下，每一个都另起一行。inline-block 也是从左到右。</p>
+</li>
+<li>
+<p>宽度</p>
+<ul>
+<li>
+<p>inline 宽度为内部 inline 元素的和，不能用 width 指定</p>
+</li>
+<li>
+<p>block 默认自动计算宽度，可用 width 指定</p>
+</li>
+<li>
+<p>inline-block 结合前两者特点，可用 width</p>
+</li>
+</ul>
+</li>
+<li>
+<p>高度</p>
+<ul>
+<li>
+<p>inline 高度由 line-height 间接确定（与字体相关），跟 height 无关</p>
+</li>
+<li>
+<p>block 高度由包裹的文档流元素决定 ,可以设 height,没有元素为0，文档流元素的高度由行高line-height决定.</p>
+</li>
+<li>
+<p>inline-block 跟 block 类似，可以设置 height</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="css盒模型">CSS盒模型</h2>
+<ul>
+<li>
+<p>概念</p>
+<p>外边距——&gt; 边框——&gt; 内边距——&gt;内容区</p>
+<p>CSS盒模型作用于可以放入内容的块级盒子，如div、span等等。<strong>一般使用border-box</strong></p>
+</li>
+<li>
+<p>元素</p>
+<p>CSS盒子包含以下5个元素：width、height、padding、border、margin。</p>
+</li>
+<li>
+<p>标准盒模型（content-box ）替代（IE）的盒模型（border-box）</p>
+<ul>
+<li>
+<p>标准盒模型（content-box ）content-box width = 内容宽度</p>
+<p><img class="img-zoomable" src="https://raw.githubusercontent.com/heeeyueee/pic/main/img/20201108124225.png" alt="" />
+</p>
+</li>
+<li>
+<p>border-box width = 内容宽度 + padding + border</p>
+<p><img class="img-zoomable" src="https://raw.githubusercontent.com/heeeyueee/pic/main/img/20201108124348.png" alt="" />
+</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>​</p>
+<h2 id="overflow-溢出">overflow 溢出</h2>
+<p>等内容的宽度或高度大于容器的，会溢出,可用 overflow 来设置是否显示滚动条</p>
+<ul>
+<li>
+<p>auto 是灵活设置</p>
+</li>
+<li>
+<p>scroll 是永远显示</p>
+</li>
+<li>
+<p>hidden 是直接隐藏溢出部分</p>
+</li>
+<li>
+<p>visible 是直接显示溢出部分</p>
+</li>
+<li>
+<p>overflow 可以分为 overflow-x 和 overflow-y</p>
+</li>
+</ul>
+<h2 id="margin-合并">margin 合并</h2>
+<ul>
+<li>父子 margin 合并,兄弟 margin 合并</li>
+<li>阻止合并
+<ul>
+<li>父子合并用 padding / border 挡住</li>
+<li>父子合并用 overflow: hidden 挡住</li>
+<li>兄弟合并可以用 inline-block 消除</li>
+</ul>
+</li>
+<li>更多参考：<a href="https://segmentfault.com/a/1190000013735912" target="_blank">CSS margin合并问题</a></li>
+</ul>
+<h2 id="基本单位">基本单位</h2>
+<ul>
+<li>
+<p>颜色</p>
+<table>
+<thead>
+<tr>
+<th><strong>颜色值</strong></th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>十六进制RGB值</td>
+<td>#02798b</td>
+</tr>
+<tr>
+<td>RGB值</td>
+<td>rgb(2, 121, 139)</td>
+</tr>
+<tr>
+<td>RGBA值</td>
+<td>rgba(2, 121, 139, .3<strong>透明度</strong>)</td>
+</tr>
+<tr>
+<td>HSL值</td>
+<td>hsl(188<strong>色调</strong>, 97%<strong>饱和度</strong>, 28%<strong>亮度</strong>)</td>
+</tr>
+<tr>
+<td>HSLA 值</td>
+<td>hsla(188, 97%, 28%, .3<strong>透明度</strong>)</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>长度单位</p>
+<table>
+<thead>
+<tr>
+<th>长度单位</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>px</td>
+<td>像素</td>
+</tr>
+<tr>
+<td>em</td>
+<td>在 font-size 中使用是相对于父元素的字体大小，在其他属性中使用是相对于自身的字体大小，如 width</td>
+</tr>
+<tr>
+<td>rem</td>
+<td>根元素的字体大小</td>
+</tr>
+<tr>
+<td>vw</td>
+<td>视窗宽度的1%</td>
+</tr>
+<tr>
+<td>vh</td>
+<td>视窗高度的1%</td>
+</tr>
+<tr>
+<td>百分数</td>
+<td>相对于其他值设置的</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<hr>
+<h2 id="参考博客">参考博客</h2>
+<p><a href="https://juejin.im/post/6844904013360545800" target="_blank">HTML中的文档流和文本流</a></p>
+<p><a href="https://www.cnblogs.com/qianguyihao/p/7256371.html" target="_blank">CSS盒模型</a></p>
+<p><a href="https://segmentfault.com/a/1190000013735912" target="_blank">CSS margin合并问题</a></p>
+    </div>
+</article>
+
+
+<div class="license markdown-body">
+    <blockquote>
+        <p>Unless otherwise noted, the content of this site is licensed under <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+               target="_blank">CC BY-NC-SA 4.0</a>.</p>
+    </blockquote>
+</div>
+
+
+
+            </div>
+            <aside class="col-12 col-md-3 float-left sidebar">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>Pages</h3>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/archives/">Archives</a>
+            </li>
+            
+            <li>
+                <a href="/about/">About</a>
+            </li>
+            
+            <li>
+                <a href="/search/">Search</a>
+            </li>
+            
+            <li>
+                <a href="/index.xml">RSS</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>Links</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/amzrk2" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+            <li>
+                <a href="https://twitter.com/amzrk2" target="_blank"><span>Twitter</span></a>
+            </li>
+            
+            <li>
+                <a href="https://space.bilibili.com/19767474" target="_blank"><span>bilibili</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>Tags</h3>
+        <div>
+            
+            <span>
+                <a href="/tags/css/">css</a>
+            </span>
+            
+            <span>
+                <a href="/tags/html/">HTML</a>
+            </span>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>TOC</h3>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#css语法">CSS语法</a></li>
+    <li><a href="#文档流和文本流">文档流和文本流</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#块级元素内联元素和行块元素">块级元素，内联元素和行块元素</a></li>
+    <li><a href="#css盒模型">CSS盒模型</a></li>
+    <li><a href="#overflow-溢出">overflow 溢出</a></li>
+    <li><a href="#margin-合并">margin 合并</a></li>
+    <li><a href="#基本单位">基本单位</a></li>
+    <li><a href="#参考博客">参考博客</a></li>
+  </ul>
+</nav>
+    </div>
+    
+    
+</aside>
+        </div>
+        <div class="btn">
+    <div class="btn-menu" id="btn-menu">
+        <i class="iconfont icon-grid-sharp"></i>
+    </div>
+    <div class="btn-toggle-mode">
+        <i class="iconfont icon-contrast-sharp"></i>
+    </div>
+    <div class="btn-scroll-top">
+        <i class="iconfont icon-chevron-up-circle-sharp"></i>
+    </div>
+</div>
+<aside class="sidebar-mobile" style="display: none;">
+  <div class="sidebar-wrapper">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>Pages</h3>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/archives/">Archives</a>
+            </li>
+            
+            <li>
+                <a href="/about/">About</a>
+            </li>
+            
+            <li>
+                <a href="/search/">Search</a>
+            </li>
+            
+            <li>
+                <a href="/index.xml">RSS</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>Links</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/amzrk2" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+            <li>
+                <a href="https://twitter.com/amzrk2" target="_blank"><span>Twitter</span></a>
+            </li>
+            
+            <li>
+                <a href="https://space.bilibili.com/19767474" target="_blank"><span>bilibili</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>Tags</h3>
+        <div>
+            
+            <span>
+                <a href="/tags/css/">css</a>
+            </span>
+            
+            <span>
+                <a href="/tags/html/">HTML</a>
+            </span>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>TOC</h3>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#css语法">CSS语法</a></li>
+    <li><a href="#文档流和文本流">文档流和文本流</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#块级元素内联元素和行块元素">块级元素，内联元素和行块元素</a></li>
+    <li><a href="#css盒模型">CSS盒模型</a></li>
+    <li><a href="#overflow-溢出">overflow 溢出</a></li>
+    <li><a href="#margin-合并">margin 合并</a></li>
+    <li><a href="#基本单位">基本单位</a></li>
+    <li><a href="#参考博客">参考博客</a></li>
+  </ul>
+</nav>
+    </div>
+    
+    
+  </div>
+</aside>
+    </main>
+
+    <footer>
+    <div class="container-lg clearfix">
+        <div class="col-12 footer">
+            
+            <span>&copy; 2020-2020
+                <a href="http://heeeyueee.github.io/">DSRKafuU</a>
+                 | <a href="https://github.com/itsme/my_blog">Source code</a> 
+                | Powered by <a href="https://github.com/amzrk2/hugo-theme-fuji/"
+                   target="_blank">Fuji-v2</a> &amp; <a href="https://gohugo.io/"
+                                                    target="_blank">Hugo</a> 
+            </span>
+        </div>
+    </div>
+</footer>
+
+    
+<script defer src="https://cdn.jsdelivr.net/combine/npm/medium-zoom@1.0.6,npm/lazysizes@5.2.2"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.21.0/components/prism-core.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.21.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+
+
+<script defer src="/assets/js/fuji.min.js"></script>
+
+
+</body>
+
+</html>
