@@ -5,8 +5,19 @@
     <link>https://heeeyueee.github.io/tags/css/</link>
     <description>Recent content in css on moji code blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Sun, 08 Nov 2020 00:00:00 +0300</lastBuildDate><atom:link href="https://heeeyueee.github.io/tags/css/index.xml" rel="self" type="application/rss+xml" />
+    <language>zh-hans</language>
+    <lastBuildDate>Sun, 08 Nov 2020 09:00:00 +0800</lastBuildDate><atom:link href="https://heeeyueee.github.io/tags/css/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CSS布局</title>
+      <link>https://heeeyueee.github.io/post/css%E5%B8%83%E5%B1%80/</link>
+      <pubDate>Sun, 08 Nov 2020 09:00:00 +0800</pubDate>
+      
+      <guid>https://heeeyueee.github.io/post/css%E5%B8%83%E5%B1%80/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;学习目前流动使用的三种布局: &lt;em&gt;float&lt;/em&gt;  &lt;em&gt;flex&lt;/em&gt;  &lt;em&gt;grid&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
     <item>
       <title>CSS基础</title>
       <link>https://heeeyueee.github.io/post/css%E5%9F%BA%E7%A1%80/</link>
@@ -14,15 +25,6 @@
       
       <guid>https://heeeyueee.github.io/post/css%E5%9F%BA%E7%A1%80/</guid>
       <description></description>
-    </item>
-    
-    <item>
-      <title>CSS布局</title>
-      <link>https://heeeyueee.github.io/post/css%E5%B8%83%E5%B1%80/</link>
-      <pubDate>Sun, 08 Nov 2020 00:00:00 +0800</pubDate>
-      
-      <guid>https://heeeyueee.github.io/post/css%E5%B8%83%E5%B1%80/</guid>
-      <description>学习目前流动使用的三种布局: float flex grid float布局 float CSS属性指定一个元素应沿其容器的左侧或右侧放置，允许文本和内联元素环绕它。该元素从网页的正常流动(文档流)中移除，尽管仍然保持部分的流动性（与绝对定</description>
     </item>
     
   </channel>

@@ -5,7 +5,7 @@
     <link>https://heeeyueee.github.io/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</link>
     <description>Recent content in 博客搭建 on moji code blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
+    <language>zh-hans</language>
     <lastBuildDate>Thu, 05 Nov 2020 00:00:00 +0800</lastBuildDate><atom:link href="https://heeeyueee.github.io/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>First</title>
@@ -13,7 +13,9 @@
       <pubDate>Thu, 05 Nov 2020 00:00:00 +0800</pubDate>
       
       <guid>https://heeeyueee.github.io/post/first/</guid>
-      <description>记录一下搭建过程 步骤： 使用scoop安装Hugo Scoop安装、配置与使用 Scoop是Windows的命令行安装程序，是一个强大的包管理工具。 安装 在Cmder的PowerShell中运行以下命令 Invoke-Expression (New-Object System.Net.WebClient).DownloadString(&#39;https://get.scoop.sh&#39;)</description>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;记录一下搭建过程&lt;/p&gt;
+&lt;/blockquote&gt;</description>
     </item>
     
   </channel>
