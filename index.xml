@@ -6,7 +6,18 @@
     <description>Recent content on moji code blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-hans</language>
-    <lastBuildDate>Tue, 10 Nov 2020 09:00:00 +0800</lastBuildDate><atom:link href="https://heeeyueee.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 12 Nov 2020 09:00:00 +0800</lastBuildDate><atom:link href="https://heeeyueee.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HTTP请求与响应</title>
+      <link>https://heeeyueee.github.io/post/http%E8%AF%B7%E6%B1%82%E4%B8%8E%E5%93%8D%E5%BA%94/</link>
+      <pubDate>Thu, 12 Nov 2020 09:00:00 +0800</pubDate>
+      
+      <guid>https://heeeyueee.github.io/post/http%E8%AF%B7%E6%B1%82%E4%B8%8E%E5%93%8D%E5%BA%94/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;URL组成,IP,域名,DNS&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
     <item>
       <title>浅析URL</title>
       <link>https://heeeyueee.github.io/post/%E6%B5%85%E6%9E%90url/</link>
