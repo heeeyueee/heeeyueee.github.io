@@ -107,7 +107,7 @@
         <a href="https://heeeyueee.github.io/post/js%E8%AF%AD%E6%B3%95/">JavaScript语法</a>
     </h2>
     <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-11-16</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1660 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;</span>
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-11-16</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;2365 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;</span>
 
     </div>
     
@@ -136,6 +136,59 @@
 <li>第二个字符及后面的字符，除了 Unicode 字母、美元符号和下划线，还可以用数字<code>0-9</code>。</li>
 <li>标识符不能是关键字和保留字符</li>
 <li>标识符一般都采用驼峰命名法</li>
+</ol>
+<h2 id="变量">变量</h2>
+<h3 id="概念">概念</h3>
+<p>变量是对“值”的具名引用。变量就是为“值”起名，然后引用这个名字，就等同于引用这个值。变量的名字就是变量名。变量名存储内存的不知道什么区，下图展示变量名，变量地址，变量的关系在内存中存储的位置。</p>
+<p><img src="https://raw.githubusercontent.com/heeeyueee/pic/main/img/20201117145300.png" style="zoom:67%;" /></p>
+<h3 id="变量声明与赋值">变量声明与赋值</h3>
+<p>变量声明有三种方式：<code>var</code>、<code>let</code>、<code>const</code></p>
+<ol>
+<li>
+<p><em>var</em></p>
+<p>var声明的变量不遵循块作用域且允许重复声明，容易不知不觉地创建全局变量，<strong>不要使用！！！</strong></p>
+<blockquote>
+<p>var变量提升：</p>
+<p>JavaScript 引擎的工作方式是，先解析代码，获取所有被声明的变量，然后再一行一行地运行。这造成的结果，就是所有的变量的声明语句，都会被提升到代码的头部，这就叫做变量提升（hoisting）。</p>
+</blockquote>
+<pre><code class="language-javascript">console.log(a);
+var a = 1;
+------变量提升作用-----
+ var a;
+console.log(a);
+a = 1;
+</code></pre>
+<p>实际上不会报错，结果是显示<code>undefined</code>，表示变量<code>a</code>已声明，但还未赋值。</p>
+<blockquote>
+<p>关与变量提升，更多学习参考博客<a href="https://juejin.im/post/6844903895341219854" target="_blank">从本质上理解JavaScript中的变量提升</a></p>
+</blockquote>
+</li>
+<li>
+<p><em>let</em></p>
+<ul>
+<li>遵循块作用域， 即使用范围不能超出{ }</li>
+<li>不能重复申明</li>
+<li>可以赋值， 也可以不赋值</li>
+<li>必须先声明再使用， 否则报错</li>
+<li>全局声明的let 变量， 不会变成window 的属性</li>
+<li>在for循环中使用let来声明i</li>
+</ul>
+<blockquote>
+<p>关与let与for循环，let与块作用域，变量声明的三种方式，变量提升等等还需后续来填坑，小白已在各篇博客中绕晕/(ㄒoㄒ)/~~</p>
+<p>附上博客连接：</p>
+<p><a href="https://juejin.im/post/6844903895341219854" target="_blank">从本质上理解JavaScript中的变量提升</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/28140450" target="_blank">我用了两个月的时间才理解 let</a></p>
+<p>[<a href="https://www.cnblogs.com/echolun/p/10584703.html" target="_blank">for循环中let与var的区别</a>](<a href="https://www.cnblogs.com/echolun/p/10584703.html">https://www.cnblogs.com/echolun/p/10584703.html</a>)</p>
+</blockquote>
+</li>
+<li>
+<p><em>const</em></p>
+<ul>
+<li>给const 修饰的标识符被赋值之后， 不能修改</li>
+<li>声明变量的时候必须初始化赋值</li>
+<li>常量的含义是指向的对象不能修改， 但是可以改变对象内部的属性</li>
+</ul>
+</li>
 </ol>
 <h2 id="条件语句">条件语句</h2>
 <h3 id="if-结构">if 结构</h3>
@@ -326,6 +379,12 @@ console.log(2);
   <ul>
     <li><a href="#表达式和语句">表达式和语句</a></li>
     <li><a href="#标识符">标识符</a></li>
+    <li><a href="#变量">变量</a>
+      <ul>
+        <li><a href="#概念">概念</a></li>
+        <li><a href="#变量声明与赋值">变量声明与赋值</a></li>
+      </ul>
+    </li>
     <li><a href="#条件语句">条件语句</a>
       <ul>
         <li><a href="#if-结构">if 结构</a></li>
@@ -439,6 +498,12 @@ console.log(2);
   <ul>
     <li><a href="#表达式和语句">表达式和语句</a></li>
     <li><a href="#标识符">标识符</a></li>
+    <li><a href="#变量">变量</a>
+      <ul>
+        <li><a href="#概念">概念</a></li>
+        <li><a href="#变量声明与赋值">变量声明与赋值</a></li>
+      </ul>
+    </li>
     <li><a href="#条件语句">条件语句</a>
       <ul>
         <li><a href="#if-结构">if 结构</a></li>
