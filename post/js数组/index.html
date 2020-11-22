@@ -107,7 +107,7 @@
         <a href="https://heeeyueee.github.io/post/js%E6%95%B0%E7%BB%84/">JavaScript数组</a>
     </h2>
     <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-11-19</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;2937 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;</span>
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-11-19</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;2968 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;</span>
 
     </div>
     
@@ -162,7 +162,7 @@ let arr=new Array(3)
 <h3 id="转化">转化</h3>
 <h4 id="split">split()</h4>
 <blockquote>
-<p>**<code>split() </code>**方法使用指定的分隔符字符串将一个<code>String</code>对象分割成子字符串数组，以一个指定的分割字串来决定每个拆分的位置。</p>
+<p><code>split() </code>方法使用指定的分隔符字符串将一个<code>String</code>对象分割成子字符串数组，以一个指定的分割字串来决定每个拆分的位置。</p>
 </blockquote>
 <p>简单来说，split方法最常用的就是参数中指定一个分隔符来把字符串分割为数组,有一个和它反作用的方法<code>join</code>。</p>
 <pre><code class="language-javascript">var str = 'user-1,user-2,user-3';
@@ -173,7 +173,7 @@ console.log( result );//[&quot;user-1&quot;, &quot;user-2&quot;, &quot;user-3&qu
 </code></pre>
 <h4 id="arrayfrom">Array.from</h4>
 <blockquote>
-<p>**<code>Array.from()</code> **方法从一个类似数组或可迭代对象创建一个新的，浅拷贝的数组实例。</p>
+<p><code>Array.from()</code> 方法从一个类似数组或可迭代对象创建一个新的，浅拷贝的数组实例。</p>
 </blockquote>
 <p>简单来说，Array.from将类数组对象转换成数组，比如String、set对象、map对象&hellip;&hellip;</p>
 <p>**PS：**类数组的原型链中并没有数组的原型（没有数组共有的属性），可以通过Array.from来进行转化就可以获得共有属性</p>
@@ -183,7 +183,7 @@ console.log( result );//[&quot;user-1&quot;, &quot;user-2&quot;, &quot;user-3&qu
 <p>👉跟多关与Array.from的用法：<a href="https://juejin.cn/post/6844903926823649293" target="_blank">Array.from() 五个超好用的用途</a></p>
 <h4 id="concat">concat()</h4>
 <blockquote>
-<p>**<code>concat()</code> **方法用于合并两个或多个数组。此方法不会更改现有数组，而是返回一个新数组。</p>
+<p><code>concat()</code> 方法用于合并两个或多个数组。此方法不会更改现有数组，而是返回一个新数组。</p>
 </blockquote>
 <pre><code class="language-javascript">var alpha = ['a', 'b', 'c'];
 var numeric = [1, 2, 3];
@@ -191,7 +191,7 @@ alpha.concat(numeric);   // result in ['a', 'b', 'c', 1, 2, 3
 </code></pre>
 <h4 id="slice">slice()</h4>
 <blockquote>
-<p><strong><code>slice()</code> <strong>方法返回一个新的数组对象，这一对象是一个由 <code>begin</code> 和 <code>end</code> 决定的原数组的</strong>浅拷贝</strong>（包括 <code>begin</code>，不包括<code>end</code>）。原始数组不会被改变。</p>
+<p><code>slice()</code> 方法返回一个新的数组对象，这一对象是一个由 <code>begin</code> 和 <code>end</code> 决定的原数组的<strong>浅拷贝</strong>（包括 <code>begin</code>，不包括<code>end</code>）。原始数组不会被改变。</p>
 </blockquote>
 <p>简单来说，slice翻译为切，两个参数代表从什么位置起切到什么位置止，返回一个新数组。</p>
 <pre><code class="language-javascript">const arr = ['a', 'b', 'c', 'd', 'e'];
@@ -231,7 +231,7 @@ alert( fruits ); // b, c
 </blockquote>
 <h4 id="pop">pop()</h4>
 <blockquote>
-<p>**<code>pop()</code>**方法从数组中删除最后一个元素，并返回该元素的值。此方法将改变原数组。</p>
+<p><code>pop()</code>方法从数组中删除最后一个元素，并返回该元素的值。此方法将改变原数组。</p>
 </blockquote>
 <pre><code class="language-javascript">let arr = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;];
 
@@ -241,7 +241,7 @@ alert( fruits ); // a, b
 </code></pre>
 <h4 id="splice">📍splice()</h4>
 <blockquote>
-<p><strong><code>splice()</code></strong> 方法通过删除或替换现有元素或者原地添加新的元素来修改数组,并以数组形式返回被修改的内容。此方法将改变原数组。</p>
+<p><code>splice()</code>方法通过删除或替换现有元素或者原地添加新的元素来修改数组,并以数组形式返回被修改的内容。此方法将改变原数组。</p>
 </blockquote>
 <pre><code class="language-javascript">array.splice(start, deleteCount, arguments)
 </code></pre>
@@ -291,7 +291,8 @@ colors.forEach(function (item) {
 <li>index 对应的数组索引</li>
 <li>array 数组本身</li>
 </ul>
-<p>💁🏼‍♀️**插一嘴：**for循环和forEach的区别</p>
+<p>💁🏼‍♀️<strong>插一嘴：</strong></p>
+<p>for循环和forEach的区别</p>
 <blockquote>
 <p>for循环和foreach大部分情况下都是可以通用的</p>
 <p>但for循环里面可以有break和continue</p>
@@ -380,6 +381,7 @@ console.log('reversed:', reversed);
 </ul>
 <p>应用函数时，上一个函数调用的结果将作为第一个参数传递给下一个函数。</p>
 <p>因此，第一个参数本质上是累加器，用于存储所有先前执行的组合结果。最后，它成为 <code>reduce</code> 的结果。</p>
+<p>👉跟多关与reduce() 的用法：<a href="https://www.jianshu.com/p/e375ba1cfc47" target="_blank">JS数组reduce()方法详解及高级技巧</a></p>
 <h2 id="参考">参考</h2>
 <p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank">MDN</a></p>
 <p><a href="https://zh.javascript.info/array-methods" target="_blank">JS现代教程</a></p>
