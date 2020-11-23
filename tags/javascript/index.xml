@@ -6,7 +6,18 @@
     <description>Recent content in JavaScript on moji code blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-hans</language>
-    <lastBuildDate>Sat, 21 Nov 2020 00:00:00 +0800</lastBuildDate><atom:link href="https://heeeyueee.github.io/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 23 Nov 2020 00:00:00 +0900</lastBuildDate><atom:link href="https://heeeyueee.github.io/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JS函数的9大要素</title>
+      <link>https://heeeyueee.github.io/post/js%E5%87%BD%E6%95%B0%E7%9A%849%E5%A4%A7%E8%A6%81%E7%B4%A0/</link>
+      <pubDate>Mon, 23 Nov 2020 00:00:00 +0900</pubDate>
+      
+      <guid>https://heeeyueee.github.io/post/js%E5%87%BD%E6%95%B0%E7%9A%849%E5%A4%A7%E8%A6%81%E7%B4%A0/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;这是我在JS学习路上的大山，不断学习，不断更新中~&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
     <item>
       <title>JS函数的执行时机</title>
       <link>https://heeeyueee.github.io/post/js%E5%87%BD%E6%95%B0%E7%9A%84%E6%89%A7%E8%A1%8C%E6%97%B6%E6%9C%BA/</link>

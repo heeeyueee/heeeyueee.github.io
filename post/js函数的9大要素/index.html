@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+    
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="HandheldFriendly" content="True" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta name="generator" content="Hugo 0.77.0" />
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+
+<title>JS函数的9大要素 - moji code blog</title>
+
+
+<meta name="author" content="moji" />
+
+
+<meta name="description" content="JavaScript原型" />
+
+
+<meta name="keywords" content="JavaScript, JS函数" />
+
+<meta property="og:title" content="JS函数的9大要素" />
+<meta property="og:description" content="JavaScript原型" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://heeeyueee.github.io/post/js%E5%87%BD%E6%95%B0%E7%9A%849%E5%A4%A7%E8%A6%81%E7%B4%A0/" />
+<meta property="og:image" content="https://heeeyueee.github.io/img/og.png"/>
+<meta property="article:published_time" content="2020-11-23T00:00:00+09:00" />
+<meta property="article:modified_time" content="2020-11-23T00:00:00+09:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://heeeyueee.github.io/img/og.png"/>
+
+<meta name="twitter:title" content="JS函数的9大要素"/>
+<meta name="twitter:description" content="JavaScript原型"/>
+
+
+
+<style>
+    @media (prefers-color-scheme: dark) {
+        body[data-theme='auto'] img {
+            filter: brightness(60%);
+        }
+    }
+
+    body[data-theme='dark'] img {
+        filter: brightness(60%);
+    }
+</style>
+
+
+
+<link rel="stylesheet" href="https://heeeyueee.github.io/assets/css/fuji.min.css" />
+
+
+
+
+
+</head>
+
+<body data-theme="auto">
+    <script data-cfasync="false">
+  
+  var fujiThemeData = localStorage.getItem('fuji_data-theme');
+  
+  if (!fujiThemeData) {
+    localStorage.setItem('fuji_data-theme', 'auto');
+  } else {
+    
+    if (fujiThemeData !== 'auto') {
+      document.body.setAttribute('data-theme', fujiThemeData === 'dark' ? 'dark' : 'light');
+    }
+  }
+</script>
+
+    <header>
+    <div class="container-lg clearfix">
+        <div class="col-12 header">
+            <a class="title-main" href="https://heeeyueee.github.io">moji code blog</a>
+            
+            <span class="title-sub">A mini blog.</span>
+            
+        </div>
+    </div>
+</header>
+
+    <main>
+        <div class="container-lg clearfix">
+            
+            <div class="col-12 col-md-9 float-left content">
+                
+<article>
+    
+    <h2 class="post-item post-title">
+        <a href="https://heeeyueee.github.io/post/js%E5%87%BD%E6%95%B0%E7%9A%849%E5%A4%A7%E8%A6%81%E7%B4%A0/">JS函数的9大要素</a>
+    </h2>
+    <div class="post-item post-meta">
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-11-23</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;2978 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;<a href="/tags/js%E5%87%BD%E6%95%B0">JS函数</a>&nbsp;</span>
+
+    </div>
+    
+    
+    <div class="post-content markdown-body">
+        <blockquote>
+<p>这是我在JS学习路上的大山，不断学习，不断更新中~</p>
+</blockquote>
+<blockquote>
+<p>关于JS函数有9个十分重要但又不好理解的要素，随着不断学习，对他们认识也一直在改变，先从一个小白的视角来总结一下，对于其中难懂的要素会单独写博客来总结。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>时间</th>
+<th>修改内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2020.11.23</td>
+<td>第一版</td>
+</tr>
+</tbody>
+</table>
+<h2 id="9个要素">9个要素</h2>
+<ul>
+<li>调用时机 👉<a href="https://heeeyueee.github.io/post/js%E5%87%BD%E6%95%B0%E7%9A%84%E6%89%A7%E8%A1%8C%E6%97%B6%E6%9C%BA/" target="_blank">JS函数的执行时机</a></li>
+<li>作用域 👉(会单独写博客)</li>
+<li>闭包 👉(和作用域一起写博客)</li>
+<li>形式参数</li>
+<li>返回值</li>
+<li>调用栈</li>
+<li>arguments（除了箭头函数）</li>
+<li>this（除了箭头函数）👉(会单独写博客)</li>
+</ul>
+<p>每一个函数都有这9个要素，但ES6新版语法的箭头函数没有arguments和this</p>
+<h2 id="定义函数">定义函数</h2>
+<blockquote>
+<p>函数其实是处理数据的方法，JavaScript 把它当成一种数据类型，可以赋值给变量，这为编程带来了很大的灵活性，也为 JavaScript 的“函数式编程”奠定了基础。</p>
+</blockquote>
+<p>函数也是对象,先从最简单的定义函数开始：</p>
+<h3 id="具名函数">具名函数</h3>
+<pre><code class="language-javascript">function 函数名(形式参数1, 形式参数2){
+
+ 语句
+
+ return 返回值
+
+}
+</code></pre>
+<p>这种方式声明的函数，全局可调用，并且JS会进行函数提升，把它提升到代码的最前面。</p>
+<h3 id="匿名函数">匿名函数</h3>
+<pre><code class="language-javascript">let a = function(x, y){ return x+y }
+</code></pre>
+<p>上面的具名函数，去掉函数名就是匿名函数，上面例子中使用函数表达式将匿名函数赋值给变量，这里的赋值跟将对象赋值给变量一样，a中存储的就是函数对象的地址。之后就可以通过a()来调用函数。</p>
+<p>💁🏼‍♀️<em>插一嘴</em>：<code>a</code>与<code>a()</code></p>
+<blockquote>
+<p><code>a</code>是指函数本身 ，<code>a()</code>是指调用（执行）这个函数 ，<code>a</code>是一个变量保存了函数体的地址，如果一个变量存的是一个函数的地址，那通过变量来执行函数时就是对函数的引用。</p>
+</blockquote>
+<p><strong>立即执行函数</strong></p>
+<blockquote>
+<p>立即执行函数就是通过匿名函数来实现的</p>
+</blockquote>
+<p>在ES5时代，为了得到局部变量，必须引入一个函数，在函数里去声明局部变量，但是这个函数如果有名字，就得不偿失，于是这个函数必须是匿名函数。</p>
+<p>于是<strong>声明匿名函数，然后立即加个 () 执行它，并在匿名函数前面加个运算符来让其符合JS语法，!、~、()、+、-运算符都可</strong>，这种方法形成的函数就是立即执行函数。</p>
+<pre><code class="language-javascript">!function(i){
+   语句
+}(i)
+</code></pre>
+<p>ES6新语法出现后，想要得到局部变量就十分简单了，使用 let/const的块作用域特性来声明局部变量</p>
+<pre><code class="language-javascript">{
+let i = 'moji';
+}
+</code></pre>
+<h3 id="箭头函数">箭头函数</h3>
+<p>箭头函数是函数声明的简写形式，在使用递归调用、构造函数、事件处理器时不建议使用箭头函数。</p>
+<ul>
+<li>无参数时使用空扩号即可</li>
+<li>函数体为单一表达式时不需要 <code>return</code> 返回处理，会自动返回表达式计算结果，可以省略花括号</li>
+<li>只有一个参数时可以省略括号</li>
+</ul>
+<pre><code class="language-javascript">(参数1, 参数2, …, 参数N) =&gt; { 函数声明 }
+(参数1, 参数2, …, 参数N) =&gt; 表达式（单一）
+//相当于：(参数1, 参数2, …, 参数N) =&gt;{ return 表达式; }
+
+// 当只有一个参数时，圆括号是可选的：
+(单一参数) =&gt; {函数声明}
+单一参数 =&gt; {函数声明}
+
+// 没有参数的函数应该写成一对圆括号。
+() =&gt; {函数声明}
+</code></pre>
+<h3 id="构造函数">构造函数</h3>
+<pre><code class="language-javascript">let f = new Function('x', 'y', 'return x+y')
+</code></pre>
+<p>所有函数都是 Function 构造出来的,包括 Object、Array、Function</p>
+<h2 id="调用时机">调用时机</h2>
+<p>JS函数的执行时机和函数被调用的时机有关，函数被调用时才会被执行，调用时机不同，函数的执行结果也不同。</p>
+<p>关于调用时机引发的问题 ，另一篇博客有详细探讨👉<a href="https://heeeyueee.github.io/post/js%E5%87%BD%E6%95%B0%E7%9A%84%E6%89%A7%E8%A1%8C%E6%97%B6%E6%9C%BA/" target="_blank">JS函数的执行时机</a></p>
+<h2 id="作用域">作用域</h2>
+<blockquote>
+<p>先记录一下对函数作用域最直白的理解，再读完《你不知道的JavaScript上卷》之后，再单独写一篇博客来总结。</p>
+</blockquote>
+<p>只有一个全局作用域就是window，每个函数都会默认创建一个作用域，编译器运行时会将变量定义在所在作用域，作用域外就无法访问到变量。所以，变量可分为全局变量和局部变量，在顶级作用域（window）声明的变量是全局变量，其他都是局部变量。.如果在一个函数里面声明了let const声明了一个变量，就是局部变量，作用域在函数里面</p>
+<blockquote>
+<p>作用域规则——「就近原则」</p>
+</blockquote>
+<ul>
+<li>如果多个作用域有同名变量 a，那么查找 a 的声明时，就向上取最近的作用域</li>
+<li>确定是哪个作用域的变量a的时候是不看函数执行的，只有确定变量a的值的时候才和函数的执行有关</li>
+<li>跟函数执行没有关系的作用域叫做静态（词法）作用域，反之，动态作用域</li>
+</ul>
+<p>例1：</p>
+<pre><code class="language-javascript">function f1(){
+  let a = 1
+  function f2(){
+    let a = 2
+    function f3(){
+      console.log(a)
+    }
+    a = 22
+    f3() 
+  }
+  console.log(a) 
+  a = 100
+  f2()
+}
+f1()
+// 1 
+// 22
+</code></pre>
+<p>解析：函数 <code>f3</code>中console.log(a)的<code>a</code>可以通过就近原则确认是第四行声明的变量<code>a</code>，但是<code>f3</code>被调用前<code>a</code>被重新赋值为22，可以得到打印为22</p>
+<h2 id="闭包">闭包</h2>
+<p>JS的函数会就近的选择最近的变量来执行，如果一个函数用到了外部的变量，那么这个函数加这个变量就叫做闭包，闭包一般在子函数（嵌套函数）本身作用域以外执行。例1中f3用到了外部的变量a，a 和 f3 组成了闭包。</p>
+<h2 id="形式参数">形式参数</h2>
+<p>形式参数的意思就是非实际参数，形式参数可以认定为变量声明，调用函数时形参都是对实参内存中stack里存储的值进行复制，普通类型直接复制值，复制类型（对象）复制是地址。</p>
+<pre><code class="language-javascript">function add(x, y){
+  return x+y
+}
+// 其中 x 和 y 就是形参，因为并不是实际的参数
+add(1,2)
+// 调用 add 时，1 和 2 是实际参数，会被赋值给 x y
+</code></pre>
+<p>形参可认为是变量声明</p>
+<pre><code class="language-javascript">// 上面代码近似等价于下面代码
+function add(){
+  var x = arguments[0]
+  var y = arguments[1]
+  return x+y
+}
+</code></pre>
+<h2 id="返回值">返回值</h2>
+<p>每个函数都有返回值且只有执行完的函数才有返回值，没有写return的函数 ，返回值undefined</p>
+<h2 id="调用栈">调用栈</h2>
+<p>调用栈就是执行一个函数前会在栈里记录（压入）当前所处的环境位置（执行完函数后要回到的环境位置），等函数执行完毕，再弹出刚才记录的位置信息，回到之前位置继续执行后续代码。</p>
+<p><img src="https://raw.githubusercontent.com/heeeyueee/pic/main/img/20201123204324.png" style="zoom:60%;" /></p>
+<p>递归函数的调用栈：先递进后回归，递进的过程就是把环境位置信息一步步压栈的过程，f(4)就压入了4四次，回归就是把位置环境信息一步步弹栈，子函数得到结果后再一步步的回归到父环境得到最终结果（参考上图）。</p>
+<h2 id="arguments">arguments</h2>
+<p><code>arguments</code>对象是所有（非箭头）函数中都可用的<strong>局部变量</strong>。arguments是函数所有参数组成的伪数组（没有数组的共有属性），可以使用<code>arguments</code>对象在函数中引用函数的参数。</p>
+<pre><code class="language-javascript">function func1(a, b, c) {
+  console.log(arguments[0]);
+  // expected output: 1
+
+  console.log(arguments[1]);
+  // expected output: 2
+
+  console.log(arguments[2]);
+  // expected output: 3
+}
+</code></pre>
+<h2 id="this">this</h2>
+<p>🤟先来了解一下this的起源：</p>
+<p>写函数时，在还不知道对象的名字（对象还没有声明）时拿到一个对象的属性，可以怎么做呢？
+<em>第一种</em>：使用形式参数，调用函数的时候再传入 ，python使用了这个方法</p>
+<pre><code class="language-javascript">let person = {
+  name: 'moji',
+  sayHi(p){
+    console.log(`你好，我叫` + p.name)
+  }
+}
+person.sayHi(person) 
+</code></pre>
+<p>​    这显然和 JS 中对象调用函数的方式不一样，JS中是直接person.sayHi()，</p>
+<p>​     <em>第二种</em>：JS解决方法是，在每个函数里加入了this，可以使用this来调用还不知道名字的对象的属性值，在被对象调用时，this里的值就是对象的地址，使用this来获取对未知对象的引用。</p>
+<pre><code class="language-javascript">let person = {
+  name: 'moji',
+  sayHi(this(省略)){
+    console.log(`你好，我叫` + this.name)
+  }
+}
+person.sayHi()
+</code></pre>
+<p>person.sayHi()会隐式地把 person（person 是个地址） 作为 this 传给 sayHi，这样，每个函数都能用 this 获取一个未知对象的引用了。</p>
+<p>🤏简单来说，<strong>this就是最终调用函数的对象</strong></p>
+<p>ps：函数里不给其他条件，this默认指向window，箭头函数自己没有this，函数外面的this就函数里调用的this，call也无法使用</p>
+<h3 id="call">call()</h3>
+<p>call 方法第一个参数也是作为函数上下文的对象，后面传入的是一个参数列表，而不是单个数组。</p>
+<p><strong>作用：</strong></p>
+<ul>
+<li>
+<p>改变this的指向</p>
+</li>
+<li>
+<p>调用函数</p>
+<p>person.sayHi()=person.sayHi.call(person) ，不需要传this时，使用undefined来占位</p>
+</li>
+</ul>
+<h3 id="apply">apply()</h3>
+<p>apply 方法传入两个参数：一个是作为函数上下文的对象，另外一个是作为函数参数所组成的数组。</p>
+<h3 id="bind">bind()</h3>
+<p>它和 call 很相似，接受的参数有两部分，第一个参数是是作为函数上下文的对象，第二部分参数是个列表，可以接受多个参数。使用bind来绑定this，让this不再改变</p>
+    </div>
+</article>
+
+
+<div class="license markdown-body">
+    <blockquote>
+        <p>除特殊注明部分，本站内容采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+               target="_blank">CC BY-NC-SA 4.0</a> 进行许可。</p>
+    </blockquote>
+</div>
+
+
+
+            </div>
+            <aside class="col-12 col-md-3 float-left sidebar">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>页面</h3>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/archives/">Archives</a>
+            </li>
+            
+            <li>
+                <a href="/about/">About</a>
+            </li>
+            
+            <li>
+                <a href="/search/">Search</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>链接</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/heeeyueee" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+            <li>
+                <a href="https://weibo.com/5631402703/profile?topnav=1&amp;wvr=6" target="_blank"><span>weibo</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>标签</h3>
+        <div>
+            
+            <span>
+                <a href="/tags/css/">CSS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/html/">HTML</a>
+            </span>
+            
+            <span>
+                <a href="/tags/http/">HTTP</a>
+            </span>
+            
+            <span>
+                <a href="/tags/javascript/">JavaScript</a>
+            </span>
+            
+            <span>
+                <a href="/tags/js%E5%87%BD%E6%95%B0/">JS函数</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
+            </span>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>目录</h3>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#9个要素">9个要素</a></li>
+    <li><a href="#定义函数">定义函数</a>
+      <ul>
+        <li><a href="#具名函数">具名函数</a></li>
+        <li><a href="#匿名函数">匿名函数</a></li>
+        <li><a href="#箭头函数">箭头函数</a></li>
+        <li><a href="#构造函数">构造函数</a></li>
+      </ul>
+    </li>
+    <li><a href="#调用时机">调用时机</a></li>
+    <li><a href="#作用域">作用域</a></li>
+    <li><a href="#闭包">闭包</a></li>
+    <li><a href="#形式参数">形式参数</a></li>
+    <li><a href="#返回值">返回值</a></li>
+    <li><a href="#调用栈">调用栈</a></li>
+    <li><a href="#arguments">arguments</a></li>
+    <li><a href="#this">this</a>
+      <ul>
+        <li><a href="#call">call()</a></li>
+        <li><a href="#apply">apply()</a></li>
+        <li><a href="#bind">bind()</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+    
+</aside>
+        </div>
+        <div class="btn">
+    <div class="btn-menu" id="btn-menu">
+        <i class="iconfont icon-grid-sharp"></i>
+    </div>
+    <div class="btn-toggle-mode">
+        <i class="iconfont icon-contrast-sharp"></i>
+    </div>
+    <div class="btn-scroll-top">
+        <i class="iconfont icon-chevron-up-circle-sharp"></i>
+    </div>
+</div>
+<aside class="sidebar-mobile" style="display: none;">
+  <div class="sidebar-wrapper">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>页面</h3>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/archives/">Archives</a>
+            </li>
+            
+            <li>
+                <a href="/about/">About</a>
+            </li>
+            
+            <li>
+                <a href="/search/">Search</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>链接</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/heeeyueee" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+            <li>
+                <a href="https://weibo.com/5631402703/profile?topnav=1&amp;wvr=6" target="_blank"><span>weibo</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>标签</h3>
+        <div>
+            
+            <span>
+                <a href="/tags/css/">CSS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/html/">HTML</a>
+            </span>
+            
+            <span>
+                <a href="/tags/http/">HTTP</a>
+            </span>
+            
+            <span>
+                <a href="/tags/javascript/">JavaScript</a>
+            </span>
+            
+            <span>
+                <a href="/tags/js%E5%87%BD%E6%95%B0/">JS函数</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
+            </span>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>目录</h3>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#9个要素">9个要素</a></li>
+    <li><a href="#定义函数">定义函数</a>
+      <ul>
+        <li><a href="#具名函数">具名函数</a></li>
+        <li><a href="#匿名函数">匿名函数</a></li>
+        <li><a href="#箭头函数">箭头函数</a></li>
+        <li><a href="#构造函数">构造函数</a></li>
+      </ul>
+    </li>
+    <li><a href="#调用时机">调用时机</a></li>
+    <li><a href="#作用域">作用域</a></li>
+    <li><a href="#闭包">闭包</a></li>
+    <li><a href="#形式参数">形式参数</a></li>
+    <li><a href="#返回值">返回值</a></li>
+    <li><a href="#调用栈">调用栈</a></li>
+    <li><a href="#arguments">arguments</a></li>
+    <li><a href="#this">this</a>
+      <ul>
+        <li><a href="#call">call()</a></li>
+        <li><a href="#apply">apply()</a></li>
+        <li><a href="#bind">bind()</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+    
+  </div>
+</aside>
+    </main>
+
+    <footer>
+    <div class="container-lg clearfix">
+        <div class="col-12 footer">
+            
+            <span>&copy; 2020-2020
+                <a href="https://heeeyueee.github.io">moji</a>
+                 | <a href="https://github.com/heeeyueee/heeeyueee.github.io">Source code</a> 
+                | 基于 <a href="https://github.com/amzrk2/hugo-theme-fuji/"
+                   target="_blank">Fuji-v2</a> &amp; <a href="https://gohugo.io/"
+                                                    target="_blank">Hugo</a> 构建
+            </span>
+        </div>
+    </div>
+</footer>
+
+    
+<script defer src="https://cdn.jsdelivr.net/combine/npm/medium-zoom@1.0.6,npm/lazysizes@5.2.2"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.21.0/components/prism-core.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.21.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+
+
+<script defer src="/assets/js/fuji.min.js"></script>
+
+
+</body>
+
+</html>
