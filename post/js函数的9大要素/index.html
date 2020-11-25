@@ -107,7 +107,7 @@
         <a href="https://heeeyueee.github.io/post/js%E5%87%BD%E6%95%B0%E7%9A%849%E5%A4%A7%E8%A6%81%E7%B4%A0/">JS函数的9大要素</a>
     </h2>
     <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-11-23</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;2978 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;<a href="/tags/js%E5%87%BD%E6%95%B0">JS函数</a>&nbsp;</span>
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-11-23</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;2990 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;<a href="/tags/js%E5%87%BD%E6%95%B0">JS函数</a>&nbsp;</span>
 
     </div>
     
@@ -304,8 +304,9 @@ person.sayHi()
 <p>person.sayHi()会隐式地把 person（person 是个地址） 作为 this 传给 sayHi，这样，每个函数都能用 this 获取一个未知对象的引用了。</p>
 <p>🤏简单来说，<strong>this就是最终调用函数的对象</strong></p>
 <p>ps：函数里不给其他条件，this默认指向window，箭头函数自己没有this，函数外面的this就函数里调用的this，call也无法使用</p>
-<h3 id="call">call()</h3>
+<h3 id="call和apply">call()和apply()</h3>
 <p>call 方法第一个参数也是作为函数上下文的对象，后面传入的是一个参数列表，而不是单个数组。</p>
+<p>apply 方法传入两个参数：一个是作为函数上下文的对象，另外一个是作为函数参数所组成的数组。</p>
 <p><strong>作用：</strong></p>
 <ul>
 <li>
@@ -316,8 +317,6 @@ person.sayHi()
 <p>person.sayHi()=person.sayHi.call(person) ，不需要传this时，使用undefined来占位</p>
 </li>
 </ul>
-<h3 id="apply">apply()</h3>
-<p>apply 方法传入两个参数：一个是作为函数上下文的对象，另外一个是作为函数参数所组成的数组。</p>
 <h3 id="bind">bind()</h3>
 <p>它和 call 很相似，接受的参数有两部分，第一个参数是是作为函数上下文的对象，第二部分参数是个列表，可以接受多个参数。使用bind来绑定this，让this不再改变</p>
     </div>
@@ -429,8 +428,7 @@ person.sayHi()
     <li><a href="#arguments">arguments</a></li>
     <li><a href="#this">this</a>
       <ul>
-        <li><a href="#call">call()</a></li>
-        <li><a href="#apply">apply()</a></li>
+        <li><a href="#call和apply">call()和apply()</a></li>
         <li><a href="#bind">bind()</a></li>
       </ul>
     </li>
@@ -548,8 +546,7 @@ person.sayHi()
     <li><a href="#arguments">arguments</a></li>
     <li><a href="#this">this</a>
       <ul>
-        <li><a href="#call">call()</a></li>
-        <li><a href="#apply">apply()</a></li>
+        <li><a href="#call和apply">call()和apply()</a></li>
         <li><a href="#bind">bind()</a></li>
       </ul>
     </li>
