@@ -107,7 +107,7 @@
         <a href="https://heeeyueee.github.io/post/js%E5%87%BD%E6%95%B0%E7%9A%84%E6%89%A7%E8%A1%8C%E6%97%B6%E6%9C%BA/">JS函数的执行时机</a>
     </h2>
     <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-11-21</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1369 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;<a href="/tags/js%E5%87%BD%E6%95%B0">JS函数</a>&nbsp;</span>
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-11-21</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1461 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;<a href="/tags/js%E5%87%BD%E6%95%B0">JS函数</a>&nbsp;</span>
 
     </div>
     
@@ -199,7 +199,7 @@ for(i = 0; i&lt;6; i++){
 //不是 0、1、2、3、4、5
 //而是 6 个 6
 </code></pre>
-<p>setTimeout函数让console.log(i)变为异步执行，每次循环都会把console.log(i)加入队列，但要等待for循环执行完毕后（i的值变为6），才开始执行队列中的6个console.log(i)语句，所以打印为6个6。</p>
+<p>setTimeout函数让console.log(i)变为异步执行，每次循环都会把console.log(i)加入队列，但要等待for循环执行完毕后（i的值变为6），才开始执行队列中的6个console.log(i)语句，因为i定义在全局作用域中，6个console.log(i)语句共享一个i的引用，所以打印为6个6。</p>
 <blockquote>
 <p>让上面代码打印 0、1、2、3、4、5 的方法</p>
 </blockquote>
@@ -221,7 +221,7 @@ for(i = 0; i&lt;6; i++){
   },0)
 }
 </code></pre>
-<p>这样的话，在for循环中，i会被声明5次，产生5个不同的i，console.log(i)语句中的i不再是例6中for循环外的全局i，而是for循环语句内每次都重新声明赋值的i，第一次循环的i被声明赋值为0，加入队列的语句为 console.log(0)，第二次&hellip;&hellip;所以结果是0、1、2、3、4、5</p>
+<p>这样的话，在for循环中，每次循环都会产生一个闭包作用域，i会被声明5次，产生5个不同的i，console.log(i)语句中的i不再是例6中for循环外的全局i，而是for循环语句内每次都重新声明赋值的i，第一次循环的i被声明赋值为0，加入队列的语句为 console.log(0)，第二次&hellip;&hellip;所以结果是0、1、2、3、4、5</p>
 <p><strong>方法二</strong></p>
 <p>参考博客：<a href="https://zhuanlan.zhihu.com/p/138031062" target="_blank">JS 函数的执行时机</a></p>
 <pre><code class="language-javascript">for (var i = 0; i &lt;6;i++){
@@ -231,7 +231,7 @@ for(i = 0; i&lt;6; i++){
 }(i)  
 }
 </code></pre>
-<p>使用立即执行函数在for循环体内声明一个局部变量，然后立即执行，也可以像let一样每次循环都得到不同的i。</p>
+<p>在for循环体内使用立即执行函数时，都每次循环都会创建一个新的作用域，使得setTimeout函数的回调可以将新的作用域封闭在每个循环内部，每个循环中都会有一个有正确值的变量i。</p>
     </div>
 </article>
 

@@ -21,27 +21,30 @@
 <meta name="theme-color" content="#ffffff">
 
 
-<title>moji code blog - A mini blog.</title>
+<title>JS数组方法是否改变原数组和其返回值 - moji code blog</title>
 
 
 <meta name="author" content="moji" />
 
 
-<meta name="description" content="A minimal Hugo theme with nice theme color." />
+<meta name="description" content="JS数组方法是否改变原数组和其返回值" />
 
 
-<meta property="og:title" content="moji code blog" />
-<meta property="og:description" content="A minimal Hugo theme with nice theme color." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://heeeyueee.github.io/" />
+<meta name="keywords" content="JavaScript" />
+
+<meta property="og:title" content="JS数组方法是否改变原数组和其返回值" />
+<meta property="og:description" content="JS数组方法是否改变原数组和其返回值" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://heeeyueee.github.io/post/js%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95%E6%98%AF%E5%90%A6%E6%94%B9%E5%8F%98%E5%8E%9F%E6%95%B0%E7%BB%84%E5%92%8C%E5%85%B6%E8%BF%94%E5%9B%9E%E5%80%BC/" />
 <meta property="og:image" content="https://heeeyueee.github.io/img/og.png"/>
-<meta property="og:updated_time" content="2020-11-30T00:00:00+08:00" />
+<meta property="article:published_time" content="2020-11-30T00:00:00+08:00" />
+<meta property="article:modified_time" content="2020-11-30T00:00:00+08:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://heeeyueee.github.io/img/og.png"/>
 
-<meta name="twitter:title" content="moji code blog"/>
-<meta name="twitter:description" content="A minimal Hugo theme with nice theme color."/>
+<meta name="twitter:title" content="JS数组方法是否改变原数组和其返回值"/>
+<meta name="twitter:description" content="JS数组方法是否改变原数组和其返回值"/>
 
 
 
@@ -98,10 +101,8 @@
             
             <div class="col-12 col-md-9 float-left content">
                 
-
-
-
-<div class="post">
+<article>
+    
     <h2 class="post-item post-title">
         <a href="https://heeeyueee.github.io/post/js%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95%E6%98%AF%E5%90%A6%E6%94%B9%E5%8F%98%E5%8E%9F%E6%95%B0%E7%BB%84%E5%92%8C%E5%85%B6%E8%BF%94%E5%9B%9E%E5%80%BC/">JS数组方法是否改变原数组和其返回值</a>
     </h2>
@@ -109,189 +110,145 @@
         <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-11-30</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;646 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;</span>
 
     </div>
-    <div class="post-item post-summary markdown-body">
+    
+    
+    <div class="post-content markdown-body">
         <blockquote>
 <p>JavaScript数组小结~</p>
 </blockquote>
-    </div>
-</div>
-
-<div class="post">
-    <h2 class="post-item post-title">
-        <a href="https://heeeyueee.github.io/post/javascript%E8%BF%90%E7%AE%97%E7%AC%A6%E6%98%93%E9%94%99%E7%82%B9/">JavaScript运算符易错点</a>
-    </h2>
-    <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-11-25</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1857 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;</span>
-
-    </div>
-    <div class="post-item post-summary markdown-body">
-        <blockquote>
-<p>总结JS运算符和易错的点</p>
+<blockquote>
+<p>在之前学习完数组，对数组进行详细总结后，发现实际操作中总会记混各个方法的返回值，也会忘记方法是否会改变原数组，于是在这篇博客中来一个小结</p>
 </blockquote>
-    </div>
-</div>
-
-<div class="post">
-    <h2 class="post-item post-title">
-        <a href="https://heeeyueee.github.io/post/js%E5%87%BD%E6%95%B0%E7%9A%849%E5%A4%A7%E8%A6%81%E7%B4%A0/">JS函数的9大要素</a>
-    </h2>
-    <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-11-23</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;2990 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;<a href="/tags/js%E5%87%BD%E6%95%B0">JS函数</a>&nbsp;</span>
-
-    </div>
-    <div class="post-item post-summary markdown-body">
-        <blockquote>
-<p>这是我在JS学习路上的大山，不断学习，不断更新中~</p>
+<h2 id="方法分类回顾">方法分类回顾</h2>
+<p>直接上图来回顾之前学到的各个方法吧！</p>
+<p><img src="https://raw.githubusercontent.com/heeeyueee/pic/main/img/20201130151814.png" style="zoom:60%;" /></p>
+<h2 id="原数组与返回值">原数组与返回值</h2>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>返回值</th>
+<th>是否改变原数组</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>push(v)</td>
+<td>返回数组的新长度</td>
+<td>✔️</td>
+</tr>
+<tr>
+<td>pop()</td>
+<td>返回删除的元素</td>
+<td>✔️</td>
+</tr>
+<tr>
+<td>shift()</td>
+<td>返回删除的元素</td>
+<td>✔️</td>
+</tr>
+<tr>
+<td>unshift()</td>
+<td>返回数组的新长度</td>
+<td>✔️</td>
+</tr>
+<tr>
+<td>reverse()</td>
+<td>返回颠倒后的数组</td>
+<td>✔️</td>
+</tr>
+<tr>
+<td>sort()</td>
+<td>返回排序后的数组</td>
+<td>✔️</td>
+</tr>
+<tr>
+<td>concat()</td>
+<td>返回连接后的新数组</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>slice(begin,end)</td>
+<td>返回由<code>begin</code> 和 <code>end</code> 决定的原数组的浅拷贝</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>splice(begin,deleteCount,items)</td>
+<td>返回被删除元素组成的数组</td>
+<td>✔️</td>
+</tr>
+<tr>
+<td>every()</td>
+<td>返回一个布尔值</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>forEach()</td>
+<td>undefined</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>some(）</td>
+<td>返回一个布尔值</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>filter()</td>
+<td>一个新的、由符合条件的元素组成的数组</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>map()</td>
+<td>一个由原数组每个元素执行回调函数的结果组成的新数组</td>
+<td>❌ (基础类型)✔️(引用类型)</td>
+</tr>
+<tr>
+<td>reduce()</td>
+<td>函数累计处理的结果</td>
+<td>❌</td>
+</tr>
+</tbody>
+</table>
+<h2 id="详解">详解</h2>
+<blockquote>
+<p>挑出几个常用易错的进行记录</p>
 </blockquote>
-    </div>
-</div>
-
-<div class="post">
-    <h2 class="post-item post-title">
-        <a href="https://heeeyueee.github.io/post/js%E5%87%BD%E6%95%B0%E7%9A%84%E6%89%A7%E8%A1%8C%E6%97%B6%E6%9C%BA/">JS函数的执行时机</a>
-    </h2>
-    <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-11-21</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1461 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;<a href="/tags/js%E5%87%BD%E6%95%B0">JS函数</a>&nbsp;</span>
-
-    </div>
-    <div class="post-item post-summary markdown-body">
-        <blockquote>
-<p>探讨关于JS函数的执行时机的问题~</p>
+<h3 id="slice">slice（）</h3>
+<p><code>slice()</code> 方法返回一个新的数组对象，这一对象是一个由 <code>begin</code> 和 <code>end</code> 决定的原数组的<strong>浅拷贝</strong>（包括 <code>begin</code>，不包括<code>end</code>）。<strong>原始数组不会被改变。</strong></p>
+<pre><code class="language-javascript">let arr = [1, 2, 3, 4, 5]
+let a = arr.slice(0, 2)
+console.log(a);//[1,2]
+console.log(arr);//[1,2,3,4,5]
+</code></pre>
+<h3 id="splice">splice（）</h3>
+<blockquote>
+<p><code>splice()</code>方法通过删除或替换现有元素或者原地添加新的元素来修改数组,并以数组形式返回被修改的内容。此方法将改变原数组。</p>
 </blockquote>
+<pre><code class="language-javascript">array.splice(start, deleteCount, arguments)
+复制代码
+</code></pre>
+<ul>
+<li><code>start </code> 指定修改的开始位置（从0计数）</li>
+<li><code>deleteCount</code> 整数，表示要移除的数组元素的个数</li>
+<li><code>arguments</code> 要添加进数组的元素,从<code>start</code> 位置开始。如果不指定，则 <code>splice()</code> 将只删除数组元素</li>
+</ul>
+<pre><code class="language-javascript">let arr = [1, 2, 3, 4, 5]
+let a = arr.splice(1, 2, 22, 33)
+console.log(a);//[2,3]
+console.log(arr);//[1,22,33,4,5]
+</code></pre>
+<h3 id="map">map（）</h3>
+<p>关于map方法是否原数组可以参考下面博客：</p>
+<p><a href="https://blog.jingyun-times.com/2018/01/22/JS-%E6%95%B0%E7%BB%84map-%E6%96%B9%E6%B3%95%E5%88%B0%E5%BA%95%E4%BC%9A%E4%B8%8D%E4%BC%9A%E6%94%B9%E5%8F%98%E5%8E%9F%E6%95%B0%E7%BB%84/" target="_blank">JS 数组map()方法到底会不会改变原数组</a></p>
     </div>
-</div>
-
-<div class="post">
-    <h2 class="post-item post-title">
-        <a href="https://heeeyueee.github.io/post/js%E6%95%B0%E7%BB%84/">JavaScript数组</a>
-    </h2>
-    <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-11-19</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;2968 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;</span>
-
-    </div>
-    <div class="post-item post-summary markdown-body">
-        <blockquote>
-<p>总结JavaScript数组及相关方法~</p>
-</blockquote>
-    </div>
-</div>
-
-<div class="post">
-    <h2 class="post-item post-title">
-        <a href="https://heeeyueee.github.io/post/js%E5%AF%B9%E8%B1%A1%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/">JavaScript对象基本用法</a>
-    </h2>
-    <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-11-18</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1290 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;</span>
-
-    </div>
-    <div class="post-item post-summary markdown-body">
-        <blockquote>
-<p>总结JS对象的基本用法~</p>
-</blockquote>
-    </div>
-</div>
-
-<div class="post">
-    <h2 class="post-item post-title">
-        <a href="https://heeeyueee.github.io/post/js%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%8E%E5%8E%9F%E5%9E%8B/">JS构造对象与原型</a>
-    </h2>
-    <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-11-18</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;18 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;</span>
-
-    </div>
-    <div class="post-item post-summary markdown-body">
-        <blockquote>
-<p>浅析JS构造函数与原型~</p>
-</blockquote>
-    </div>
-</div>
-
-<div class="post">
-    <h2 class="post-item post-title">
-        <a href="https://heeeyueee.github.io/post/js%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">JavaScript数据类型</a>
-    </h2>
-    <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-11-17</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;2692 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;</span>
-
-    </div>
-    <div class="post-item post-summary markdown-body">
-        <blockquote>
-<p>总结JS数据类型中容易混淆的小细节~</p>
-</blockquote>
-    </div>
-</div>
-
-<div class="post">
-    <h2 class="post-item post-title">
-        <a href="https://heeeyueee.github.io/post/js%E8%AF%AD%E6%B3%95/">JavaScript语法</a>
-    </h2>
-    <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-11-16</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;2318 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;</span>
-
-    </div>
-    <div class="post-item post-summary markdown-body">
-        <blockquote>
-<p>简单总结一下JavaScript基本语法~</p>
-</blockquote>
-    </div>
-</div>
-
-<div class="post">
-    <h2 class="post-item post-title">
-        <a href="https://heeeyueee.github.io/post/javascript-%E7%9A%84%E8%AF%9E%E7%94%9F/">JavaScript的诞生</a>
-    </h2>
-    <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-11-13</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1212 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;</span>
-
-    </div>
-    <div class="post-item post-summary markdown-body">
-        <blockquote>
-<p>轻松小文，看看JavaScript诞生的故事吧~</p>
-</blockquote>
-    </div>
-</div>
+</article>
 
 
-
-
-
-
-
-
-<div class="pagination">
-    
-    
-    
-    
-    
-    
-    
-    
-    <div class="pag-item pag-current">
-        <a href="/">1</a>
-    </div>
-    
-    
-    
-    
-    
-    
-    
-    <div class="pag-item">
-        <a href="/page/2/">2</a>
-    </div>
-    
-    
-    
-    <div class="pag-next">
-        <a href="/page/2/"><i class="iconfont icon-chevron-forward-circle-sharp"></i></i></a>
-    </div>
-    
-    
-    <div class="pag-last">
-        <a href="/page/2/"><i class="iconfont icon-caret-forward-circle-sharp"></i></a>
-    </div>
-    
+<div class="license markdown-body">
+    <blockquote>
+        <p>除特殊注明部分，本站内容采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+               target="_blank">CC BY-NC-SA 4.0</a> 进行许可。</p>
+    </blockquote>
 </div>
 
 
@@ -369,6 +326,23 @@
     </div>
     
     
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>目录</h3>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#方法分类回顾">方法分类回顾</a></li>
+    <li><a href="#原数组与返回值">原数组与返回值</a></li>
+    <li><a href="#详解">详解</a>
+      <ul>
+        <li><a href="#slice">slice（）</a></li>
+        <li><a href="#splice">splice（）</a></li>
+        <li><a href="#map">map（）</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
     
     
 </aside>
@@ -454,6 +428,25 @@
             </span>
             
         </div>
+    </div>
+    
+    
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>目录</h3>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#方法分类回顾">方法分类回顾</a></li>
+    <li><a href="#原数组与返回值">原数组与返回值</a></li>
+    <li><a href="#详解">详解</a>
+      <ul>
+        <li><a href="#slice">slice（）</a></li>
+        <li><a href="#splice">splice（）</a></li>
+        <li><a href="#map">map（）</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
     
     

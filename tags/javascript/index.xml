@@ -6,7 +6,18 @@
     <description>Recent content in JavaScript on moji code blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-hans</language>
-    <lastBuildDate>Wed, 25 Nov 2020 00:00:00 +0900</lastBuildDate><atom:link href="https://heeeyueee.github.io/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 30 Nov 2020 00:00:00 +0800</lastBuildDate><atom:link href="https://heeeyueee.github.io/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JS数组方法是否改变原数组和其返回值</title>
+      <link>https://heeeyueee.github.io/post/js%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95%E6%98%AF%E5%90%A6%E6%94%B9%E5%8F%98%E5%8E%9F%E6%95%B0%E7%BB%84%E5%92%8C%E5%85%B6%E8%BF%94%E5%9B%9E%E5%80%BC/</link>
+      <pubDate>Mon, 30 Nov 2020 00:00:00 +0800</pubDate>
+      
+      <guid>https://heeeyueee.github.io/post/js%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95%E6%98%AF%E5%90%A6%E6%94%B9%E5%8F%98%E5%8E%9F%E6%95%B0%E7%BB%84%E5%92%8C%E5%85%B6%E8%BF%94%E5%9B%9E%E5%80%BC/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;JavaScript数组小结~&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
     <item>
       <title>JavaScript运算符易错点</title>
       <link>https://heeeyueee.github.io/post/javascript%E8%BF%90%E7%AE%97%E7%AC%A6%E6%98%93%E9%94%99%E7%82%B9/</link>
