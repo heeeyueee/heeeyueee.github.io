@@ -21,30 +21,27 @@
 <meta name="theme-color" content="#ffffff">
 
 
-<title>First - moji code blog</title>
+<title>算法 - moji code blog</title>
 
 
 <meta name="author" content="moji" />
 
 
-<meta name="description" content="hugo&#43;Github搭建博客" />
+<meta name="description" content="A minimal Hugo theme with nice theme color." />
 
 
-<meta name="keywords" content="博客搭建" />
-
-<meta property="og:title" content="First" />
-<meta property="og:description" content="hugo&#43;Github搭建博客" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://heeeyueee.github.io/post/first/" />
+<meta property="og:title" content="算法" />
+<meta property="og:description" content="A minimal Hugo theme with nice theme color." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://heeeyueee.github.io/tags/%E7%AE%97%E6%B3%95/" />
 <meta property="og:image" content="https://heeeyueee.github.io/img/og.png"/>
-<meta property="article:published_time" content="2020-11-05T00:00:00+08:00" />
-<meta property="article:modified_time" content="2020-11-05T00:00:00+08:00" />
+<meta property="og:updated_time" content="2020-12-01T00:00:00+08:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://heeeyueee.github.io/img/og.png"/>
 
-<meta name="twitter:title" content="First"/>
-<meta name="twitter:description" content="hugo&#43;Github搭建博客"/>
+<meta name="twitter:title" content="算法"/>
+<meta name="twitter:description" content="A minimal Hugo theme with nice theme color."/>
 
 
 
@@ -101,164 +98,34 @@
             
             <div class="col-12 col-md-9 float-left content">
                 
-<article>
-    
+
+<div class="page-info">
+    <span>拥有标签 算法 的文章：</span>
+</div>
+
+
+
+<div class="post">
     <h2 class="post-item post-title">
-        <a href="https://heeeyueee.github.io/post/first/">First</a>
+        <a href="https://heeeyueee.github.io/post/%E4%BD%BF%E7%94%A8js%E5%AE%9E%E7%8E%B0%E5%9B%9B%E7%A7%8D%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">使用JS实现四种排序算法</a>
     </h2>
     <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-11-05</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;787 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA">博客搭建</a>&nbsp;</span>
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-12-01</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;539 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;<a href="/tags/%E7%AE%97%E6%B3%95">算法</a>&nbsp;</span>
 
     </div>
-    
-    
-    <div class="post-content markdown-body">
+    <div class="post-item post-summary markdown-body">
         <blockquote>
-<p>记录一下搭建过程</p>
+<p>选择排序、快速排序、计数排序、归并排序</p>
 </blockquote>
-<h2 id="步骤">步骤：</h2>
-<ol>
-<li>
-<p>使用scoop安装Hugo</p>
-<ul>
-<li>Scoop安装、配置与使用</li>
-</ul>
-<p>Scoop是Windows的命令行安装程序，是一个强大的包管理工具。</p>
-<h3 id="安装">安装</h3>
-<p>在Cmder的PowerShell中运行以下命令</p>
-<pre><code>Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
-</code></pre>
-<p>输入scoop help验证是否成功
-<em>截图</em>
-<img class="img-zoomable" src="https://raw.githubusercontent.com/heeeyueee/pic/main/img/%E4%BD%BF%E7%94%A8shell%E5%AE%89%E8%A3%85scoop.jpg" alt="" />
-</p>
-<h3 id="配置">配置</h3>
-<p>在cmd命令行中执行以下命令更改scoop安装路径</p>
-<p>将Scoop安装到自定义目录(命令行方式)</p>
-<pre><code>$env:SCOOP='D:\Applications\Scoop'
-[Environment]::SetEnvironmentVariable('SCOOP', $env:SCOOP, 'User')
-
-</code></pre>
-<p>将Scoop安装到自定义目录(命令行方式)</p>
-<pre><code>$env:SCOOP_GLOBAL='F:\GlobalScoopApps'
-[Environment]::SetEnvironmentVariable('SCOOP_GLOBAL', $env:SCOOP_GLOBAL, 'Machine')
-
-</code></pre>
-<p>也可以手动更改目录
-<img class="img-zoomable" src="https://raw.githubusercontent.com/heeeyueee/pic/main/img/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F.jpg" alt="" />
-</p>
-<h3 id="使用">使用</h3>
-<ul>
-<li>安装aria2以加快scoop下载软件的速度</li>
-</ul>
-<pre><code>scoop install aria2
-
-</code></pre>
-<ul>
-<li>下载hugo</li>
-</ul>
-<pre><code> scoop install hugo-extended
-</code></pre>
-<p><em>截图</em>
-<img class="img-zoomable" src="https://raw.githubusercontent.com/heeeyueee/pic/main/img/%E4%BD%BF%E7%94%A8scoop%E5%AE%89%E8%A3%85hugo.jpg" alt="" />
-</p>
-<p><em>hugo的安装路径</em></p>
-<p>D:\Applications\Scoop\apps\hugo-extended\0.77.0</p>
-</li>
-</ol>
-<hr>
-<ol>
-<li>
-<p>使用Hugo快速生成站点</p>
-<ul>
-<li>使用cmd命令行工具,在hugo的安装路径下执行命令：</li>
-</ul>
-<pre><code>$ hugo new site D:\hugoblog\heeeyueee(生成站点的目录)
-
-</code></pre>
-</li>
-</ol>
-<hr>
-<ol start="3">
-<li>安装主题
-<ul>
-<li>在站点目录的themes文件夹中使用git clone命令下载主题</li>
-</ul>
-<pre><code>$ git clone https://github.com/CaiJimmy/hugo-theme-stack.git
-</code></pre>
-<ul>
-<li>依照主题配置config.toml文件，新建assets文件夹(慢慢研究)</li>
-<li>运行Hugo</li>
-</ul>
-<pre><code>$ hugo server --theme=hugo-theme-stack --buildDrafts
-</code></pre>
-</li>
-</ol>
-<hr>
-<ol start="4">
-<li>部署
-<ul>
-<li>首先在GitHub上创建一个Repository，命名为：heeeyueee.github.io</li>
-<li>在站点根目录执行 Hugo 命令生成最终页面：</li>
-</ul>
-<pre><code>$ hugo --theme=hyde --baseUrl=&quot;http://heeeyueee.github.io/&quot;
-(或者直接打开config文件修改baseUrl 再运行 Hugo 命令)
-  
-</code></pre>
-<ul>
-<li>将pubilc目录里所有文件 push 到刚创建的Repository的 main 分支</li>
-</ul>
-<pre><code>$ cd public
-$ git init
-$ git remote add origin https://github.com/heeeyueee/heeeyueee.github.io.git
-$ git add -A
-$ git commit -m &quot;first commit&quot;
-$ git branch -M main
-$ git push -u origin main
-</code></pre>
-<ul>
-<li>浏览器访问：<a href="http://heeeyueee.github.io/" target="_blank">http://heeeyueee.github.io/</a>,成功！</li>
-</ul>
-</li>
-</ol>
-<h2 id="写博客">写博客</h2>
-<ul>
-<li>
-<p>使用hugo命令来创建文章目录</p>
-<pre><code>$ hugo new post/first.md
-
-</code></pre>
-<p><strong>ps:去掉文章头部的 draft=true</strong></p>
-</li>
-<li>
-<p>在文章目录中存放文章所需图片，markdown语法引入PicGo图床生成的图片</p>
-</li>
-<li>
-<p>使用hugo命令来更新文章(把hugo命令设为全局变量)</p>
-<pre><code>hugo --theme=hugo-theme-fuji --baseUrl=&quot;https://heeeyueee.github.io/&quot;
-</code></pre>
-</li>
-</ul>
-<h4 id="summary">summary</h4>
-<p>希望自己能认真记录（词穷人太难了）</p>
-<h4 id="用到的链接">用到的链接</h4>
-<ul>
-<li><a href="https://themes.gohugo.io/hugo-theme-fuji/" target="_blank">fuji主题文档</a></li>
-<li><a href="https://www.gohugo.org/" target="_blank">Hugo中文文档</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/126298572" target="_blank">知乎文章</a></li>
-<li><a href="https://blog.csdn.net/luoyooi/article/details/102990113" target="_blank">scoop的安装配置与使用</a></li>
-<li><a href="https://www.jianshu.com/p/2756724a5dee" target="_blank">PicGo图床</a></li>
-</ul>
     </div>
-</article>
-
-
-<div class="license markdown-body">
-    <blockquote>
-        <p>除特殊注明部分，本站内容采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
-               target="_blank">CC BY-NC-SA 4.0</a> 进行许可。</p>
-    </blockquote>
 </div>
+
+
+
+
+
+
+
 
 
 
@@ -339,26 +206,6 @@ $ git push -u origin main
     </div>
     
     
-    
-    <div class="sidebar-item sidebar-toc">
-        <h3>目录</h3>
-        <nav id="TableOfContents">
-  <ul>
-    <li><a href="#步骤">步骤：</a>
-      <ul>
-        <li><a href="#安装">安装</a></li>
-        <li><a href="#配置">配置</a></li>
-        <li><a href="#使用">使用</a></li>
-      </ul>
-    </li>
-    <li><a href="#写博客">写博客</a>
-      <ul>
-        <li></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-    </div>
     
     
 </aside>
@@ -448,28 +295,6 @@ $ git push -u origin main
             </span>
             
         </div>
-    </div>
-    
-    
-    
-    <div class="sidebar-item sidebar-toc">
-        <h3>目录</h3>
-        <nav id="TableOfContents">
-  <ul>
-    <li><a href="#步骤">步骤：</a>
-      <ul>
-        <li><a href="#安装">安装</a></li>
-        <li><a href="#配置">配置</a></li>
-        <li><a href="#使用">使用</a></li>
-      </ul>
-    </li>
-    <li><a href="#写博客">写博客</a>
-      <ul>
-        <li></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
     </div>
     
     
