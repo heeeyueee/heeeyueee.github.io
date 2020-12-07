@@ -21,30 +21,27 @@
 <meta name="theme-color" content="#ffffff">
 
 
-<title>JS函数的执行时机 - moji code blog</title>
+<title>moji code blog - A mini blog.</title>
 
 
 <meta name="author" content="moji" />
 
 
-<meta name="description" content="JS函数的执行时机" />
+<meta name="description" content="A minimal Hugo theme with nice theme color." />
 
 
-<meta name="keywords" content="JavaScript, JS函数" />
-
-<meta property="og:title" content="JS函数的执行时机" />
-<meta property="og:description" content="JS函数的执行时机" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://heeeyueee.github.io/post/js%E5%87%BD%E6%95%B0%E7%9A%84%E6%89%A7%E8%A1%8C%E6%97%B6%E6%9C%BA/" />
+<meta property="og:title" content="moji code blog" />
+<meta property="og:description" content="A minimal Hugo theme with nice theme color." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://heeeyueee.github.io/" />
 <meta property="og:image" content="https://heeeyueee.github.io/img/og.png"/>
-<meta property="article:published_time" content="2020-11-21T00:00:00+08:00" />
-<meta property="article:modified_time" content="2020-11-21T00:00:00+08:00" />
+<meta property="og:updated_time" content="2020-12-07T00:00:00+08:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://heeeyueee.github.io/img/og.png"/>
 
-<meta name="twitter:title" content="JS函数的执行时机"/>
-<meta name="twitter:description" content="JS函数的执行时机"/>
+<meta name="twitter:title" content="moji code blog"/>
+<meta name="twitter:description" content="A minimal Hugo theme with nice theme color."/>
 
 
 
@@ -101,146 +98,75 @@
             
             <div class="col-12 col-md-9 float-left content">
                 
-<article>
-    
+
+
+
+<div class="post">
     <h2 class="post-item post-title">
-        <a href="https://heeeyueee.github.io/post/js%E5%87%BD%E6%95%B0%E7%9A%84%E6%89%A7%E8%A1%8C%E6%97%B6%E6%9C%BA/">JS函数的执行时机</a>
+        <a href="https://heeeyueee.github.io/post/first/">First</a>
     </h2>
     <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-11-21</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1461 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;<a href="/tags/js%E5%87%BD%E6%95%B0">JS函数</a>&nbsp;</span>
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-11-05</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;787 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA">博客搭建</a>&nbsp;</span>
 
     </div>
-    
-    
-    <div class="post-content markdown-body">
+    <div class="post-item post-summary markdown-body">
         <blockquote>
-<p>探讨关于JS函数的执行时机的问题~</p>
+<p>记录一下搭建过程</p>
 </blockquote>
-<p>JS函数的执行时机和函数被调用的时机有关，函数被调用时才会被执行，调用时机不同，函数的执行结果也不同。</p>
-<p>先通过几个例子来理解这句话：</p>
-<p><em>例 1：</em></p>
-<pre><code class="language-javascript">let a = 1
-function fn(){
-  console.log(a)
-}
-</code></pre>
-<p>结果：a不会被打印，因为没有调用函数，函数未被执行。</p>
-<p><em>例 2：</em></p>
-<pre><code class="language-javascript">let a = 1
-function fn(){
-  console.log(a)
-}
-fn()
-// 1
-</code></pre>
-<p>结果：a被打印为1。</p>
-<p><em>例 3：</em></p>
-<pre><code class="language-javascript">let a = 1
-function fn(){
-  console.log(a)
-}
-
-a = 2
-fn()
-// 2
-</code></pre>
-<p>结果：a被打印为2, 可以通过函数声明的位置确认，函数里的变量a是离函数最近的let声明的变量a，但在函数被调用前a被赋值为2。</p>
-<p><em>例 4：</em></p>
-<pre><code class="language-javascript">let a = 1
-function fn(){
-  console.log(a)
-}
-
-fn()
-a = 2
-// 1
-</code></pre>
-<p>结果：a被打印为1, 可以通过函数声明的位置确认，函数里的变量a是离函数最近的let声明的变量a，并且在函数调用前a的值未被改变。</p>
-<p><em>例 5：</em></p>
-<pre><code class="language-javascript">let a = 1
-function fn(){
-  setTimeout(()=&gt;{
-    console.log(a)
-  },0)
-}
-
-fn()
-a = 2
-// 2
-</code></pre>
-<p>结果：a被打印为2</p>
-<p>原因：console.log(a)是异步执行的，实际上的执行时间是a=2赋值执行之后</p>
-<p>先来看看setTimeout()函数的原理</p>
-<p>💁🏼‍♀️<em>插一嘴</em>：异步</p>
-<blockquote>
-<p>Javascript语言的执行环境是&quot;单线程&quot;。也就是指一次只能完成一件任务。如果有多个任务，就必须排队，前面一个任务完成，再执行后面一个任务。为了解决阻塞问题，Javascript语言将任务的执行模式分成两种：同步和异步。setTimeout函数就可以让任务异步执行。</p>
-</blockquote>
-<pre><code class="language-javascript">var timerId = setTimeout(func|code, delay)
-</code></pre>
-<ul>
-<li>
-<p>setTimeout函数接受两个参数，第一个参数func|code是将要推迟执行的函数名或者一段代码，第二个参数delay是推迟执行的毫秒</p>
-<p>数。它返回一个整数，表示定时器的编号，以后可以用来取消这个定时器。</p>
-</li>
-<li>
-<p>计时器到达时间点,计时器里事件处理程序或回调函数都不会立即运行，而是立即排队，一旦线程有空闲就执行。</p>
-</li>
-<li>
-<p>如果这个时间设为 0，就代表立即插入队列，但不是立即执行，仍然要等待前面代码执行完毕，只有在 JS线程中没有任何同步代码要执行的前提下才会执行异步代码。</p>
-</li>
-</ul>
-<p><em>例 6：</em></p>
-<pre><code class="language-javascript">let i = 0
-for(i = 0; i&lt;6; i++){
-  setTimeout(()=&gt;{
-    console.log(i)
-  },0)
-}
-//不是 0、1、2、3、4、5
-//而是 6 个 6
-</code></pre>
-<p>setTimeout函数让console.log(i)变为异步执行，每次循环都会把console.log(i)加入队列，但要等待for循环执行完毕后（i的值变为6），才开始执行队列中的6个console.log(i)语句，因为i定义在全局作用域中，6个console.log(i)语句共享一个i的引用，所以打印为6个6。</p>
-<blockquote>
-<p>让上面代码打印 0、1、2、3、4、5 的方法</p>
-</blockquote>
-<p><strong>方法一</strong></p>
-<pre><code class="language-javascript">for(let i = 0; i&lt;6; i++){
-  setTimeout(()=&gt;{
-    console.log(i)
-  },0)
-}
-//  0、1、2、3、4、5
-</code></pre>
-<p>参考方方老师博客：<a href="https://zhuanlan.zhihu.com/p/28140450" target="_blank">我用了两个月的时间才理解 let</a></p>
-<p>和例6相比，使用let在for循环语句的圆括号之内声明赋值，在圆括号之间会有一个隐藏的作用域,并且在每次执行循环体之前，JS 引擎会把 i 在循环体的上下文中重新声明及初始化一次。</p>
-<p>上面代码相当于</p>
-<pre><code class="language-javascript">for(let i = 0; i&lt;6; i++){
-  let i = 圆括号隐藏作用域中的i 
-  setTimeout(()=&gt;{
-    console.log(i)
-  },0)
-}
-</code></pre>
-<p>这样的话，在for循环中，每次循环都会产生一个闭包作用域，i会被声明5次，产生5个不同的i，console.log(i)语句中的i不再是例6中for循环外的全局i，而是for循环语句内每次都重新声明赋值的i，第一次循环的i被声明赋值为0，加入队列的语句为 console.log(0)，第二次&hellip;&hellip;所以结果是0、1、2、3、4、5</p>
-<p><strong>方法二</strong></p>
-<p>参考博客：<a href="https://zhuanlan.zhihu.com/p/138031062" target="_blank">JS 函数的执行时机</a></p>
-<pre><code class="language-javascript">for (var i = 0; i &lt;6;i++){
-    !function(i){
-    setTimeout(()=&gt;{
-    console.log(i),1000})
-}(i)  
-}
-</code></pre>
-<p>在for循环体内使用立即执行函数时，都每次循环都会创建一个新的作用域，使得setTimeout函数的回调可以将新的作用域封闭在每个循环内部，每个循环中都会有一个有正确值的变量i。</p>
     </div>
-</article>
+</div>
 
 
-<div class="license markdown-body">
-    <blockquote>
-        <p>除特殊注明部分，本站内容采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
-               target="_blank">CC BY-NC-SA 4.0</a> 进行许可。</p>
-    </blockquote>
+
+
+
+
+
+
+<div class="pagination">
+    
+    <div class="pag-first">
+        <a href="/"><i class="iconfont icon-caret-back-circle-sharp"></i></a>
+    </div>
+    
+    
+    <div class="pag-previous">
+        <a href="/page/2/"><i class="iconfont icon-chevron-back-circle-sharp"></i></a>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    <div class="pag-item">
+        <a href="/">1</a>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    <div class="pag-item">
+        <a href="/page/2/">2</a>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    <div class="pag-item pag-current">
+        <a href="/page/3/">3</a>
+    </div>
+    
+    
+    
+    
 </div>
 
 
@@ -326,11 +252,6 @@ for(i = 0; i&lt;6; i++){
     </div>
     
     
-    
-    <div class="sidebar-item sidebar-toc">
-        <h3>目录</h3>
-        <nav id="TableOfContents"></nav>
-    </div>
     
     
 </aside>
@@ -424,13 +345,6 @@ for(i = 0; i&lt;6; i++){
             </span>
             
         </div>
-    </div>
-    
-    
-    
-    <div class="sidebar-item sidebar-toc">
-        <h3>目录</h3>
-        <nav id="TableOfContents"></nav>
     </div>
     
     
