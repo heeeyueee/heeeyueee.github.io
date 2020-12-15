@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JS on moji code blog</title>
+    <link>https://heeeyueee.github.io/tags/js/</link>
+    <description>Recent content in JS on moji code blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-hans</language>
+    <lastBuildDate>Sun, 13 Dec 2020 09:00:00 +0800</lastBuildDate><atom:link href="https://heeeyueee.github.io/tags/js/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ajax的原理与使用</title>
+      <link>https://heeeyueee.github.io/post/ajax%E7%9A%84%E5%8E%9F%E7%90%86/</link>
+      <pubDate>Sun, 13 Dec 2020 09:00:00 +0800</pubDate>
+      
+      <guid>https://heeeyueee.github.io/post/ajax%E7%9A%84%E5%8E%9F%E7%90%86/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

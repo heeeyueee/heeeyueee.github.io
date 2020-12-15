@@ -21,30 +21,30 @@
 <meta name="theme-color" content="#ffffff">
 
 
-<title>使用JS实现四种排序算法 - moji code blog</title>
+<title>异步与Promise - moji code blog</title>
 
 
 <meta name="author" content="moji" />
 
 
-<meta name="description" content="使用JS实现四种常见的排序算法" />
+<meta name="description" content="异步与Promise" />
 
 
-<meta name="keywords" content="JavaScript, 算法" />
+<meta name="keywords" content="JavaScript" />
 
-<meta property="og:title" content="使用JS实现四种排序算法" />
-<meta property="og:description" content="使用JS实现四种常见的排序算法" />
+<meta property="og:title" content="异步与Promise" />
+<meta property="og:description" content="异步与Promise" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://heeeyueee.github.io/post/%E4%BD%BF%E7%94%A8js%E5%AE%9E%E7%8E%B0%E5%9B%9B%E7%A7%8D%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" />
+<meta property="og:url" content="https://heeeyueee.github.io/post/%E5%BC%82%E6%AD%A5%E4%B8%8Epromise/" />
 <meta property="og:image" content="https://heeeyueee.github.io/img/og.png"/>
-<meta property="article:published_time" content="2020-12-01T00:00:00+08:00" />
-<meta property="article:modified_time" content="2020-12-01T00:00:00+08:00" />
+<meta property="article:published_time" content="2020-12-14T09:00:00+08:00" />
+<meta property="article:modified_time" content="2020-12-14T09:00:00+08:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://heeeyueee.github.io/img/og.png"/>
 
-<meta name="twitter:title" content="使用JS实现四种排序算法"/>
-<meta name="twitter:description" content="使用JS实现四种常见的排序算法"/>
+<meta name="twitter:title" content="异步与Promise"/>
+<meta name="twitter:description" content="异步与Promise"/>
 
 
 
@@ -104,127 +104,107 @@
 <article>
     
     <h2 class="post-item post-title">
-        <a href="https://heeeyueee.github.io/post/%E4%BD%BF%E7%94%A8js%E5%AE%9E%E7%8E%B0%E5%9B%9B%E7%A7%8D%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">使用JS实现四种排序算法</a>
+        <a href="https://heeeyueee.github.io/post/%E5%BC%82%E6%AD%A5%E4%B8%8Epromise/">异步与Promise</a>
     </h2>
     <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-12-01</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;539 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;<a href="/tags/%E7%AE%97%E6%B3%95">算法</a>&nbsp;</span>
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-12-14</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1547 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;</span>
 
     </div>
     
     
     <div class="post-content markdown-body">
         <blockquote>
-<p>选择排序、快速排序、计数排序、归并排序</p>
+<p>学习异步与Promise</p>
 </blockquote>
-<h2 id="选择排序">选择排序</h2>
-<h3 id="递归写法">递归写法</h3>
-<pre><code class="language-javascript">let numbers = [2, 87, 4, 64, 73, 8, 92]
-let min = (numbers) =&gt; {
-    if (numbers.length &gt; 2) {
-        return min([numbers[0], min(numbers.slice(1))])
-    } else {
-        return Math.min.apply(null, numbers)
-    }
-}
-let minIndex = (numbers) =&gt; numbers.indexOf(min(numbers))
-let sort = (numbers) =&gt; {
-    if (numbers.length &gt; 2) {
-        let index = minIndex(numbers)
-        let min = numbers[index]
-        numbers.splice(index, 1)
-        return [min].concat(sort(numbers))
-    } else {
-        return numbers[0] &lt; numbers[1] ? numbers : numbers.reverse()
-    }
-
-}
-sort(numbers)
+<h2 id="同步与异步">同步与异步</h2>
+<h3 id="同步synchronous">同步（Synchronous）</h3>
+<p><strong>同步可以直接拿到结果</strong></p>
+<p>简单的例子来说，同步就是在学校食堂吃饭，必须要排队打饭，在打到饭之前都不能离开去做其他事情。</p>
+<p>用计算机的语言来解释就是同步就是整个处理过程顺序执行，当各个过程都执行完毕，并返回结果。是一种线性执行的方式，执行的流程不能跨越。</p>
+<h3 id="异步asynchronous">异步（Asynchronous）</h3>
+<p><strong>异步不能直接拿到结果，需要后续通过轮询或者回调的方法来得到结果</strong></p>
+<p>简单的例子来说，异步就是在网红饭店改善生活时，可以在在手机上取号后，就去逛街买奶茶干其他的事情，当手机上通知到你时再去就餐。</p>
+<p>用计算机的语言来解释只是发送了调用的指令，调用者无需等待被调用的方法完全执行完毕；而是继续执行下面的流程。是一种并行处理的方式。</p>
+<h3 id="js是单线程的">JS是单线程的</h3>
+<blockquote>
+<p>学习Java时，Java中可以通过开启多线程来完成异步操作，但是JS是单线程的是怎样执行异步任务的呢？</p>
+</blockquote>
+<p>JS是单线程的，是指在浏览器的JS引擎中负责解释和执行JavaScript代码的线程只有一个，所以我们所写的JS代码在JS引擎中都是排队（同步）执行的。但很多时候关于I/O设备的操作要比闪电般的JS引擎慢很多，比如鼠标键盘的操作、网络请求……JS引擎中遇到这样的任务就很容易导致后续其他任务阻塞的问题，所以需要异步执行JS代码中的这些任务，咋异步呢？</p>
+<p>多线程的浏览器就来帮忙啦，直接甩出三个大招（API),<strong>分别是 DOM Binding(DOM绑定)、network(网络请求)、timer(定时器)模块。</strong></p>
+<p>如果JS代码中的任务是属于这三个模块，浏览器就会判断它为异步任务，然后JS引擎中一遇到异步任务，浏览器就会把异步任务相关回调添加到任务队列中（异步任务必须要有回调函数），等待主线程的任务执行完毕，再执行任务队列中的任务。</p>
+<p>这种运行机制称为<strong>Event Loop（事件循环）</strong></p>
+<p><img src="https://raw.githubusercontent.com/heeeyueee/pic/main/img/20201215112713.png" style="zoom:55%;" /></p>
+<p>（1）所有同步任务都在主线程上执行，形成一个执行栈（execution context stack）。</p>
+<p>（2）主线程之外，还存在一个&quot;任务队列&quot;（task queue）。只要异步任务有了运行结果，就在&quot;任务队列&quot;之中放置一个事件。</p>
+<p>（3）一旦&quot;执行栈&quot;中的所有同步任务执行完毕，系统就会读取&quot;任务队列&quot;，看看里面有哪些事件。那些对应的异步任务，于是结束等待状态，进入执行栈，开始执行。</p>
+<p>（4）主线程不断重复上面的第三步。</p>
+<h2 id="promise">Promise</h2>
+<p>上面介绍了JS中需要异步，Promise就是ES6中异步编程的一种解决方案</p>
+<h3 id="为什么需要promise">为什么需要Promise？</h3>
+<p>以往我都使用jQuery封装的Ajax来发送网络请求，当网络请求十分复杂时就会出现回调地狱</p>
+<p><img src="https://raw.githubusercontent.com/heeeyueee/pic/main/img/20201215133451.png" style="zoom:55%;" /></p>
+<p>上图中回调得到的数据很容易混淆，且代码就十分难看且不容易维护，所以我们需要更优雅的方式来进行异步操作</p>
+<h3 id="promise的使用">Promise的使用</h3>
+<p><strong>第一步</strong></p>
+<p>创建一个promise对象、可以使用<code>new</code>来调用<code>Promise</code>的构造器来进行实例化</p>
+<pre><code class="language-javascript">return new Promise((resolve,reject)=&gt;{
+     // 异步处理
+    // 处理结束后、调用resolve 或 reject
+})
 </code></pre>
-<h3 id="循环写法">循环写法</h3>
-<pre><code class="language-javascript">let minIndex = (numbers) =&gt; {
-    let min = 0
-    for (let i = 1; i &lt; numbers.length; i++) {
-        if (numbers[i] &lt; numbers[min]) {
-            min = i
-        }
-    }
-    return min
-}
-let swap = (Array, index, i) =&gt; {
-    let temp = Array[index]
-    Array[index] = Array[i]
-    Array[i] = temp
-}
-let sort = (numbers) =&gt; {
-    for (let i = 0; i &lt; numbers.length - 1; i++) {
-        let index = minIndex(numbers.slice(i)) + i
-        if (i != index) {
-            swap(numbers, index, i)
-        }
-    }
-    return numbers
-}
+<ul>
+<li>
+<p>任务成功时调用<code>resolve(成功)   </code> 任务失败时调用<code>reject(失败)</code></p>
+</li>
+<li>
+<p>resolve 和 reject 都只接受一个参数</p>
+</li>
+</ul>
+<p><strong>第二步</strong></p>
+<p>第一步构造出来的promise对象，含有一个 .then() 函数属性使用<code>promise.then()</code> 实例方法，设置其值在 <strong>resolve</strong>(成功) / <strong>reject</strong>(失败)时调用的回调函数</p>
+<pre><code class="language-javascript">promise.then(onFulfilled, onRejected)
 </code></pre>
-<p><strong>tip</strong></p>
-<p>1.所有的递归都可以变为循环</p>
-<p>2.swap中要传入参数Array（Array的地址），函数直接对Array进行操作，如果使用swap(numbers[i],numbers[j])只是传的两个值的简单复制，不会对原数组进行修改。</p>
-<h2 id="快速排序">快速排序</h2>
-<pre><code class="language-javascript">let sort = (numbers) =&gt; {
-    if (numbers.length &lt;= 1) {
-        return numbers
-    }
-    let flagIndex = Math.floor(numbers.length / 2)
-    let flag = numbers.splice(flagIndex, 1)[0] //splice后的返回值是数组
-    let left = []
-    let right = []
-    for (let i = 0; i &lt; numbers.length; i++) {
-        if (numbers[i] &lt; flag) {
-            left.push(numbers[i])
-        } else {
-            right.push(numbers[i])
-        }
-    }
-    return sort(left).concat([flag], sort(right))
-}
-</code></pre>
-<h2 id="归并排序">归并排序</h2>
-<pre><code class="language-javascript">let sort = (numbers) =&gt; {
-    if (numbers.length === 1) return numbers
-    let middle = Math.floor(numbers.length / 2)
-    let left = numbers.slice(0, middle)
-    let right = numbers.slice(middle)
-    console.log(left, right);
-    return merge(sort(left), sort(right))
-}
-let merge = (a, b) =&gt; {
-    if (a.length === 0) return b
-    if (b.length === 0) return a
-    return a[0] &gt; b[0] ? [b[0]].concat(merge(a, b.slice(1))) : [a[0]].concat(merge(a.slice(1), b))
-}
-</code></pre>
-<h2 id="计数排序">计数排序</h2>
-<pre><code class="language-javascript">let sort = (numbers) =&gt; {
-    let hashTable = {},
-        max = 0,
-        result = []
-    for (let i = 0; i &lt; numbers.length; i++) {
-        if (numbers[i] in hashTable) {
-            hashTable[numbers[i]] += 1
-        } else {
-            hashTable[numbers[i]] = 1
-        }
-        if (numbers[i] &gt; max) max = numbers[i]
-    }
-    for (let j = 0; j &lt; max; j++) {
-        if (j in hashTable) {
-            for (let i = 0; i &lt; hashTable[j]; i++) {
-                result.push(j)
+<ul>
+<li>
+<p>resolve(成功)时</p>
+<p><code>onFulfilled</code> 会被调用</p>
+</li>
+<li>
+<p>reject(失败)时</p>
+<p><code>onRejected</code> 会被调用</p>
+</li>
+</ul>
+<p><strong>举例</strong></p>
+<p>使用promise来发送网络请求</p>
+<pre><code class="language-javascript">function getURL(URL) {
+    return new Promise(function (resolve, reject) {
+        var req = new XMLHttpRequest();
+        req.open('GET', URL, true);
+        req.onload = function () {
+            if (req.status === 200) {
+                resolve(req.responseText);
+            } else {
+                reject(req.statusText));
             }
-        }
-    }
-    return result
+        };
+        req.onerror = function () {
+            reject(req.statusText));
+        };
+        req.send();
+    });
 }
+var URL = &quot;http://xxx&quot;;
+getURL(URL).then(function onFulfilled(value){
+    console.log(value);
+},function onRejected(error){
+    console.log(error);
+});
 </code></pre>
+<p>Promise还有更高级的用法，链式调用等等，以后在进行总结~</p>
+<h2 id="参考">参考</h2>
+<p><a href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html" target="_blank">JavaScript 运行机制详解：再谈Event Loop</a></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop" target="_blank">并发模型与事件循环MDN</a></p>
+<p><a href="http://liubin.org/promises-book/#how-to-write-promise" target="_blank">JavaScript Promise迷你书（中文版）</a></p>
     </div>
 </article>
 
@@ -328,15 +308,20 @@ let merge = (a, b) =&gt; {
         <h3>目录</h3>
         <nav id="TableOfContents">
   <ul>
-    <li><a href="#选择排序">选择排序</a>
+    <li><a href="#同步与异步">同步与异步</a>
       <ul>
-        <li><a href="#递归写法">递归写法</a></li>
-        <li><a href="#循环写法">循环写法</a></li>
+        <li><a href="#同步synchronous">同步（Synchronous）</a></li>
+        <li><a href="#异步asynchronous">异步（Asynchronous）</a></li>
+        <li><a href="#js是单线程的">JS是单线程的</a></li>
       </ul>
     </li>
-    <li><a href="#快速排序">快速排序</a></li>
-    <li><a href="#归并排序">归并排序</a></li>
-    <li><a href="#计数排序">计数排序</a></li>
+    <li><a href="#promise">Promise</a>
+      <ul>
+        <li><a href="#为什么需要promise">为什么需要Promise？</a></li>
+        <li><a href="#promise的使用">Promise的使用</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考">参考</a></li>
   </ul>
 </nav>
     </div>
@@ -445,15 +430,20 @@ let merge = (a, b) =&gt; {
         <h3>目录</h3>
         <nav id="TableOfContents">
   <ul>
-    <li><a href="#选择排序">选择排序</a>
+    <li><a href="#同步与异步">同步与异步</a>
       <ul>
-        <li><a href="#递归写法">递归写法</a></li>
-        <li><a href="#循环写法">循环写法</a></li>
+        <li><a href="#同步synchronous">同步（Synchronous）</a></li>
+        <li><a href="#异步asynchronous">异步（Asynchronous）</a></li>
+        <li><a href="#js是单线程的">JS是单线程的</a></li>
       </ul>
     </li>
-    <li><a href="#快速排序">快速排序</a></li>
-    <li><a href="#归并排序">归并排序</a></li>
-    <li><a href="#计数排序">计数排序</a></li>
+    <li><a href="#promise">Promise</a>
+      <ul>
+        <li><a href="#为什么需要promise">为什么需要Promise？</a></li>
+        <li><a href="#promise的使用">Promise的使用</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考">参考</a></li>
   </ul>
 </nav>
     </div>
