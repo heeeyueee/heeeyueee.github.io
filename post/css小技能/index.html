@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+    
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="HandheldFriendly" content="True" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta name="generator" content="Hugo 0.77.0" />
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+
+<title>Pure CSS教你画图 - moji code blog</title>
+
+
+<meta name="author" content="moji" />
+
+
+<meta name="description" content="A minimal Hugo theme with nice theme color." />
+
+
+<meta name="keywords" content="CSS" />
+
+<meta property="og:title" content="Pure CSS教你画图" />
+<meta property="og:description" content="
+總結一些關於CSS的小技能 不斷更新
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://heeeyueee.github.io/post/css%E5%B0%8F%E6%8A%80%E8%83%BD/" />
+<meta property="og:image" content="https://heeeyueee.github.io/img/og.png"/>
+<meta property="article:published_time" content="2020-12-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2020-12-17T00:00:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://heeeyueee.github.io/img/og.png"/>
+
+<meta name="twitter:title" content="Pure CSS教你画图"/>
+<meta name="twitter:description" content="
+總結一些關於CSS的小技能 不斷更新
+"/>
+
+
+
+<style>
+    @media (prefers-color-scheme: dark) {
+        body[data-theme='auto'] img {
+            filter: brightness(60%);
+        }
+    }
+
+    body[data-theme='dark'] img {
+        filter: brightness(60%);
+    }
+</style>
+
+
+
+<link rel="stylesheet" href="https://heeeyueee.github.io/assets/css/fuji.min.css" />
+
+
+
+
+
+</head>
+
+<body data-theme="auto">
+    <script data-cfasync="false">
+  
+  var fujiThemeData = localStorage.getItem('fuji_data-theme');
+  
+  if (!fujiThemeData) {
+    localStorage.setItem('fuji_data-theme', 'auto');
+  } else {
+    
+    if (fujiThemeData !== 'auto') {
+      document.body.setAttribute('data-theme', fujiThemeData === 'dark' ? 'dark' : 'light');
+    }
+  }
+</script>
+
+    <header>
+    <div class="container-lg clearfix">
+        <div class="col-12 header">
+            <a class="title-main" href="https://heeeyueee.github.io">moji code blog</a>
+            
+            <span class="title-sub">A mini blog.</span>
+            
+        </div>
+    </div>
+</header>
+
+    <main>
+        <div class="container-lg clearfix">
+            
+            <div class="col-12 col-md-9 float-left content">
+                
+<article>
+    
+    <h2 class="post-item post-title">
+        <a href="https://heeeyueee.github.io/post/css%E5%B0%8F%E6%8A%80%E8%83%BD/">Pure CSS教你画图</a>
+    </h2>
+    <div class="post-item post-meta">
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-12-17</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;910 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/css">CSS</a>&nbsp;</span>
+
+    </div>
+    
+    
+    <div class="post-content markdown-body">
+        <blockquote>
+<p>總結一些關於CSS的小技能 不斷更新</p>
+</blockquote>
+<h2 id="画三角形">画三角形</h2>
+<p>使用纯CSS来画三角形需要用到border属性，本示例中的盒模型都是使用W3C盒模型  <code>box-sizing: border-box;</code>(两种盒模型的效果一致)</p>
+<p><img src="https://raw.githubusercontent.com/heeeyueee/pic/main/img/20201222170209.png" style="zoom:60%;" /></p>
+<pre><code class="language-css">  &lt;div class=&quot;square&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;top&quot;&gt;&lt;/div&gt;
+ .square{  
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 50px;
+    border-color: red black blue yellow;
+ }
+//箭头向下的三角形
+//写法一
+.top{
+    width: 0;
+    height: 0;
+    border: 50px solid transparent;
+    border-top: 50px solid red;
+}
+//写法二
+.top { 
+    width: 0; 
+    height: 0; 
+    border: 50px solid red;
+    border-color:red transparent transparent transparent;
+}
+
+</code></pre>
+<p>其实画三角形就是利用了border的形状，在<code>.square</code>中把盒子的宽度和高度设置为0，只给border设置宽度，就可以得到被对角线划分为四个三角形的正方形。通过给其余的三角形对应的<code>border</code>加上<code>transparent</code>属性就可以得到我们想要的三角形，两种写法都可，第一种代码更少用它用它。</p>
+<h2 id="画圆-半圆-椭圆">画圆 半圆 椭圆</h2>
+<p>要花圆的画基本离不开border-radius这个属性，先来简单学习一下这个属性（这玩意深究起来贼复杂）</p>
+<p>👉想要深入学习指路博客:<a href="https://www.w3cplus.com/css/css-border-radius.html?expire=1608690758&amp;code=6_wteIcYnxo&amp;sign=b3c44b87374620bc46a377acbf97d367#paywall" target="_blank">图解CSS：border-radius</a></p>
+<h3 id="border-radius">border-radius</h3>
+<p><code>border-radius</code>主要作用是用来给元素绘制圆角效果。它和<code>border</code>属性类似，是<code>border-top-left-radius</code>、<code>border-top-right-radius</code>、<code>border-bottom-left-radius</code>和<code>border-bottom-right-radius</code>四个属性的简写形式。</p>
+<p><strong>注意哈！和border的简写不同，不是顺时针方向</strong></p>
+<h4 id="一个值">一个值</h4>
+<p>元素所有的角都会用这个值作为圆角半径</p>
+<pre><code class="language-css">.demo { border-radius: 50px; }
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/heeeyueee/pic/main/img/20201223105902.png" style="zoom:40%;" /></p>
+<h4 id="两个值">两个值</h4>
+<pre><code class="language-css">.element { border-radius: 50px 80px; }
+</code></pre>
+<p>第一个值表示<strong>左上角和右下角圆角半径</strong>，第二个值表示<strong>右上角和左下角圆角半径</strong>。</p>
+<p><img src="https://raw.githubusercontent.com/heeeyueee/pic/main/img/20201223110207.png" style="zoom:40%;" /></p>
+<h4 id="y轴-z轴">y轴 z轴</h4>
+<p>其实<code>border-radius</code>可以取分<code>x</code>轴和<code>y</code>轴取值，而且每个轴取值个数可以是<code>{1, 4}</code>（一到四个）,<code>x</code>和<code>y</code>轴之间由<code>/</code>来分隔</p>
+<pre><code class="language-css">&lt;length-percentage&gt;{1,4} [ / &lt;length-percentage&gt;{1,4} ]?
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/heeeyueee/pic/main/img/20201223105617.png" style="zoom:40%;" /></p>
+<pre><code class="language-css">.demo {
+    height: 100px;
+    width: 200px;
+    border-radius: 160px / 100px;
+}
+</code></pre>
+<h3 id="画椭圆">画椭圆</h3>
+<pre><code class="language-css">#oval { 
+			width: 200px; 
+			height: 100px; 
+			border-radius: 100px / 50px; 
+		}
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/heeeyueee/pic/main/img/20201223112130.png" style="zoom:40%;" /></p>
+<p>使用了<code>border-radius</code>的X/Y两轴取值，制作出一种变形的圆角，在配合宽度和高度值，就制作了类似椭圆形的一个效果。</p>
+<p>用的时候就一个字，<strong>试</strong></p>
+<h3 id="画半圆">画半圆</h3>
+<pre><code class="language-css">#semicircle{ 
+			width: 100px; 
+			height: 50px; 
+			background: red; 
+			border-radius:  100px 100px 0 0; 
+		}
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/heeeyueee/pic/main/img/20201223112443.png" style="zoom:50%;" /></p>
+<p>配合元素的高度，宽度以及圆角的方位，制作出半圆形效果。</p>
+<h2 id="画心形">画心形</h2>
+<p>指路我画的动态心形👉<a href="http://js.jirengu.com/rojulivade/1/edit?html,css,output" target="_blank">心形图</a></p>
+<p>里面用了三个div 其实可以只用一个div加上<code>：before</code>和<code>：after</code>伪元素来画，值得改进</p>
+    </div>
+</article>
+
+
+<div class="license markdown-body">
+    <blockquote>
+        <p>除特殊注明部分，本站内容采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+               target="_blank">CC BY-NC-SA 4.0</a> 进行许可。</p>
+    </blockquote>
+</div>
+
+
+
+            </div>
+            <aside class="col-12 col-md-3 float-left sidebar">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>页面</h3>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/archives/">Archives</a>
+            </li>
+            
+            <li>
+                <a href="/about/">About</a>
+            </li>
+            
+            <li>
+                <a href="/search/">Search</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>链接</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/heeeyueee" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+            <li>
+                <a href="https://weibo.com/5631402703/profile?topnav=1&amp;wvr=6" target="_blank"><span>weibo</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>标签</h3>
+        <div>
+            
+            <span>
+                <a href="/tags/css/">CSS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/dom/">DOM</a>
+            </span>
+            
+            <span>
+                <a href="/tags/html/">HTML</a>
+            </span>
+            
+            <span>
+                <a href="/tags/http/">HTTP</a>
+            </span>
+            
+            <span>
+                <a href="/tags/javascript/">JavaScript</a>
+            </span>
+            
+            <span>
+                <a href="/tags/js/">JS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/js%E5%87%BD%E6%95%B0/">JS函数</a>
+            </span>
+            
+            <span>
+                <a href="/tags/mvc/">MVC</a>
+            </span>
+            
+            <span>
+                <a href="/tags/vue/">Vue</a>
+            </span>
+            
+            <span>
+                <a href="/tags/webpack/">webpack</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+            </span>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>目录</h3>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#画三角形">画三角形</a></li>
+    <li><a href="#画圆-半圆-椭圆">画圆 半圆 椭圆</a>
+      <ul>
+        <li><a href="#border-radius">border-radius</a></li>
+        <li><a href="#画椭圆">画椭圆</a></li>
+        <li><a href="#画半圆">画半圆</a></li>
+      </ul>
+    </li>
+    <li><a href="#画心形">画心形</a></li>
+  </ul>
+</nav>
+    </div>
+    
+    
+</aside>
+        </div>
+        <div class="btn">
+    <div class="btn-menu" id="btn-menu">
+        <i class="iconfont icon-grid-sharp"></i>
+    </div>
+    <div class="btn-toggle-mode">
+        <i class="iconfont icon-contrast-sharp"></i>
+    </div>
+    <div class="btn-scroll-top">
+        <i class="iconfont icon-chevron-up-circle-sharp"></i>
+    </div>
+</div>
+<aside class="sidebar-mobile" style="display: none;">
+  <div class="sidebar-wrapper">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>页面</h3>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/archives/">Archives</a>
+            </li>
+            
+            <li>
+                <a href="/about/">About</a>
+            </li>
+            
+            <li>
+                <a href="/search/">Search</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>链接</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/heeeyueee" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+            <li>
+                <a href="https://weibo.com/5631402703/profile?topnav=1&amp;wvr=6" target="_blank"><span>weibo</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>标签</h3>
+        <div>
+            
+            <span>
+                <a href="/tags/css/">CSS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/dom/">DOM</a>
+            </span>
+            
+            <span>
+                <a href="/tags/html/">HTML</a>
+            </span>
+            
+            <span>
+                <a href="/tags/http/">HTTP</a>
+            </span>
+            
+            <span>
+                <a href="/tags/javascript/">JavaScript</a>
+            </span>
+            
+            <span>
+                <a href="/tags/js/">JS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/js%E5%87%BD%E6%95%B0/">JS函数</a>
+            </span>
+            
+            <span>
+                <a href="/tags/mvc/">MVC</a>
+            </span>
+            
+            <span>
+                <a href="/tags/vue/">Vue</a>
+            </span>
+            
+            <span>
+                <a href="/tags/webpack/">webpack</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+            </span>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>目录</h3>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#画三角形">画三角形</a></li>
+    <li><a href="#画圆-半圆-椭圆">画圆 半圆 椭圆</a>
+      <ul>
+        <li><a href="#border-radius">border-radius</a></li>
+        <li><a href="#画椭圆">画椭圆</a></li>
+        <li><a href="#画半圆">画半圆</a></li>
+      </ul>
+    </li>
+    <li><a href="#画心形">画心形</a></li>
+  </ul>
+</nav>
+    </div>
+    
+    
+  </div>
+</aside>
+    </main>
+
+    <footer>
+    <div class="container-lg clearfix">
+        <div class="col-12 footer">
+            
+            <span>&copy; 2020-2020
+                <a href="https://heeeyueee.github.io">moji</a>
+                 | <a href="https://github.com/heeeyueee/heeeyueee.github.io">Source code</a> 
+                | 基于 <a href="https://github.com/amzrk2/hugo-theme-fuji/"
+                   target="_blank">Fuji-v2</a> &amp; <a href="https://gohugo.io/"
+                                                    target="_blank">Hugo</a> 构建
+            </span>
+        </div>
+    </div>
+</footer>
+
+    
+<script defer src="https://cdn.jsdelivr.net/combine/npm/medium-zoom@1.0.6,npm/lazysizes@5.2.2"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.21.0/components/prism-core.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.21.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+
+
+<script defer src="/assets/js/fuji.min.js"></script>
+
+
+</body>
+
+</html>

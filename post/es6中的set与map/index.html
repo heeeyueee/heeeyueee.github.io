@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+    
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="HandheldFriendly" content="True" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta name="generator" content="Hugo 0.77.0" />
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+
+<title>ES6中的Set与Map - moji code blog</title>
+
+
+<meta name="author" content="moji" />
+
+
+<meta name="description" content="A minimal Hugo theme with nice theme color." />
+
+
+<meta name="keywords" content="JavaScript" />
+
+<meta property="og:title" content="ES6中的Set与Map" />
+<meta property="og:description" content="
+Set与Map
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://heeeyueee.github.io/post/es6%E4%B8%AD%E7%9A%84set%E4%B8%8Emap/" />
+<meta property="og:image" content="https://heeeyueee.github.io/img/og.png"/>
+<meta property="article:published_time" content="2020-12-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2020-12-17T00:00:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://heeeyueee.github.io/img/og.png"/>
+
+<meta name="twitter:title" content="ES6中的Set与Map"/>
+<meta name="twitter:description" content="
+Set与Map
+"/>
+
+
+
+<style>
+    @media (prefers-color-scheme: dark) {
+        body[data-theme='auto'] img {
+            filter: brightness(60%);
+        }
+    }
+
+    body[data-theme='dark'] img {
+        filter: brightness(60%);
+    }
+</style>
+
+
+
+<link rel="stylesheet" href="https://heeeyueee.github.io/assets/css/fuji.min.css" />
+
+
+
+
+
+</head>
+
+<body data-theme="auto">
+    <script data-cfasync="false">
+  
+  var fujiThemeData = localStorage.getItem('fuji_data-theme');
+  
+  if (!fujiThemeData) {
+    localStorage.setItem('fuji_data-theme', 'auto');
+  } else {
+    
+    if (fujiThemeData !== 'auto') {
+      document.body.setAttribute('data-theme', fujiThemeData === 'dark' ? 'dark' : 'light');
+    }
+  }
+</script>
+
+    <header>
+    <div class="container-lg clearfix">
+        <div class="col-12 header">
+            <a class="title-main" href="https://heeeyueee.github.io">moji code blog</a>
+            
+            <span class="title-sub">A mini blog.</span>
+            
+        </div>
+    </div>
+</header>
+
+    <main>
+        <div class="container-lg clearfix">
+            
+            <div class="col-12 col-md-9 float-left content">
+                
+<article>
+    
+    <h2 class="post-item post-title">
+        <a href="https://heeeyueee.github.io/post/es6%E4%B8%AD%E7%9A%84set%E4%B8%8Emap/">ES6中的Set与Map</a>
+    </h2>
+    <div class="post-item post-meta">
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-12-17</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1060 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;</span>
+
+    </div>
+    
+    
+    <div class="post-content markdown-body">
+        <blockquote>
+<p>Set与Map</p>
+</blockquote>
+<blockquote>
+<p>前言：小白本人最近在leetcode上做题，发现经常会用到hash表这种数据结构，并且都是用ES6中的新数据结构Map来实现的，</p>
+<p>所以连带着Set来一起总结一下</p>
+</blockquote>
+<h2 id="set">Set</h2>
+<p>ES6 提供了新的数据结构 <code>Set</code>。它类似于数组，允许存储任何类型的值，无论是原始值或者是对象引用，但是成员的值都是<strong>唯一的</strong>，没有重复的值。</p>
+<h3 id="特征">特征</h3>
+<ul>
+<li>只能保存值没有键名</li>
+<li>严格类型检测，如字符串数字不等于数值型数字</li>
+<li>值是唯一的</li>
+<li>遍历顺序是添加的顺序，方便保存回调函数</li>
+</ul>
+<h3 id="基本使用">基本使用</h3>
+<h4 id="创建">创建</h4>
+<p>要创建一个<code>Set</code>，需要提供一个<code>Array</code>作为输入，或者直接创建一个空<code>Set</code>：</p>
+<pre><code class="language-javascript">let s1 = new Set(); // 空Set
+let s2 = new Set([1, 2, 3]); // 含1, 2, 3
+</code></pre>
+<p>重复元素在<code>Set</code>中自动被过滤：</p>
+<pre><code class="language-javascript">let s = new Set([1, 2, 3, 3, '3']);
+s; // Set {1, 2, 3, &quot;3&quot;}
+</code></pre>
+<h4 id="添加元素">添加元素</h4>
+<p>使用 <code>add(key)</code>方法添加元素，不允许添加重复的值</p>
+<pre><code class="language-javascript">s2.add(4)// Set {1, 2, 3, 4}
+S2.add(1)// Set {1, 2, 3, 4}
+</code></pre>
+<h4 id="获取元素总量">获取元素总量</h4>
+<p><code>size</code>属性表示<code>Set</code>中的元素数量</p>
+<pre><code class="language-javascript">console.log(s2.size); //4
+</code></pre>
+<h4 id="元素检测">元素检测</h4>
+<p><code>has()</code>方法来检测<code>Set</code>中是否含该元素</p>
+<pre><code class="language-javascript">console.log(s2.has(1));//true
+</code></pre>
+<h4 id="删除元素">删除元素</h4>
+<p>使用 <code>delete</code> 方法删除单个元素，返回值为<code>boolean</code>类型</p>
+<pre><code class="language-javascript">s2.delete(&quot;1&quot;)  //true
+</code></pre>
+<p>使用 <code>clear</code> 删除所有元素</p>
+<pre><code class="language-javascript">s1.clear();
+</code></pre>
+<h4 id="数组转换">数组转换</h4>
+<p>可以使用<code>点语法</code> 或 <code>Array.form</code> 静态方法将Set类型转为数组，这样就可以使用数组原型中的函数和属性了</p>
+<pre><code class="language-javascript">console.log([...s2]); // {1, 2, 3, 4}--&gt;[1,2,3,4]
+console.log(Array.from(s2)); //{1, 2, 3, 4}--&gt;[1,2,3,4]
+</code></pre>
+<h4 id="去除重复">去除重复</h4>
+<p>去除字符串重复</p>
+<pre><code class="language-javascript">[...new Set(&quot;dooog&quot;)].join(&quot;&quot;);//dog
+</code></pre>
+<p>去除数组重复</p>
+<pre><code class="language-javascript">const arr = [1, 2, 3, 5, 2, 3];
+console.log(...new Set(arr)); // 1,2,4,5
+</code></pre>
+<h4 id="遍历数据">遍历数据</h4>
+<ul>
+<li><code>keys()</code></li>
+<li><code>values()</code></li>
+<li><code>entries()</code></li>
+<li><code>forEach()</code></li>
+<li><code>forof</code></li>
+</ul>
+<p>因为<code>set</code>类型只有值所以 <code>keys与values</code> 方法结果一致，<code>entries()</code>遍历获得的<code>key</code>和<code>value</code>也是一样的</p>
+<pre><code class="language-javascript">const set=new Set([1, 2, 3])
+
+for (let item of set.keys()) {
+  console.log(item)
+}
+//1 2 3
+for (let item of set.entries()) {
+  console.log(item)
+}
+// [1, 1]  [2, 2]  [3, 3]
+set.forEach((item,key) =&gt; console.log(item,key));
+// 1 1  2 2  3 3
+</code></pre>
+<h2 id="map">Map</h2>
+<p>JavaScript的默认对象表示方式<code>{}</code>，表示一组键值对。但是JavaScript的对象有个问题，就是键必须是字符串，但实际上我们需要key是其他数据类型。为了解决这个问题，最新的ES6规范引入了新的数据类型<code>Map</code>。</p>
+<h3 id="特征-1">特征</h3>
+<ul>
+<li>具有极快的查找速度</li>
+<li>函数、对象、基本类型都可以作为键或值</li>
+</ul>
+<h3 id="基本使用-1">基本使用</h3>
+<h4 id="创建-1">创建</h4>
+<p>初始化<code>Map</code>需要一个二维数组，或者直接初始化一个空<code>Map</code>。</p>
+<pre><code class="language-javascript">let m = new Map([
+  ['son', 'moji'],
+  ['father', 'blend']
+]);
+</code></pre>
+<h4 id="添加元素-1">添加元素</h4>
+<p>使用<code>set</code> 方法添加元素，支持链式操作</p>
+<pre><code class="language-javascript">let obj={name:&quot;zhangsan&quot;}
+map.set(obj, &quot;zhangsan&quot;).set(&quot;uncle&quot;, &quot;lisi&quot;);
+</code></pre>
+<h4 id="获取数量">获取数量</h4>
+<p><code>size</code>属性表示<code>Map</code>中的元素数量</p>
+<pre><code class="language-javascript">console.log(map.size); 
+</code></pre>
+<h4 id="元素检测-1">元素检测</h4>
+<p><code>has()</code>方法来检测<code>Map</code>中是否含该键值对</p>
+<pre><code class="language-javascript">console.log(map.has(obj1));
+</code></pre>
+<h4 id="读取元素">读取元素</h4>
+<p><code>get(key)</code>方法获取key对应的值</p>
+<pre><code class="language-javascript">console.log(map.get(obj));//zhangsan
+</code></pre>
+<h4 id="删除元素-1">删除元素</h4>
+<p>使用 <code>delete(key)</code> 方法删除单个元素</p>
+<pre><code class="language-javascript">map.delete(obj);
+</code></pre>
+<p>使用<code>clear</code>方法清除Map所有元素</p>
+<pre><code class="language-javascript">map.clear()
+</code></pre>
+<h4 id="数组转换-1">数组转换</h4>
+<p>可以使用<code>展开语法</code> 或 <code>Array.form</code> 静态方法将<code>Map</code>类型转为数组，这样就可以使用数组原型中的函数和属性了</p>
+<pre><code class="language-javascript">let map = new Map([[&quot;son&quot;, &quot;moji&quot;], [&quot;father&quot;, &quot;blend&quot;]]);
+
+let newArr = [...map].filter(function(item) {
+  return item[1].includes(&quot;moji&quot;);
+});//[&quot;son&quot;, &quot;moji&quot;]
+</code></pre>
+<h4 id="遍历数据-1">遍历数据</h4>
+<ul>
+<li><code>keys()</code></li>
+<li><code>values()</code></li>
+<li><code>entries()</code></li>
+<li><code>forEach()</code></li>
+<li><code>forof</code></li>
+</ul>
+<pre><code class="language-javascript">for (const value of map.values()) {
+  console.log(value);
+}
+for (const item of map.entries()) {
+  console.log(value);
+}
+for (const [key, value] of map) {
+  console.log(`${key}=&gt;${value}`);
+}
+map.forEach((value, key) =&gt; {
+  console.log(`${key}=&gt;${value}`);
+})
+</code></pre>
+    </div>
+</article>
+
+
+<div class="license markdown-body">
+    <blockquote>
+        <p>除特殊注明部分，本站内容采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+               target="_blank">CC BY-NC-SA 4.0</a> 进行许可。</p>
+    </blockquote>
+</div>
+
+
+
+            </div>
+            <aside class="col-12 col-md-3 float-left sidebar">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>页面</h3>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/archives/">Archives</a>
+            </li>
+            
+            <li>
+                <a href="/about/">About</a>
+            </li>
+            
+            <li>
+                <a href="/search/">Search</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>链接</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/heeeyueee" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+            <li>
+                <a href="https://weibo.com/5631402703/profile?topnav=1&amp;wvr=6" target="_blank"><span>weibo</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>标签</h3>
+        <div>
+            
+            <span>
+                <a href="/tags/css/">CSS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/dom/">DOM</a>
+            </span>
+            
+            <span>
+                <a href="/tags/html/">HTML</a>
+            </span>
+            
+            <span>
+                <a href="/tags/http/">HTTP</a>
+            </span>
+            
+            <span>
+                <a href="/tags/javascript/">JavaScript</a>
+            </span>
+            
+            <span>
+                <a href="/tags/js/">JS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/js%E5%87%BD%E6%95%B0/">JS函数</a>
+            </span>
+            
+            <span>
+                <a href="/tags/mvc/">MVC</a>
+            </span>
+            
+            <span>
+                <a href="/tags/vue/">Vue</a>
+            </span>
+            
+            <span>
+                <a href="/tags/webpack/">webpack</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+            </span>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>目录</h3>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#set">Set</a>
+      <ul>
+        <li><a href="#特征">特征</a></li>
+        <li><a href="#基本使用">基本使用</a></li>
+      </ul>
+    </li>
+    <li><a href="#map">Map</a>
+      <ul>
+        <li><a href="#特征-1">特征</a></li>
+        <li><a href="#基本使用-1">基本使用</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+    
+</aside>
+        </div>
+        <div class="btn">
+    <div class="btn-menu" id="btn-menu">
+        <i class="iconfont icon-grid-sharp"></i>
+    </div>
+    <div class="btn-toggle-mode">
+        <i class="iconfont icon-contrast-sharp"></i>
+    </div>
+    <div class="btn-scroll-top">
+        <i class="iconfont icon-chevron-up-circle-sharp"></i>
+    </div>
+</div>
+<aside class="sidebar-mobile" style="display: none;">
+  <div class="sidebar-wrapper">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>页面</h3>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/archives/">Archives</a>
+            </li>
+            
+            <li>
+                <a href="/about/">About</a>
+            </li>
+            
+            <li>
+                <a href="/search/">Search</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>链接</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/heeeyueee" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+            <li>
+                <a href="https://weibo.com/5631402703/profile?topnav=1&amp;wvr=6" target="_blank"><span>weibo</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>标签</h3>
+        <div>
+            
+            <span>
+                <a href="/tags/css/">CSS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/dom/">DOM</a>
+            </span>
+            
+            <span>
+                <a href="/tags/html/">HTML</a>
+            </span>
+            
+            <span>
+                <a href="/tags/http/">HTTP</a>
+            </span>
+            
+            <span>
+                <a href="/tags/javascript/">JavaScript</a>
+            </span>
+            
+            <span>
+                <a href="/tags/js/">JS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/js%E5%87%BD%E6%95%B0/">JS函数</a>
+            </span>
+            
+            <span>
+                <a href="/tags/mvc/">MVC</a>
+            </span>
+            
+            <span>
+                <a href="/tags/vue/">Vue</a>
+            </span>
+            
+            <span>
+                <a href="/tags/webpack/">webpack</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+            </span>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>目录</h3>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#set">Set</a>
+      <ul>
+        <li><a href="#特征">特征</a></li>
+        <li><a href="#基本使用">基本使用</a></li>
+      </ul>
+    </li>
+    <li><a href="#map">Map</a>
+      <ul>
+        <li><a href="#特征-1">特征</a></li>
+        <li><a href="#基本使用-1">基本使用</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+    
+  </div>
+</aside>
+    </main>
+
+    <footer>
+    <div class="container-lg clearfix">
+        <div class="col-12 footer">
+            
+            <span>&copy; 2020-2020
+                <a href="https://heeeyueee.github.io">moji</a>
+                 | <a href="https://github.com/heeeyueee/heeeyueee.github.io">Source code</a> 
+                | 基于 <a href="https://github.com/amzrk2/hugo-theme-fuji/"
+                   target="_blank">Fuji-v2</a> &amp; <a href="https://gohugo.io/"
+                                                    target="_blank">Hugo</a> 构建
+            </span>
+        </div>
+    </div>
+</footer>
+
+    
+<script defer src="https://cdn.jsdelivr.net/combine/npm/medium-zoom@1.0.6,npm/lazysizes@5.2.2"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.21.0/components/prism-core.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.21.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+
+
+<script defer src="/assets/js/fuji.min.js"></script>
+
+
+</body>
+
+</html>
