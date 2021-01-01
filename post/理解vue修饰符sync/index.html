@@ -21,27 +21,30 @@
 <meta name="theme-color" content="#ffffff">
 
 
-<title>DOM - moji code blog</title>
+<title>理解Vue修饰符sync - moji code blog</title>
 
 
 <meta name="author" content="moji" />
 
 
-<meta name="description" content="A minimal Hugo theme with nice theme color." />
+<meta name="description" content="学习Vue" />
 
 
-<meta property="og:title" content="DOM" />
-<meta property="og:description" content="A minimal Hugo theme with nice theme color." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://heeeyueee.github.io/tags/dom/" />
+<meta name="keywords" content="Vue" />
+
+<meta property="og:title" content="理解Vue修饰符sync" />
+<meta property="og:description" content="学习Vue" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://heeeyueee.github.io/post/%E7%90%86%E8%A7%A3vue%E4%BF%AE%E9%A5%B0%E7%AC%A6sync/" />
 <meta property="og:image" content="https://heeeyueee.github.io/img/og.png"/>
-<meta property="og:updated_time" content="2020-12-08T00:00:00+08:00" />
+<meta property="article:published_time" content="2021-01-01T09:00:00+08:00" />
+<meta property="article:modified_time" content="2021-01-01T09:00:00+08:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://heeeyueee.github.io/img/og.png"/>
 
-<meta name="twitter:title" content="DOM"/>
-<meta name="twitter:description" content="A minimal Hugo theme with nice theme color."/>
+<meta name="twitter:title" content="理解Vue修饰符sync"/>
+<meta name="twitter:description" content="学习Vue"/>
 
 
 
@@ -98,49 +101,110 @@
             
             <div class="col-12 col-md-9 float-left content">
                 
-
-<div class="page-info">
-    <span>拥有标签 DOM 的文章：</span>
-</div>
-
-
-
-<div class="post">
+<article>
+    
     <h2 class="post-item post-title">
-        <a href="https://heeeyueee.github.io/post/dom%E4%BA%8B%E4%BB%B6/">详解DOM事件机制</a>
+        <a href="https://heeeyueee.github.io/post/%E7%90%86%E8%A7%A3vue%E4%BF%AE%E9%A5%B0%E7%AC%A6sync/">理解Vue修饰符sync</a>
     </h2>
     <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-12-08</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;2793 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;<a href="/tags/dom">DOM</a>&nbsp;</span>
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-01-01</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;914 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/vue">Vue</a>&nbsp;</span>
 
     </div>
-    <div class="post-item post-summary markdown-body">
+    
+    
+    <div class="post-content markdown-body">
         <blockquote>
-<p>DOM事件相关</p>
+<p>sync</p>
 </blockquote>
+<h3 id="前言">前言</h3>
+<p>当我们在子组件中想要修改通过props绑定的外部组件里的数据时，Vue不支持我们直接在子组件中进行修改，子组件没有修改父组件数据的权力，推荐我们利用EventBus事件中心，在vue实例上就含有<code>$emit</code>接口来触发事件，<code>$on</code>来监听响应事件，<code>$off</code>来移除事件的监听，所以在子组件中使用<code>this.$emit()</code>来触发事件，并把修改后的值作为参数传入，Vue会把传入的参数保存到<code>$event</code>中，父组件响应事件并通过<code>$event</code>来取值实现数据的更新，避免由子组件直接修改父组件传过来的内容。</p>
+<p><strong>官方示例</strong></p>
+<p>举个例子，在一个包含 <code>title</code> prop 的组件中，通过$emit来触发&rsquo;update:title&rsquo;事件，向父组件发送数据更新消息：</p>
+<pre><code>this.$emit('update:title', newTitle)
+</code></pre>
+<p>然后父组件中可以监听&rsquo;update:title&rsquo;事件并根据需要更新一个本地的数据 property。</p>
+<pre><code>&lt;text-document
+  v-bind:title=&quot;doc.title&quot;
+  v-on:update:title=&quot;doc.title = $event&quot;
+&gt;&lt;/text-document&gt;
+</code></pre>
+<p><code> v-on:update:title=&quot;doc.title = $event&quot;</code>这一长串在模版中显得十分笨重，而且父子间通信是常用的操作，模版中要是出现很多类似语句就违反了Vue简洁的出发点，所以Vue就推出了sync修饰符~</p>
+<h3 id="使用">使用</h3>
+<p>Vue为上面的模式提供一个缩写，即 <code>.sync</code> 修饰符，<code>.sync</code> 修饰符就是事件绑定的语法糖：</p>
+<pre><code class="language-javascript">&lt;text-document :title.sync=&quot;doc.title&quot;&gt;&lt;/text-document&gt;
+</code></pre>
+<p>上面的例子通过<code>sync</code>修饰符简化后里面就变得简单明了</p>
+<h3 id="示例">示例</h3>
+<p>下面通过一个父子组件通信的例子来掌握sync修饰符的用法</p>
+<p>父组件将money值传给子组件，子组件不能直接修改money值，必须要触发事件来告知父组件修改后的money值，在父组件中监听到事件后确认修改对应的money的值，有v-on的写法和使用sync修饰符简写的语法。</p>
+<p><img src="https://raw.githubusercontent.com/heeeyueee/pic/main/img/20210101154030.png" style="zoom:60%;" /></p>
+<p><strong>子组件</strong></p>
+<p>child.vue</p>
+<pre><code class="language-j">&lt;template&gt;
+  &lt;div class=&quot;child&quot;&gt;
+    {{money}}
+    &lt;button @click=&quot;$emit('update:money', money-100)&quot;&gt;
+      &lt;span&gt;子组件花100元&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  props: [&quot;money&quot;]
+};
+&lt;/script&gt;
+
+
+&lt;style&gt;
+.child {
+  border: 3px solid green;
+}
+&lt;/style&gt;
+</code></pre>
+<p><strong>父组件</strong></p>
+<p>app.vue</p>
+<pre><code class="language-javascript">&lt;template&gt;
+  &lt;div class=&quot;app&quot;&gt;
+    父组件：我现在有 {{total}}元
+    &lt;hr&gt;
+    &lt;!-- 语法糖式写法 --&gt;
+    &lt;!-- &lt;Child :money.sync=&quot;total&quot;/&gt; --&gt;
+    &lt;Child :money=&quot;total&quot; v-on:update:money=&quot;total = $event&quot;/&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import Child from &quot;./Child.vue&quot;;
+export default {
+  data() {
+    return { total: 10000 };
+  },
+  components: { Child: Child }
+};
+&lt;/script&gt;
+
+&lt;style&gt;
+.app {
+  border: 3px solid red;
+  padding: 10px;
+}
+&lt;/style&gt;
+</code></pre>
+<ul>
+<li>事件的名称最好写为<code>update:mondy</code>，<code>update</code>是vue规定的语法书写格式，<code>money</code>是被绑定事件的属性。</li>
+<li>代码<Child :money.sync="total"/>会被扩展成<Child :money="total" v-on:update:money="total = $event"/>（自动更新父组件属性的 v-on 监听器），就是一个语法糖。</li>
+</ul>
     </div>
+</article>
+
+
+<div class="license markdown-body">
+    <blockquote>
+        <p>除特殊注明部分，本站内容采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+               target="_blank">CC BY-NC-SA 4.0</a> 进行许可。</p>
+    </blockquote>
 </div>
-
-<div class="post">
-    <h2 class="post-item post-title">
-        <a href="https://heeeyueee.github.io/post/jquery%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%85%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">jQuery的使用与其设计模式</a>
-    </h2>
-    <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-12-07</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;2978 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;<a href="/tags/dom">DOM</a>&nbsp;</span>
-
-    </div>
-    <div class="post-item post-summary markdown-body">
-        <blockquote>
-<p>总结常用的api ，学习jQuery的设计模式</p>
-</blockquote>
-    </div>
-</div>
-
-
-
-
-
-
-
 
 
 
@@ -241,6 +305,21 @@
     </div>
     
     
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>目录</h3>
+        <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#前言">前言</a></li>
+        <li><a href="#使用">使用</a></li>
+        <li><a href="#示例">示例</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
     
     
 </aside>
@@ -350,6 +429,23 @@
             </span>
             
         </div>
+    </div>
+    
+    
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>目录</h3>
+        <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#前言">前言</a></li>
+        <li><a href="#使用">使用</a></li>
+        <li><a href="#示例">示例</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
     
     

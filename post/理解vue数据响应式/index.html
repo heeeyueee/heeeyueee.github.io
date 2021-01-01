@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+    
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="HandheldFriendly" content="True" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta name="generator" content="Hugo 0.77.0" />
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+
+<title>理解Vue数据响应式 - moji code blog</title>
+
+
+<meta name="author" content="moji" />
+
+
+<meta name="description" content="学习Vue数据响应式" />
+
+
+<meta name="keywords" content="Vue" />
+
+<meta property="og:title" content="理解Vue数据响应式" />
+<meta property="og:description" content="学习Vue数据响应式" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://heeeyueee.github.io/post/%E7%90%86%E8%A7%A3vue%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F/" />
+<meta property="og:image" content="https://heeeyueee.github.io/img/og.png"/>
+<meta property="article:published_time" content="2020-12-28T09:00:00+08:00" />
+<meta property="article:modified_time" content="2020-12-28T09:00:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://heeeyueee.github.io/img/og.png"/>
+
+<meta name="twitter:title" content="理解Vue数据响应式"/>
+<meta name="twitter:description" content="学习Vue数据响应式"/>
+
+
+
+<style>
+    @media (prefers-color-scheme: dark) {
+        body[data-theme='auto'] img {
+            filter: brightness(60%);
+        }
+    }
+
+    body[data-theme='dark'] img {
+        filter: brightness(60%);
+    }
+</style>
+
+
+
+<link rel="stylesheet" href="https://heeeyueee.github.io/assets/css/fuji.min.css" />
+
+
+
+
+
+</head>
+
+<body data-theme="auto">
+    <script data-cfasync="false">
+  
+  var fujiThemeData = localStorage.getItem('fuji_data-theme');
+  
+  if (!fujiThemeData) {
+    localStorage.setItem('fuji_data-theme', 'auto');
+  } else {
+    
+    if (fujiThemeData !== 'auto') {
+      document.body.setAttribute('data-theme', fujiThemeData === 'dark' ? 'dark' : 'light');
+    }
+  }
+</script>
+
+    <header>
+    <div class="container-lg clearfix">
+        <div class="col-12 header">
+            <a class="title-main" href="https://heeeyueee.github.io">moji code blog</a>
+            
+            <span class="title-sub">A mini blog.</span>
+            
+        </div>
+    </div>
+</header>
+
+    <main>
+        <div class="container-lg clearfix">
+            
+            <div class="col-12 col-md-9 float-left content">
+                
+<article>
+    
+    <h2 class="post-item post-title">
+        <a href="https://heeeyueee.github.io/post/%E7%90%86%E8%A7%A3vue%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F/">理解Vue数据响应式</a>
+    </h2>
+    <div class="post-item post-meta">
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-12-28</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;2129 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/vue">Vue</a>&nbsp;</span>
+
+    </div>
+    
+    
+    <div class="post-content markdown-body">
+        <blockquote>
+<p>Vue数据响应式</p>
+</blockquote>
+<h2 id="什么是数据响应式">什么是数据响应式</h2>
+<blockquote>
+<p>Vue.js 一个核心思想是数据驱动。所谓数据驱动，是指视图是由数据驱动生成的，我们对视图的修改，不会直接操作 DOM，而是通过修改数据。——《Vue.js 技术揭秘》</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/heeeyueee/pic/main/img/2cded52ac483c54d402765c867d6f5b.png" style="zoom:60%;" /></p>
+<p>拿Vue官方教程举例来说，在Vue中我们只需要改变data中的price，页面会立马自动做出响应来显示更新后的数据。而不是像使用原生JS需要许多DOM操作才能完成。Vue是怎样监听到数据的改变让视图立马做出响应的呢？</p>
+<p><img src="https://raw.githubusercontent.com/heeeyueee/pic/main/img/20201228215836.png" style="zoom:60%;" /></p>
+<blockquote>
+<p>上图是Vue的官方文档中的图解，黄色部分是 Vue 的渲染方法，视图初始化和视图更新时都会调用render 方法进行重新渲染。渲染时不可避免地会 touch 到每个需要展示到视图上的数据（紫色部分），触发这些数据的 get 方法从而收集到本次渲染的所有依赖。而当我们在修改这些收集到依赖的数据时，会触发数据中的 set 属性方法，该方法会修改数据的值并 notify 到依赖到它的观察者，从而触发视图的重新渲染。</p>
+</blockquote>
+<p>而我们定义在data中的数据并没有set，get的计算属性，get、set方法是如何产生的呢？这便是Vue的数据响应式的核心工作，重写数据的 get 和 set 属性方法。</p>
+<h2 id="让数据变成响应式">让数据变成响应式</h2>
+<blockquote>
+<p>当你把一个普通的 JavaScript 对象传入 Vue 实例作为 data 选项，Vue 将遍历此对象所有的 property，并使用 Object.defineProperty 把这些 property 全部转为 getter/setter。</p>
+</blockquote>
+<p>上面是Vue官方文档的解答，下面详细了解一下Vue如何将数据变为响应式的？</p>
+<h3 id="gettersetter">getter、setter</h3>
+<pre><code class="language-javascript">let obj = {
+firstName: &quot;王&quot;,
+lastName: &quot;XX&quot;,
+get name() {
+return this.firstName + this.lastName;
+},
+set name(value){
+this.firstName = value[0]
+this.lastName = value.slice(1)
+},
+age: 18
+};
+
+obj.name = '王小小'
+console.log( obj.name);
+
+</code></pre>
+<p>如上例，getter、setter方法也可以是obj对象的属性，我们可以使用操作属性的点语法来获取name和修改name。如果在控制台进行打印就会发现 name属性下的getter、setter方法就和实例化vue中的data 里的值n打印出来变为了<code>n:(...)</code>也有getter、setter方法，说明vue重写数据n,将其转换为getter/setter的对象属性。</p>
+<p><img src="https://raw.githubusercontent.com/heeeyueee/pic/main/img/888c5189980e3851d5e60b7068acac1.png" style="zoom:60%;" /></p>
+<h3 id="objectdefineproperty">Object.defineProperty</h3>
+<p>Vue是如何将data中普通的属性n转化为getter、setter方法的属性n呢？答案是通过 JS 标准内置对象方法 Object.defineProperty 来设定的</p>
+<blockquote>
+<p>Object.defineProperty() 方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象。——MDN</p>
+</blockquote>
+<pre><code class="language-javascript">Object.defineProperty(obj, prop, descriptor)
+</code></pre>
+<p><code>Object.defineProperty()</code> 接收三个参数：第一个是要定义属性的对象；第二个是要定义或修改的属性的名称或 Symbol；第三个则是要定义或修改的属性描述符。在第三个参数中，我们可以定义属性的 getter 函数和setter 函数，这便解释了Vue如何通过Object.defineProperty 把这些 data里的属性全部转为 getter/setter。</p>
+<pre><code class="language-javascript">var obj = {}; // 创建一个新对象
+// 在对象中添加一个属性a
+Object.defineProperty(obj, &quot;a&quot;, {
+  get() { return aValue; },
+  set(newValue) { aValue = newValue; },
+});
+</code></pre>
+<p>getter和setter对属性的读写操作进行了监控，但是我们只要知道属性名，就可以绕过getter和setter方法直接对属性进行控制，Vue利用代理模式解决了这个问题</p>
+<h3 id="proxy">proxy</h3>
+<pre><code class="language-javascript">let myData = {
+    n: 0
+}
+let data = proxy({
+    data: myData
+}) // 括号里是匿名对象，无法访问
+function proxy({ data } /* 解构赋值 */ ) {
+    //for循环省略
+    let value = data.n
+    Object.defineProperty(data, 'n', {
+        get() {
+            return value
+        },
+        set(newValue) {
+            value = newValue
+        }
+    })
+    
+    const obj = {}
+    Object.defineProperty(obj, 'n', {
+        get() {
+            return data.n
+        },
+        set(value) {
+            data.n = value
+        }
+    })
+    return obj // obj 就是代理
+}
+</code></pre>
+<p>上面的方法对每个传入的数据新增 getter/setter，此后<strong>原始的数据就会被 getter/setter 所替代</strong>，相当于复制了原始数据，这样不管是操作 <code>let data = proxy(data);</code> 中的 data，还是操作 myData，都会被我们的 getter/setter 所拦截。</p>
+<p>经过代理后的代码是不是就和实例化一个vue对象的代码很相似了</p>
+<pre><code class="language-javascript">const vm = new Vue({ data: {} })
+let data = proxy({data:myData})
+</code></pre>
+<p>所以，new Vue时Vue会遍历传入的data对象所有属性，并使用<code>Object.defineProperty</code>把这些属性全部转为getter/setter，这样就生成一个新的对象全权负责数据——就是实例化的Vue对象vm。这样vm会成为data 的代理，对 data 的所有属性进行监控，当数值发生改变的时候，vue就调用render函数重新渲染视图。</p>
+<h2 id="vue-数据响应式的-bug">Vue 数据响应式的 Bug</h2>
+<blockquote>
+<p>由于 JavaScript 的限制，Vue <strong>不能检测</strong>数组和对象的变化。——Vue文档</p>
+</blockquote>
+<h3 id="是什么">是什么？</h3>
+<pre><code class="language-javascript">var vm = new Vue({
+  data:{
+    a:1
+  }
+})
+// `vm.a` 是响应式的
+vm.b = 2
+// `vm.b` 是非响应式的
+</code></pre>
+<p>由于 Vue 会在初始化实例时对 property 执行 getter/setter 转化，所以 property 必须在 <code>data</code> 对象上存在才能让 Vue 将它转换为响应式的。而例子中的b属性是在实例化外再新添的，所以vue不能对b值的变化在视图上做出响应。但很多时候我们并不能事先知道data的所有属性，如果要新添属性怎么办呢？</p>
+<h3 id="解决方法">解决方法</h3>
+<h4 id="对象">对象</h4>
+<p>可以使用 <code>Vue.set(object, propertyName, value)</code> 方法向对象添加响应式 property。</p>
+<pre><code>Vue.set(vm.data, 'b', 2)
+</code></pre>
+<p>还可以使用 <code>vm.$set</code> 实例方法，这也是全局 <code>Vue.set</code> 方法的别名：</p>
+<pre><code>this.$set(this.data,'b',2)
+</code></pre>
+<h4 id="数组">数组</h4>
+<pre><code class="language-javascript">var vm = new Vue({
+  data: {
+    items: ['a', 'b', 'c','d']
+  }
+})
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/heeeyueee/pic/main/img/88e18f6ef74cb72fc36ad38fdbeaced.png" style="zoom:60%;" /></p>
+<p>把数组打印出来可见，vue对数组进行了改变，给数组加了一层原型，在其中Vue修改了7个方法覆盖了之前数组原型的7个方法。调用这些Vue新定义的方法时，在这些新方法里Vue会加上对新添的元素的监听（相当于进行了set操作），把新数据也进行代理，这样vue就能重新监测到数组的变化了更新UI操作</p>
+<p>具体的七个变更方法：（这些原始方法正好也会返回一个新数组）</p>
+<ul>
+<li><code>push()</code></li>
+<li><code>pop()</code></li>
+<li><code>shift()</code></li>
+<li><code>unshift()</code></li>
+<li><code>splice()</code></li>
+<li><code>sort()</code></li>
+<li><code>reverse()</code></li>
+</ul>
+<p>关于Vue的响应式原理，还有很多需要探究的，这篇文件只是总结了数据如何变为响应式的。</p>
+<h2 id="参考">参考</h2>
+<p><a href="https://cn.vuejs.org/v2/guide/reactivity.html" target="_blank">深入响应式原理</a></p>
+<p><a href="https://www.infoq.cn/article/we3l33h5zgyyg6gc9hri" target="_blank">Vue的数据响应式原理</a></p>
+<p><a href="https://www.cnblogs.com/xhyccc/p/13441025.html" target="_blank">一探 Vue 数据响应式原理</a></p>
+    </div>
+</article>
+
+
+<div class="license markdown-body">
+    <blockquote>
+        <p>除特殊注明部分，本站内容采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+               target="_blank">CC BY-NC-SA 4.0</a> 进行许可。</p>
+    </blockquote>
+</div>
+
+
+
+            </div>
+            <aside class="col-12 col-md-3 float-left sidebar">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>页面</h3>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/archives/">Archives</a>
+            </li>
+            
+            <li>
+                <a href="/about/">About</a>
+            </li>
+            
+            <li>
+                <a href="/search/">Search</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>链接</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/heeeyueee" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+            <li>
+                <a href="https://weibo.com/5631402703/profile?topnav=1&amp;wvr=6" target="_blank"><span>weibo</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>标签</h3>
+        <div>
+            
+            <span>
+                <a href="/tags/css/">CSS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/dom/">DOM</a>
+            </span>
+            
+            <span>
+                <a href="/tags/html/">HTML</a>
+            </span>
+            
+            <span>
+                <a href="/tags/http/">HTTP</a>
+            </span>
+            
+            <span>
+                <a href="/tags/javascript/">JavaScript</a>
+            </span>
+            
+            <span>
+                <a href="/tags/js/">JS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/js%E5%87%BD%E6%95%B0/">JS函数</a>
+            </span>
+            
+            <span>
+                <a href="/tags/mvc/">MVC</a>
+            </span>
+            
+            <span>
+                <a href="/tags/vue/">Vue</a>
+            </span>
+            
+            <span>
+                <a href="/tags/webpack/">webpack</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+            </span>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>目录</h3>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#什么是数据响应式">什么是数据响应式</a></li>
+    <li><a href="#让数据变成响应式">让数据变成响应式</a>
+      <ul>
+        <li><a href="#gettersetter">getter、setter</a></li>
+        <li><a href="#objectdefineproperty">Object.defineProperty</a></li>
+        <li><a href="#proxy">proxy</a></li>
+      </ul>
+    </li>
+    <li><a href="#vue-数据响应式的-bug">Vue 数据响应式的 Bug</a>
+      <ul>
+        <li><a href="#是什么">是什么？</a></li>
+        <li><a href="#解决方法">解决方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav>
+    </div>
+    
+    
+</aside>
+        </div>
+        <div class="btn">
+    <div class="btn-menu" id="btn-menu">
+        <i class="iconfont icon-grid-sharp"></i>
+    </div>
+    <div class="btn-toggle-mode">
+        <i class="iconfont icon-contrast-sharp"></i>
+    </div>
+    <div class="btn-scroll-top">
+        <i class="iconfont icon-chevron-up-circle-sharp"></i>
+    </div>
+</div>
+<aside class="sidebar-mobile" style="display: none;">
+  <div class="sidebar-wrapper">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>页面</h3>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/archives/">Archives</a>
+            </li>
+            
+            <li>
+                <a href="/about/">About</a>
+            </li>
+            
+            <li>
+                <a href="/search/">Search</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>链接</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/heeeyueee" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+            <li>
+                <a href="https://weibo.com/5631402703/profile?topnav=1&amp;wvr=6" target="_blank"><span>weibo</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>标签</h3>
+        <div>
+            
+            <span>
+                <a href="/tags/css/">CSS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/dom/">DOM</a>
+            </span>
+            
+            <span>
+                <a href="/tags/html/">HTML</a>
+            </span>
+            
+            <span>
+                <a href="/tags/http/">HTTP</a>
+            </span>
+            
+            <span>
+                <a href="/tags/javascript/">JavaScript</a>
+            </span>
+            
+            <span>
+                <a href="/tags/js/">JS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/js%E5%87%BD%E6%95%B0/">JS函数</a>
+            </span>
+            
+            <span>
+                <a href="/tags/mvc/">MVC</a>
+            </span>
+            
+            <span>
+                <a href="/tags/vue/">Vue</a>
+            </span>
+            
+            <span>
+                <a href="/tags/webpack/">webpack</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+            </span>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>目录</h3>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#什么是数据响应式">什么是数据响应式</a></li>
+    <li><a href="#让数据变成响应式">让数据变成响应式</a>
+      <ul>
+        <li><a href="#gettersetter">getter、setter</a></li>
+        <li><a href="#objectdefineproperty">Object.defineProperty</a></li>
+        <li><a href="#proxy">proxy</a></li>
+      </ul>
+    </li>
+    <li><a href="#vue-数据响应式的-bug">Vue 数据响应式的 Bug</a>
+      <ul>
+        <li><a href="#是什么">是什么？</a></li>
+        <li><a href="#解决方法">解决方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav>
+    </div>
+    
+    
+  </div>
+</aside>
+    </main>
+
+    <footer>
+    <div class="container-lg clearfix">
+        <div class="col-12 footer">
+            
+            <span>&copy; 2020-2021
+                <a href="https://heeeyueee.github.io">moji</a>
+                 | <a href="https://github.com/heeeyueee/heeeyueee.github.io">Source code</a> 
+                | 基于 <a href="https://github.com/amzrk2/hugo-theme-fuji/"
+                   target="_blank">Fuji-v2</a> &amp; <a href="https://gohugo.io/"
+                                                    target="_blank">Hugo</a> 构建
+            </span>
+        </div>
+    </div>
+</footer>
+
+    
+<script defer src="https://cdn.jsdelivr.net/combine/npm/medium-zoom@1.0.6,npm/lazysizes@5.2.2"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.21.0/components/prism-core.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.21.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+
+
+<script defer src="/assets/js/fuji.min.js"></script>
+
+
+</body>
+
+</html>
