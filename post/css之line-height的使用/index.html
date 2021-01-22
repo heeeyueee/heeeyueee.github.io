@@ -21,7 +21,7 @@
 <meta name="theme-color" content="#ffffff">
 
 
-<title>moji code blog - A mini blog.</title>
+<title>图解line-height的使用 - moji code blog</title>
 
 
 <meta name="author" content="moji" />
@@ -30,18 +30,25 @@
 <meta name="description" content="A minimal Hugo theme with nice theme color." />
 
 
-<meta property="og:title" content="moji code blog" />
-<meta property="og:description" content="A minimal Hugo theme with nice theme color." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://heeeyueee.github.io/" />
+<meta name="keywords" content="CSS" />
+
+<meta property="og:title" content="图解line-height的使用" />
+<meta property="og:description" content="
+图解line-height的使用
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://heeeyueee.github.io/post/css%E4%B9%8Bline-height%E7%9A%84%E4%BD%BF%E7%94%A8/" />
 <meta property="og:image" content="https://heeeyueee.github.io/img/og.png"/>
-<meta property="og:updated_time" content="2021-01-18T00:00:00+08:00" />
+<meta property="article:published_time" content="2021-01-18T00:00:00+08:00" />
+<meta property="article:modified_time" content="2021-01-18T00:00:00+08:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://heeeyueee.github.io/img/og.png"/>
 
-<meta name="twitter:title" content="moji code blog"/>
-<meta name="twitter:description" content="A minimal Hugo theme with nice theme color."/>
+<meta name="twitter:title" content="图解line-height的使用"/>
+<meta name="twitter:description" content="
+图解line-height的使用
+"/>
 
 
 
@@ -98,228 +105,70 @@
             
             <div class="col-12 col-md-9 float-left content">
                 
-
-
-
-<div class="post">
+<article>
+    
     <h2 class="post-item post-title">
-        <a href="https://heeeyueee.github.io/post/js%E5%87%BD%E6%95%B0%E7%9A%84%E6%89%A7%E8%A1%8C%E6%97%B6%E6%9C%BA/">JS函数的执行时机</a>
+        <a href="https://heeeyueee.github.io/post/css%E4%B9%8Bline-height%E7%9A%84%E4%BD%BF%E7%94%A8/">图解line-height的使用</a>
     </h2>
     <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-11-21</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1461 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;<a href="/tags/js%E5%87%BD%E6%95%B0">JS函数</a>&nbsp;</span>
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-01-18</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;426 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/css">CSS</a>&nbsp;</span>
 
     </div>
-    <div class="post-item post-summary markdown-body">
+    
+    
+    <div class="post-content markdown-body">
         <blockquote>
-<p>探讨关于JS函数的执行时机的问题~</p>
+<p>图解line-height的使用</p>
 </blockquote>
-    </div>
-</div>
+<h2 id="line-height是什么">line-height是什么</h2>
+<p>line-height属性用于设置行间的距离（行高），行高指的是字母的大小(font-size)和字母的上下边缘(字母大小 + 上下空白)。</p>
+<p><img src="https://raw.githubusercontent.com/heeeyueee/pic/main/img/20210118153450.png" style="zoom:67%;" /></p>
+<p>所以，文本单行占据的高度不是<code>font-size</code>来决定的，而是由<code>line-height</code>来决定的。</p>
+<h2 id="line-height的写法">line-height的写法</h2>
+<h3 id="关键词">关键词</h3>
+<pre><code class="language-css">line-height: normal;
+</code></pre>
+<p>取决于用户端。桌面浏览器（包括Firefox）使用默认值，约为<code>1.2</code>，这取决于元素的 <code>font-family</code>。</p>
+<h3 id="长度pxem">长度px、em</h3>
+<pre><code class="language-CSS">&lt;p&gt;udemy&lt;/p&gt;
 
-<div class="post">
-    <h2 class="post-item post-title">
-        <a href="https://heeeyueee.github.io/post/js%E6%95%B0%E7%BB%84/">JavaScript数组</a>
-    </h2>
-    <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-11-19</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;2968 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;</span>
+p{
+ font-size:20px;
+ line-height:30px;
+}
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/heeeyueee/pic/main/img/20210118154250.png" style="zoom:67%;" /></p>
+<p>字母的大小(font-size)是20 px，line- height 是30 px，上下留白为5px。</p>
+<h3 id="数字">数字</h3>
+<pre><code>&lt;p&gt;udemy&lt;/p&gt;
 
-    </div>
-    <div class="post-item post-summary markdown-body">
-        <blockquote>
-<p>总结JavaScript数组及相关方法~</p>
-</blockquote>
-    </div>
-</div>
+p{
+ font-size:20px;
+ line-height:2;
+}
+</code></pre>
+<img src="https://raw.githubusercontent.com/heeeyueee/pic/main/img/20210118155033.png" style="zoom:67%;"/>
+<p>line- height 为font-size: 20 px 的2倍（20 × 2= 40 px），字母的大小(font-size)是20 px，上下留白为10px。</p>
+<h3 id="百分比">百分比</h3>
+<pre><code>&lt;p&gt;udemy&lt;/p&gt;
 
-<div class="post">
-    <h2 class="post-item post-title">
-        <a href="https://heeeyueee.github.io/post/js%E5%AF%B9%E8%B1%A1%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/">JavaScript对象基本用法</a>
-    </h2>
-    <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-11-18</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1325 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;</span>
-
+p{
+ font-size:20px;
+ line-height:200%;
+}
+</code></pre>
+<img src="https://raw.githubusercontent.com/heeeyueee/pic/main/img/20210118155111.png" style="zoom:67%;"/>
+<p>line- height 为 font-size: 20 px 的200% ，为40 px，同样上下留白为10px。。</p>
+<p><strong>PS：line-height可继承，给元素设置line-height会对其内部所有的孩子都生效</strong></p>
     </div>
-    <div class="post-item post-summary markdown-body">
-        <blockquote>
-<p>总结JS对象的基本用法~</p>
-</blockquote>
-    </div>
-</div>
-
-<div class="post">
-    <h2 class="post-item post-title">
-        <a href="https://heeeyueee.github.io/post/js%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%8E%E5%8E%9F%E5%9E%8B/">JS构造对象与原型</a>
-    </h2>
-    <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-11-18</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;18 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;</span>
-
-    </div>
-    <div class="post-item post-summary markdown-body">
-        <blockquote>
-<p>浅析JS构造函数与原型~</p>
-</blockquote>
-    </div>
-</div>
-
-<div class="post">
-    <h2 class="post-item post-title">
-        <a href="https://heeeyueee.github.io/post/js%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">JavaScript数据类型</a>
-    </h2>
-    <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-11-17</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;2692 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;</span>
-
-    </div>
-    <div class="post-item post-summary markdown-body">
-        <blockquote>
-<p>总结JS数据类型中容易混淆的小细节~</p>
-</blockquote>
-    </div>
-</div>
-
-<div class="post">
-    <h2 class="post-item post-title">
-        <a href="https://heeeyueee.github.io/post/js%E8%AF%AD%E6%B3%95/">JavaScript语法</a>
-    </h2>
-    <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-11-16</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;2318 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;</span>
-
-    </div>
-    <div class="post-item post-summary markdown-body">
-        <blockquote>
-<p>简单总结一下JavaScript基本语法~</p>
-</blockquote>
-    </div>
-</div>
-
-<div class="post">
-    <h2 class="post-item post-title">
-        <a href="https://heeeyueee.github.io/post/javascript-%E7%9A%84%E8%AF%9E%E7%94%9F/">JavaScript的诞生</a>
-    </h2>
-    <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-11-13</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1212 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;</span>
-
-    </div>
-    <div class="post-item post-summary markdown-body">
-        <blockquote>
-<p>轻松小文，看看JavaScript诞生的故事吧~</p>
-</blockquote>
-    </div>
-</div>
-
-<div class="post">
-    <h2 class="post-item post-title">
-        <a href="https://heeeyueee.github.io/post/http%E8%AF%B7%E6%B1%82%E4%B8%8E%E5%93%8D%E5%BA%94/">HTTP请求与响应</a>
-    </h2>
-    <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-11-12</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;2467 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/http">HTTP</a>&nbsp;</span>
-
-    </div>
-    <div class="post-item post-summary markdown-body">
-        <blockquote>
-<p>HTTP请求与HTTP响应详解</p>
-</blockquote>
-    </div>
-</div>
-
-<div class="post">
-    <h2 class="post-item post-title">
-        <a href="https://heeeyueee.github.io/post/%E6%B5%85%E6%9E%90url/">浅析URL</a>
-    </h2>
-    <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-11-10</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1413 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/http">HTTP</a>&nbsp;</span>
-
-    </div>
-    <div class="post-item post-summary markdown-body">
-        <blockquote>
-<p>URL组成,IP,域名,DNS</p>
-</blockquote>
-    </div>
-</div>
-
-<div class="post">
-    <h2 class="post-item post-title">
-        <a href="https://heeeyueee.github.io/post/css%E5%8A%A8%E7%94%BB/">CSS动画</a>
-    </h2>
-    <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-11-09</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1965 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/css">CSS</a>&nbsp;</span>
-
-    </div>
-    <div class="post-item post-summary markdown-body">
-        <blockquote>
-<p>浏览器渲染流程,transform,transition,animation</p>
-</blockquote>
-    </div>
-</div>
+</article>
 
 
-
-
-
-
-
-
-<div class="pagination">
-    
-    <div class="pag-first">
-        <a href="/"><i class="iconfont icon-caret-back-circle-sharp"></i></a>
-    </div>
-    
-    
-    <div class="pag-previous">
-        <a href="/page/2/"><i class="iconfont icon-chevron-back-circle-sharp"></i></a>
-    </div>
-    
-    
-    
-    
-    
-    
-    
-    <div class="pag-item">
-        <a href="/">1</a>
-    </div>
-    
-    
-    
-    
-    
-    
-    
-    <div class="pag-item">
-        <a href="/page/2/">2</a>
-    </div>
-    
-    
-    
-    
-    
-    
-    
-    <div class="pag-item pag-current">
-        <a href="/page/3/">3</a>
-    </div>
-    
-    
-    
-    
-    
-    
-    
-    <div class="pag-item">
-        <a href="/page/4/">4</a>
-    </div>
-    
-    
-    
-    <div class="pag-next">
-        <a href="/page/4/"><i class="iconfont icon-chevron-forward-circle-sharp"></i></i></a>
-    </div>
-    
-    
-    <div class="pag-last">
-        <a href="/page/4/"><i class="iconfont icon-caret-forward-circle-sharp"></i></a>
-    </div>
-    
+<div class="license markdown-body">
+    <blockquote>
+        <p>除特殊注明部分，本站内容采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+               target="_blank">CC BY-NC-SA 4.0</a> 进行许可。</p>
+    </blockquote>
 </div>
 
 
@@ -421,6 +270,23 @@
     </div>
     
     
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>目录</h3>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#line-height是什么">line-height是什么</a></li>
+    <li><a href="#line-height的写法">line-height的写法</a>
+      <ul>
+        <li><a href="#关键词">关键词</a></li>
+        <li><a href="#长度pxem">长度px、em</a></li>
+        <li><a href="#数字">数字</a></li>
+        <li><a href="#百分比">百分比</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
     
     
 </aside>
@@ -530,6 +396,25 @@
             </span>
             
         </div>
+    </div>
+    
+    
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>目录</h3>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#line-height是什么">line-height是什么</a></li>
+    <li><a href="#line-height的写法">line-height的写法</a>
+      <ul>
+        <li><a href="#关键词">关键词</a></li>
+        <li><a href="#长度pxem">长度px、em</a></li>
+        <li><a href="#数字">数字</a></li>
+        <li><a href="#百分比">百分比</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
     
     
