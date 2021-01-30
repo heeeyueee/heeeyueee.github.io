@@ -107,7 +107,7 @@
         <a href="https://heeeyueee.github.io/post/%E7%90%86%E8%A7%A3vue%E4%BF%AE%E9%A5%B0%E7%AC%A6sync/">理解Vue修饰符sync</a>
     </h2>
     <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-01-01</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;914 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/vue">Vue</a>&nbsp;</span>
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-01-01</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1138 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/vue">Vue</a>&nbsp;</span>
 
     </div>
     
@@ -195,6 +195,23 @@ export default {
 <li>事件的名称最好写为<code>update:mondy</code>，<code>update</code>是vue规定的语法书写格式，<code>money</code>是被绑定事件的属性。</li>
 <li>代码<Child :money.sync="total"/>会被扩展成<Child :money="total" v-on:update:money="total = $event"/>（自动更新父组件属性的 v-on 监听器），就是一个语法糖。</li>
 </ul>
+<h3 id="vue3升级改变">vue3升级改变</h3>
+<p>在 Vue 2.0 中， <code>v-model</code> 指令只能为 <code>value</code> 的 prop进行双向绑定，但如果我们对其他的 prop进行双向，就不得不使用 <code>v-bind.sync</code>，如上面实例中的<code>money</code>。</p>
+<p>在vue3对<code>v-model</code>做出了升级改变！</p>
+<blockquote>
+<p>在 Vue 3 中，双向数据绑定的 API 已经标准化，减少了开发者在使用 <code>v-model</code> 指令时的混淆并且在使用 <code>v-model</code> 指令时可以更加灵活。</p>
+</blockquote>
+<p>所以上例父组件中：</p>
+<p>原始版本：</p>
+<pre><code class="language-js"> &lt;Child :money=&quot;total&quot; v-on:update:money=&quot;total = $event&quot;/&gt;
+</code></pre>
+<p>使用<code>v-bind.sync</code>：</p>
+<pre><code class="language-js">&lt;Child :money.sync=&quot;total&quot;/&gt;
+</code></pre>
+<p>vue3中使用<code>v-model</code>：</p>
+<pre><code class="language-js">&lt;Child v-model:money=&quot;total&quot;/&gt;
+</code></pre>
+<p>参考官方文档：<a href="https://v3.cn.vuejs.org/guide/migration/v-model.html#%E6%A6%82%E8%A7%88" target="_blank">vue3:v-model</a></p>
     </div>
 </article>
 
@@ -286,6 +303,10 @@ export default {
             </span>
             
             <span>
+                <a href="/tags/scss/">SCSS</a>
+            </span>
+            
+            <span>
                 <a href="/tags/vue/">Vue</a>
             </span>
             
@@ -315,6 +336,7 @@ export default {
         <li><a href="#前言">前言</a></li>
         <li><a href="#使用">使用</a></li>
         <li><a href="#示例">示例</a></li>
+        <li><a href="#vue3升级改变">vue3升级改变</a></li>
       </ul>
     </li>
   </ul>
@@ -413,6 +435,10 @@ export default {
             </span>
             
             <span>
+                <a href="/tags/scss/">SCSS</a>
+            </span>
+            
+            <span>
                 <a href="/tags/vue/">Vue</a>
             </span>
             
@@ -442,6 +468,7 @@ export default {
         <li><a href="#前言">前言</a></li>
         <li><a href="#使用">使用</a></li>
         <li><a href="#示例">示例</a></li>
+        <li><a href="#vue3升级改变">vue3升级改变</a></li>
       </ul>
     </li>
   </ul>

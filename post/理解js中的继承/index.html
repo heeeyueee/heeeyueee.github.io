@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+    
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="HandheldFriendly" content="True" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta name="generator" content="Hugo 0.77.0" />
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+
+<title>理解JS中的继承 - moji code blog</title>
+
+
+<meta name="author" content="moji" />
+
+
+<meta name="description" content="JS中的继承" />
+
+
+<meta name="keywords" content="JS" />
+
+<meta property="og:title" content="理解JS中的继承" />
+<meta property="og:description" content="JS中的继承" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://heeeyueee.github.io/post/%E7%90%86%E8%A7%A3js%E4%B8%AD%E7%9A%84%E7%BB%A7%E6%89%BF/" />
+<meta property="og:image" content="https://heeeyueee.github.io/img/og.png"/>
+<meta property="article:published_time" content="2021-01-30T09:00:00+08:00" />
+<meta property="article:modified_time" content="2021-01-30T09:00:00+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://heeeyueee.github.io/img/og.png"/>
+
+<meta name="twitter:title" content="理解JS中的继承"/>
+<meta name="twitter:description" content="JS中的继承"/>
+
+
+
+<style>
+    @media (prefers-color-scheme: dark) {
+        body[data-theme='auto'] img {
+            filter: brightness(60%);
+        }
+    }
+
+    body[data-theme='dark'] img {
+        filter: brightness(60%);
+    }
+</style>
+
+
+
+<link rel="stylesheet" href="https://heeeyueee.github.io/assets/css/fuji.min.css" />
+
+
+
+
+
+</head>
+
+<body data-theme="auto">
+    <script data-cfasync="false">
+  
+  var fujiThemeData = localStorage.getItem('fuji_data-theme');
+  
+  if (!fujiThemeData) {
+    localStorage.setItem('fuji_data-theme', 'auto');
+  } else {
+    
+    if (fujiThemeData !== 'auto') {
+      document.body.setAttribute('data-theme', fujiThemeData === 'dark' ? 'dark' : 'light');
+    }
+  }
+</script>
+
+    <header>
+    <div class="container-lg clearfix">
+        <div class="col-12 header">
+            <a class="title-main" href="https://heeeyueee.github.io">moji code blog</a>
+            
+            <span class="title-sub">A mini blog.</span>
+            
+        </div>
+    </div>
+</header>
+
+    <main>
+        <div class="container-lg clearfix">
+            
+            <div class="col-12 col-md-9 float-left content">
+                
+<article>
+    
+    <h2 class="post-item post-title">
+        <a href="https://heeeyueee.github.io/post/%E7%90%86%E8%A7%A3js%E4%B8%AD%E7%9A%84%E7%BB%A7%E6%89%BF/">理解JS中的继承</a>
+    </h2>
+    <div class="post-item post-meta">
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-01-30</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1966 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/js">JS</a>&nbsp;</span>
+
+    </div>
+    
+    
+    <div class="post-content markdown-body">
+        <blockquote>
+<p>JS中的继承</p>
+</blockquote>
+<p>面向对象编程很重要的一个方面，就是对象的继承。A 对象通过继承 B 对象，就能直接拥有 B 对象的所有属性和方法。但Javascript之父在设计语言时，为了使语言轻便，没有引入类的概念，而是通过“原型对象”（prototype）实现。JS中常见的继承方式有基于原型链继承，基于构造函数继承和基于 class 的继承</p>
+<h3 id="1原型链继承">1.原型链继承</h3>
+<p>子类型的原型为父类型的一个实例对象</p>
+<p>模板如下， ⭕️核心就是把子类的prototype设置为父类的实例</p>
+<pre><code class="language-js">// 父类
+function Person() {}
+
+// 子类
+function Student(){}
+
+// 继承
+Student.prototype = new Person()
+</code></pre>
+<p>👇<strong>下面来看一个实例：</strong></p>
+<pre><code class="language-javascript"> //父类型
+ function Person(name, age) {
+    this.name = name,
+        this.age = age,
+        this.play = [1, 2, 3]
+    this.setName = function () { }
+ }
+ Person.prototype.setAge = function () { }
+ //子类型
+ function Student(price) {
+    this.price = price
+    this.setScore = function () { }
+ }
+ // 子类型的原型为父类型的一个实例对象
+    Student.prototype = new Person() 
+    var s1 = new Student(15000)
+    var s2 = new Student(14000)
+    s1.play.push(4)
+    console.log(s1,s2)
+</code></pre>
+<p>打印出来的结果：</p>
+<p><img src="https://raw.githubusercontent.com/heeeyueee/pic/main/img/20210130160108.png" style="zoom:70%;" /></p>
+<p>可以看到只对s1进行play的修改，s2中的play也发生了变化，这是就是<strong>原型链继承</strong>的缺点父类的引用属性会被所有子类实例共享。</p>
+<p>还有一个缺点就是子类构建实例时不能向父类传递参数。但优点是父类方法可以复用，比如上述的<code>setAge</code>。</p>
+<h3 id="2构造函数继承">2.构造函数继承</h3>
+<p>在子类型构造函数中通用call()调用父类型构造函数</p>
+<p>⭕️核心就是在子类(Student)里执行<code>Person.call(this)</code>，将父类构造函数的内容复制给了子类的构造函数。</p>
+<p>👇<strong>下面来看一个实例：</strong></p>
+<pre><code class="language-javascript"> function Person(name, age) {
+    this.name = name,
+    this.age = age,
+    this.setName = function () {}
+  }
+  function Student(name, age, price) {
+    Person.call(this, name, age)  // 相当于: this.Person(name, age)
+    /*this.name = name
+    this.age = age*/
+    this.price = price
+  }
+  var s1 = new Student('Tom', 20, 15000)
+  var s2 = new Student('Lucy', 20, 15000)
+  console.log(s1.setName === s2.setName)
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/heeeyueee/pic/main/img/20210130162115.png" style="zoom:70%;" /></p>
+<p>可以发现父类的函数<code>setName()</code>，在子类的实例下是不共享的，构造函数继承的方式中引用属性不会被所有实例共享，构造函数继承的方式不使用prototype继承,而是在子类里面执行父类的构造函数,相当于把父类的代码复制到子类里面执行一遍,这样做的另一个好处就是可以给父类传参。</p>
+<p>可以发现<strong>原型链继承</strong>和<strong>构造函数继承</strong>的优缺点正好完全相反，把他们组合起来就可以得到互补的<strong>组合继承</strong>。</p>
+<h3 id="3组合继承">3.组合继承</h3>
+<p>⭕️组合继承,就是各取上面2种继承的长处,父类中的<strong>普通属性</strong>使用<strong>构造函数继承</strong>,<strong>函数</strong> 使用 <strong>原型链继承</strong>。</p>
+<p>👇<strong>下面来看一个实例：</strong></p>
+<pre><code class="language-js">function Person(name, age) {
+    this.name = name,
+    this.age = age,
+  }
+  Person.prototype.setName = function(){}
+  function Student(name, age, price) {
+    Person.call(this, name, age)  // 构造函数继承(继承属性)
+    this.price = price
+  }
+  Student.prototype = new Person() // 原型链继承(继承方法)
+  var s1 = new Student('Tom', 20, 15000)
+  var s2 = new Student('Lucy', 20, 15000)
+  console.log(s1.setName === s2.setName)
+</code></pre>
+<p><code>setName()</code>使用prototype继承就可以被所有子类实例共享</p>
+<h3 id="4原型式继承">4.原型式继承</h3>
+<p>⭕️ object内部首先是创建了一个空的构造函数F,然后把F的prototype指向参数proto,最后返回一个F的实例对象,完成继承. 原型式继承看起来跟原型继承很像,事实上,两者因为都是基于prototype继承的,所以也有一些相同的特性,比如引用属性共享问题, 那原型式继承跟原型继承有什么区别呢? 一个比较明显的区别就是clone函数接收的参数不一定要是构造函数,也可以是其他任何对象, 这样我们就相当于是浅复制了一个对象.</p>
+<pre><code class="language-js">function object(o){
+  function F(){}
+  F.prototype = o;
+  return new F();
+}
+</code></pre>
+<p>使用：</p>
+<pre><code class="language-js">var person = {
+    name: &quot;Nicholas&quot;,
+    friends: [&quot;Shelby&quot;, &quot;Court&quot;, &quot;Van&quot;]
+};
+var anotherPerson = object(person);
+anotherPerson.name = &quot;Greg&quot;;
+anotherPerson.friends.push(&quot;Rob&quot;);
+
+var yetAnotherPerson = object(person);
+yetAnotherPerson.name = &quot;Linda&quot;;
+yetAnotherPerson.friends.push(&quot;Barbie&quot;);
+alert(person.friends);   //&quot;Shelby,Court,Van,Rob,Barbie&quot;
+</code></pre>
+<blockquote>
+<p>ECMAScript 5 通过新增 <code>Object.create()</code>方法规范化了原型式继承。</p>
+</blockquote>
+<p>所以ES5的<code>Object.create()</code>函数,就是基于原型式继承的，上文中代码可以转变为</p>
+<pre><code class="language-js">var yetAnotherPerson = object(person); =&gt; var yetAnotherPerson = Object.create(person);
+</code></pre>
+<h3 id="5寄生组合式继承">5.寄生组合式继承</h3>
+<p>组合继承有个缺点,就是<strong>父类构造函数里面的代码会执行2遍</strong>.</p>
+<ul>
+<li>第一次：Student.prototype = new Person()</li>
+</ul>
+<blockquote>
+<p>‘new 的过程’的第三步，其实就是执行了父类构造函数。</p>
+<p><a href="https://juejin.cn/post/6844903582790057998" target="_blank">复习new的过程</a></p>
+</blockquote>
+<ul>
+<li>第二次： Person.call(this, name, age)</li>
+</ul>
+<blockquote>
+<p>call的作用是改变函数执行时的上下文。比如：A.call(B)。其实，最终执行的还是A函数，只不过是用B来调用而已。所以，你就懂了Parent.call(this,name,like) ,也就是执行了父类构造函数。</p>
+</blockquote>
+<p>可以用寄生组合式继承来解决这个问题</p>
+<pre><code>function inherit(sub, super){
+    let prototype = clone(super.prototype)
+    prototype.constructor = sub    
+    sub.prototype = prototype      
+}
+</code></pre>
+<p>这样我们就实现了一个寄生组合式继承的函数inherit,接下来我们来使用一下:</p>
+<pre><code>function Person(name){}
+
+function Student(){
+    SuperType.call(this)
+}
+
+inherit(Student, Person)
+</code></pre>
+<p>我们用 <code>inherit</code> 函数替换了 <code>Student.prototype = new Person() </code>,从而避免了执行 <code>new Person()</code>.</p>
+<p>这是一种完美的继承方式。</p>
+<h3 id="6class-的继承">6.class 的继承</h3>
+<p>ES6中引入了class关键字，class可以通过extends关键字实现继承,class关键字只是原型的语法糖，JavaScript继承仍然是基于原型实现的</p>
+<p>⭕️ES6先将父类实例对象的属性和方法，加到this上面（所以必须先调用super方法），然后再用子类的构造函数修改this。</p>
+<p>👇<strong>下面来看一个实例：</strong></p>
+<pre><code class="language-javascript">class Person {
+            //调用类的构造方法
+            constructor(name, age) {
+                this.name = name
+                
+                this.age = age
+            }
+            //定义一般的方法
+            showName() {
+                console.log(&quot;调用父类的方法&quot;)
+                console.log(this.name, this.age);
+            }
+        }
+        let p1 = new  Person('kobe', 39)
+        console.log(p1)
+        //定义一个子类
+        class Student extends Person {
+            constructor(name, age, salary) {
+                super(name, age)//通过super调用父类的构造方法
+                this.salary = salary
+            }
+            showName() {//在子类自身定义方法
+                console.log(&quot;调用子类的方法&quot;)
+                console.log(this.name, this.age, this.salary);
+            }
+        }
+        let s1 = new Student('wade', 38, 1000000000)
+</code></pre>
+    </div>
+</article>
+
+
+<div class="license markdown-body">
+    <blockquote>
+        <p>除特殊注明部分，本站内容采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+               target="_blank">CC BY-NC-SA 4.0</a> 进行许可。</p>
+    </blockquote>
+</div>
+
+
+
+            </div>
+            <aside class="col-12 col-md-3 float-left sidebar">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>页面</h3>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/archives/">Archives</a>
+            </li>
+            
+            <li>
+                <a href="/about/">About</a>
+            </li>
+            
+            <li>
+                <a href="/search/">Search</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>链接</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/heeeyueee" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+            <li>
+                <a href="https://weibo.com/5631402703/profile?topnav=1&amp;wvr=6" target="_blank"><span>weibo</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>标签</h3>
+        <div>
+            
+            <span>
+                <a href="/tags/css/">CSS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/dom/">DOM</a>
+            </span>
+            
+            <span>
+                <a href="/tags/html/">HTML</a>
+            </span>
+            
+            <span>
+                <a href="/tags/http/">HTTP</a>
+            </span>
+            
+            <span>
+                <a href="/tags/javascript/">JavaScript</a>
+            </span>
+            
+            <span>
+                <a href="/tags/js/">JS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/js%E5%87%BD%E6%95%B0/">JS函数</a>
+            </span>
+            
+            <span>
+                <a href="/tags/mvc/">MVC</a>
+            </span>
+            
+            <span>
+                <a href="/tags/scss/">SCSS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/vue/">Vue</a>
+            </span>
+            
+            <span>
+                <a href="/tags/webpack/">webpack</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+            </span>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>目录</h3>
+        <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1原型链继承">1.原型链继承</a></li>
+        <li><a href="#2构造函数继承">2.构造函数继承</a></li>
+        <li><a href="#3组合继承">3.组合继承</a></li>
+        <li><a href="#4原型式继承">4.原型式继承</a></li>
+        <li><a href="#5寄生组合式继承">5.寄生组合式继承</a></li>
+        <li><a href="#6class-的继承">6.class 的继承</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+    
+</aside>
+        </div>
+        <div class="btn">
+    <div class="btn-menu" id="btn-menu">
+        <i class="iconfont icon-grid-sharp"></i>
+    </div>
+    <div class="btn-toggle-mode">
+        <i class="iconfont icon-contrast-sharp"></i>
+    </div>
+    <div class="btn-scroll-top">
+        <i class="iconfont icon-chevron-up-circle-sharp"></i>
+    </div>
+</div>
+<aside class="sidebar-mobile" style="display: none;">
+  <div class="sidebar-wrapper">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>页面</h3>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/archives/">Archives</a>
+            </li>
+            
+            <li>
+                <a href="/about/">About</a>
+            </li>
+            
+            <li>
+                <a href="/search/">Search</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>链接</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/heeeyueee" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+            <li>
+                <a href="https://weibo.com/5631402703/profile?topnav=1&amp;wvr=6" target="_blank"><span>weibo</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>标签</h3>
+        <div>
+            
+            <span>
+                <a href="/tags/css/">CSS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/dom/">DOM</a>
+            </span>
+            
+            <span>
+                <a href="/tags/html/">HTML</a>
+            </span>
+            
+            <span>
+                <a href="/tags/http/">HTTP</a>
+            </span>
+            
+            <span>
+                <a href="/tags/javascript/">JavaScript</a>
+            </span>
+            
+            <span>
+                <a href="/tags/js/">JS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/js%E5%87%BD%E6%95%B0/">JS函数</a>
+            </span>
+            
+            <span>
+                <a href="/tags/mvc/">MVC</a>
+            </span>
+            
+            <span>
+                <a href="/tags/scss/">SCSS</a>
+            </span>
+            
+            <span>
+                <a href="/tags/vue/">Vue</a>
+            </span>
+            
+            <span>
+                <a href="/tags/webpack/">webpack</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
+            </span>
+            
+            <span>
+                <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+            </span>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>目录</h3>
+        <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1原型链继承">1.原型链继承</a></li>
+        <li><a href="#2构造函数继承">2.构造函数继承</a></li>
+        <li><a href="#3组合继承">3.组合继承</a></li>
+        <li><a href="#4原型式继承">4.原型式继承</a></li>
+        <li><a href="#5寄生组合式继承">5.寄生组合式继承</a></li>
+        <li><a href="#6class-的继承">6.class 的继承</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+    
+  </div>
+</aside>
+    </main>
+
+    <footer>
+    <div class="container-lg clearfix">
+        <div class="col-12 footer">
+            
+            <span>&copy; 2020-2021
+                <a href="https://heeeyueee.github.io">moji</a>
+                 | <a href="https://github.com/heeeyueee/heeeyueee.github.io">Source code</a> 
+                | 基于 <a href="https://github.com/amzrk2/hugo-theme-fuji/"
+                   target="_blank">Fuji-v2</a> &amp; <a href="https://gohugo.io/"
+                                                    target="_blank">Hugo</a> 构建
+            </span>
+        </div>
+    </div>
+</footer>
+
+    
+<script defer src="https://cdn.jsdelivr.net/combine/npm/medium-zoom@1.0.6,npm/lazysizes@5.2.2"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.21.0/components/prism-core.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.21.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+
+
+<script defer src="/assets/js/fuji.min.js"></script>
+
+
+</body>
+
+</html>
