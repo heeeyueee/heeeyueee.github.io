@@ -6,7 +6,18 @@
     <description>Recent content in JS on moji code blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-hans</language>
-    <lastBuildDate>Sat, 30 Jan 2021 09:00:00 +0800</lastBuildDate><atom:link href="https://heeeyueee.github.io/tags/js/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 31 Jan 2021 09:00:00 +0800</lastBuildDate><atom:link href="https://heeeyueee.github.io/tags/js/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>理解JS中的this</title>
+      <link>https://heeeyueee.github.io/post/%E7%90%86%E8%A7%A3js%E4%B8%AD%E7%9A%84this/</link>
+      <pubDate>Sun, 31 Jan 2021 09:00:00 +0800</pubDate>
+      
+      <guid>https://heeeyueee.github.io/post/%E7%90%86%E8%A7%A3js%E4%B8%AD%E7%9A%84this/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;JS中的this&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
     <item>
       <title>理解JS中的继承</title>
       <link>https://heeeyueee.github.io/post/%E7%90%86%E8%A7%A3js%E4%B8%AD%E7%9A%84%E7%BB%A7%E6%89%BF/</link>
