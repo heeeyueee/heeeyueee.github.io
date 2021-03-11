@@ -107,7 +107,7 @@
         <a href="https://heeeyueee.github.io/post/%E7%90%86%E8%A7%A3js%E4%B8%AD%E7%9A%84this/">理解JS中的this</a>
     </h2>
     <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-01-31</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1409 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/js">JS</a>&nbsp;</span>
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-01-31</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1429 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/js">JS</a>&nbsp;</span>
 
     </div>
     
@@ -143,7 +143,8 @@ person.sayHi()
 <p>ps：函数里不给其他条件，this默认指向window，箭头函数自己没有this，函数外面的this就函数里调用的this，call也无法使用</p>
 <h3 id="如何确定this">如何确定this</h3>
 <p>最重要的是<strong>this实际上是在函数被调用时发生的绑定，它指向什么完全取决于函数在哪里被调用！</strong></p>
-<h4 id="使用方方老师的转换代码">使用方方老师的转换代码</h4>
+<h4 id="方法一使用方方老师的转换代码">方法一：使用方方老师的转换代码</h4>
+<p>参考方老师的博客</p>
 <p>把函数调用的方式变为使用<code>call</code>调用的方式</p>
 <pre><code class="language-JS">func.call(context, p1, p2)
 </code></pre>
@@ -156,7 +157,7 @@ obj.child.method(p1, p2) 等价于
 obj.child.method.call(obj.child, p1, p2)
 </code></pre>
 <p>如果传的 context 是 null 或 undefined，那么 window 对象就是默认的 context（严格模式下默认 context 是 undefined）</p>
-<h4 id="使用你不知道的javascript上中的准则">使用《你不知道的JavaScript(上)》中的准则</h4>
+<h4 id="方法二使用你不知道的javascript上中的准则">方法二：使用《你不知道的JavaScript(上)》中的准则</h4>
 <ul>
 <li>首先，需要找到这个函数的直接调用位置</li>
 <li>找到之后就可以顺序应用下面四条规则来判断<code>this</code>的绑定对象</li>
@@ -167,6 +168,7 @@ obj.child.method.call(obj.child, p1, p2)
 <li>由上下文对象调用——绑定到那个上下文对象（可以通过上面的转换代码的方式判断上下文对象）</li>
 <li>默认：在严格模式下绑定到undefined，否则绑定到全局对象</li>
 </ol>
+<h3 id="一些特例">一些特例</h3>
 <h4 id="--语法">[ ] 语法</h4>
 <pre><code class="language-js">function fn (){ console.log(this) }
 var arr = [fn, fn2]
@@ -328,6 +330,7 @@ arr[0]() // 这里面的 this 又是什么呢？
       <ul>
         <li><a href="#前言">前言</a></li>
         <li><a href="#如何确定this">如何确定this</a></li>
+        <li><a href="#一些特例">一些特例</a></li>
         <li><a href="#callapplybind用法">call()、apply()、bind()用法</a></li>
         <li><a href="#面试题">面试题</a></li>
         <li><a href="#参考">参考</a></li>
@@ -461,6 +464,7 @@ arr[0]() // 这里面的 this 又是什么呢？
       <ul>
         <li><a href="#前言">前言</a></li>
         <li><a href="#如何确定this">如何确定this</a></li>
+        <li><a href="#一些特例">一些特例</a></li>
         <li><a href="#callapplybind用法">call()、apply()、bind()用法</a></li>
         <li><a href="#面试题">面试题</a></li>
         <li><a href="#参考">参考</a></li>
