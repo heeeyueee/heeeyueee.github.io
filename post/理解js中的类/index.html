@@ -21,27 +21,30 @@
 <meta name="theme-color" content="#ffffff">
 
 
-<title>Posts - moji code blog</title>
+<title>理解JS中的类 - moji code blog</title>
 
 
 <meta name="author" content="moji" />
 
 
-<meta name="description" content="A minimal Hugo theme with nice theme color." />
+<meta name="description" content="JS中的类" />
 
 
-<meta property="og:title" content="Posts" />
-<meta property="og:description" content="A minimal Hugo theme with nice theme color." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://heeeyueee.github.io/post/" />
+<meta name="keywords" content="JS" />
+
+<meta property="og:title" content="理解JS中的类" />
+<meta property="og:description" content="JS中的类" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://heeeyueee.github.io/post/%E7%90%86%E8%A7%A3js%E4%B8%AD%E7%9A%84%E7%B1%BB/" />
 <meta property="og:image" content="https://heeeyueee.github.io/img/og.png"/>
-<meta property="og:updated_time" content="2021-05-24T09:00:00+08:00" />
+<meta property="article:published_time" content="2021-05-24T09:00:00+08:00" />
+<meta property="article:modified_time" content="2021-05-24T09:00:00+08:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://heeeyueee.github.io/img/og.png"/>
 
-<meta name="twitter:title" content="Posts"/>
-<meta name="twitter:description" content="A minimal Hugo theme with nice theme color."/>
+<meta name="twitter:title" content="理解JS中的类"/>
+<meta name="twitter:description" content="JS中的类"/>
 
 
 
@@ -98,236 +101,163 @@
             
             <div class="col-12 col-md-9 float-left content">
                 
-
-
-
-<div class="post">
+<article>
+    
     <h2 class="post-item post-title">
-        <a href="https://heeeyueee.github.io/post/%E6%B5%85%E6%9E%90mvc/">浅析前端MVC</a>
+        <a href="https://heeeyueee.github.io/post/%E7%90%86%E8%A7%A3js%E4%B8%AD%E7%9A%84%E7%B1%BB/">理解JS中的类</a>
     </h2>
     <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-12-25</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;2023 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/mvc">MVC</a>&nbsp;</span>
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-05-24</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1578 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/js">JS</a>&nbsp;</span>
 
     </div>
-    <div class="post-item post-summary markdown-body">
+    
+    
+    <div class="post-content markdown-body">
         <blockquote>
-<p>M,V,C</p>
+<p>JS中的类</p>
 </blockquote>
-    </div>
-</div>
-
-<div class="post">
-    <h2 class="post-item post-title">
-        <a href="https://heeeyueee.github.io/post/webpack5%E9%85%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/">webpack5使用出错记录</a>
-    </h2>
-    <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-12-24</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;483 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/webpack">webpack</a>&nbsp;</span>
-
-    </div>
-    <div class="post-item post-summary markdown-body">
-        <blockquote>
-<p>webpack5</p>
+<blockquote>
+<p>作为一个前端小白白，本篇将从最基础的部分来说~</p>
 </blockquote>
-    </div>
-</div>
-
-<div class="post">
-    <h2 class="post-item post-title">
-        <a href="https://heeeyueee.github.io/post/css%E7%9A%84%E5%B1%82%E5%8F%A0%E5%92%8C%E7%BB%A7%E6%89%BF/">CSS的层叠和继承</a>
-    </h2>
-    <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-12-17</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1210 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/css">CSS</a>&nbsp;</span>
-
-    </div>
-    <div class="post-item post-summary markdown-body">
-        <blockquote>
-<p>复习CSS</p>
+<h3 id="前言">前言</h3>
+<p>​        大多数面向对象的编程语言都支持类和类继承的特性，而JavaScript却不支持这些特性，因为JavaScript的创造者在设计JS语言时并没有借鉴从C, Java中关于类的部分，Javascript语言实际上是（简化的）函数式编程+（简化的）面向对象编程的混合产物，它不是真正的面向对象编程（OOP）语言，它的语法最初并没有<code>class</code>（类）。从ES1到ES5，开发者们都在使用着各种方法来实现类似的类特性，终于在ES6中引入了类的特性。</p>
+<h3 id="面向对象">面向对象</h3>
+<blockquote>
+<p>要理解类，我们首先需要了解面向对象编程的思想。</p>
 </blockquote>
-    </div>
-</div>
+<p>​        面向对象（Object Oriented）是一种新兴的程序设计方法，或者是一种新的程序设计规范(paradigm)，其基本思想是使用对象、类、继承、封装、多态等基本概念来进行程序设计。从现实世界中客观存在的事物（即对象）出发来构造软件系统，并且在系统构造中尽可能运用人类的自然思维方式。</p>
+<h4 id="对象">对象</h4>
+<p>​         对象是系统中用来描述客观事物的一个实体，它是构成系统的一个基本单位。一个对象由一组属性和对这组属性进行操作的一组服务(方法)组成。</p>
+<p>　　类的实例化可生成对象，一个对象的生命周期包括三个阶段：生成、使用、消除。</p>
+<h4 id="类">类</h4>
+<p>​        类是具有相同属性和方法的一组对象的集合，它为属于该类的所有对象提供了统一的抽象描述，其内部包括属性和方法两个主要部分。在面向对象的编程语言中，类是一个独立的程序单位，它应该有一个类名并包括属性和方法两个主要部分。</p>
+<p><img src="https://raw.githubusercontent.com/heeeyueee/pic/main/img/20210524103142.png" alt="https://raw.githubusercontent.com/heeeyueee/pic/main/img/20210524103142.png" style="zoom:67%;" /></p>
+<h3 id="es5中类的实现">ES5中类的实现</h3>
+<p>​        ES5及早期版本中没有类的概念，实现近似类的方法就是创建一个自定义类型，首先创建一个构造函数，里面定义了类的属性，类的方法通过赋值给构造函数的原型来定义。最后，通过<code>new</code>操作符来创建一个类的实例，也就是对象。</p>
+<pre><code class="language-js">// 构造函数
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+//给构造函数的原型添加方法
+Person.prototype.running = function() {
+  console.log(this.name + this.age + &quot;running&quot;);
+}
+//实例化对象
+var p = new Person(&quot;blend&quot;, 18);
+p.running(); 
+</code></pre>
+<h4 id="es5中的继承">ES5中的继承</h4>
+<p>ES5的继承需要多个步骤才能实现，如下例：</p>
+<pre><code class="language-js">// Shape - 父类(superclass)
+function Shape( length，width) {
+  this.length =length ;
+  this.width = width;
+}
 
-<div class="post">
-    <h2 class="post-item post-title">
-        <a href="https://heeeyueee.github.io/post/es6%E4%B8%AD%E7%9A%84set%E4%B8%8Emap/">ES6中的Set与Map</a>
-    </h2>
-    <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-12-17</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1060 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;</span>
+// 父类的方法
+Shape.prototype.getArea = function() {
+  return this.length*this.width
+};
 
-    </div>
-    <div class="post-item post-summary markdown-body">
-        <blockquote>
-<p>Set与Map</p>
-</blockquote>
-    </div>
-</div>
+// Rectangle - 子类(subclass)
+function Rectangle(length) {
+  Shape.call(this,length,length); // call super constructor.
+}
 
-<div class="post">
-    <h2 class="post-item post-title">
-        <a href="https://heeeyueee.github.io/post/css%E5%B0%8F%E6%8A%80%E8%83%BD/">Pure CSS教你画图</a>
-    </h2>
-    <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-12-17</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;910 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/css">CSS</a>&nbsp;</span>
+// 子类续承父类
+Rectangle.prototype = Object.create(Shape.prototype);
+Rectangle.prototype.constructor = Rectangle;
 
-    </div>
-    <div class="post-item post-summary markdown-body">
-        <blockquote>
-<p>總結一些關於CSS的小技能 不斷更新</p>
-</blockquote>
-    </div>
-</div>
+var rect = new Rectangle();
 
-<div class="post">
-    <h2 class="post-item post-title">
-        <a href="https://heeeyueee.github.io/post/js%E8%B7%A8%E5%9F%9F%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">JS跨域及解决方案</a>
-    </h2>
-    <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-12-15</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1853 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;</span>
+console.log('Is rect an instance of Rectangle?',
+  rect instanceof Rectangle); // true
+console.log('Is rect an instance of Shape?',
+  rect instanceof Shape); // true
+rect.getArea(1, 1); // Outputs, '1'
+</code></pre>
+<h3 id="es6中的类">ES6中的类</h3>
+<p>ES6中引入了类的特性，可以直接使用class关键字进行类声明，但实际上ES6的类声明只是基于ES5中自定义类型声明的语法糖，typeof</p>
+<p>Person 最终返回的结果是 function ，所以ES6中的类声明实际上创建了一个具有构造函数方法行为的函数。👉<a href="https://segmentfault.com/a/1190000008338987" target="_blank">深入理解 JavaScript 中的 class</a></p>
+<pre><code class="language-js">class Person {
+    //等价于ES5中的构造函数
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+   //等价于Person.prototype.running
+  running() {
+    console.log(this.name + this.age + &quot;running&quot;);
+  }
+   //静态方法
+  static create(name,age){
+        return new Person(name,age)
+    }
+}
 
-    </div>
-    <div class="post-item post-summary markdown-body">
-        <blockquote>
-<p>同源策略、CORS、JSONP~</p>
-</blockquote>
-    </div>
-</div>
+const p = new Person(&quot;blend&quot;, 18);
+p.running();
+</code></pre>
+<p>⚠️<strong>特点</strong>：</p>
+<ol>
+<li>
+<p>在类中所有的方法都是不可以枚举的</p>
+</li>
+<li>
+<p>必须通过关键字new来调用函数</p>
+</li>
+<li>
+<p>可以使用static关键字来定义静态成员，静态方法只能通过类来直接调用，不能通过实例对象来调用</p>
+</li>
+</ol>
+<h4 id="es6中的继承">ES6中的继承</h4>
+<p>ES6中使用extends关键字来指定类继承的函数，使用super()方法即可以访问父类的构造函数。</p>
+<pre><code class="language-js">//父类
+class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
 
-<div class="post">
-    <h2 class="post-item post-title">
-        <a href="https://heeeyueee.github.io/post/%E5%BC%82%E6%AD%A5%E4%B8%8Epromise/">异步与Promise</a>
-    </h2>
-    <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-12-14</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1547 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;</span>
+  running() {
+    console.log(this.name, this.age, &quot;running&quot;);
+  }
+}
+//子类
+class Student extends Person {
+  constructor(name, age, sno, score) {
+    super(name, age);
+    this.sno = sno;
+    this.score = score;
+  }
 
+  studying() {
+    console.log(this.name, this.age, this.sno, this.score, &quot;studing&quot;);
+  }
+}
+const stu = new Student1(&quot;why&quot;, 18, 110, 100);
+stu.studying();
+</code></pre>
+<p>❗️  <strong>注意</strong>：</p>
+<ol>
+<li>在constructor中，子类必须通过super来调用父类的构造方法，对父类进行初始化，否则会报错。</li>
+<li>在构造函数访问this之前一定要调用super( )，它负责初始化this。</li>
+</ol>
+<h4 id="私有变量">私有变量</h4>
+<p>​       ES6 中 class 的出现拉近了 JS 和传统 OOP 语言的距离。但是在其中，比较大的一个问题就是私有变量问题，私有变量就是只能在类内部访问的变量，外部无法访问的变量。ES6中如何实现？</p>
+<p>可以参考下面这些博客来读一读：</p>
+<p>👉 <a href="https://juejin.cn/post/6844903565769572366" target="_blank">JavaScript 中的私有变量</a></p>
+<p>👉<a href="https://juejin.cn/post/6844903717561434126" target="_blank">ES6 系列之私有变量的实现</a></p>
     </div>
-    <div class="post-item post-summary markdown-body">
-        <blockquote>
-<p>学习异步与Promise</p>
-</blockquote>
-    </div>
-</div>
-
-<div class="post">
-    <h2 class="post-item post-title">
-        <a href="https://heeeyueee.github.io/post/ajax%E7%9A%84%E5%8E%9F%E7%90%86/">Ajax的原理与使用</a>
-    </h2>
-    <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-12-13</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;2293 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/js">JS</a>&nbsp;</span>
-
-    </div>
-    <div class="post-item post-summary markdown-body">
-        
-    </div>
-</div>
-
-<div class="post">
-    <h2 class="post-item post-title">
-        <a href="https://heeeyueee.github.io/post/dom%E4%BA%8B%E4%BB%B6/">详解DOM事件机制</a>
-    </h2>
-    <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-12-08</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;2793 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;<a href="/tags/dom">DOM</a>&nbsp;</span>
-
-    </div>
-    <div class="post-item post-summary markdown-body">
-        <blockquote>
-<p>DOM事件相关</p>
-</blockquote>
-    </div>
-</div>
-
-<div class="post">
-    <h2 class="post-item post-title">
-        <a href="https://heeeyueee.github.io/post/jquery%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%85%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">jQuery的使用与其设计模式</a>
-    </h2>
-    <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2020-12-07</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;2978 字</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/javascript">JavaScript</a>&nbsp;<a href="/tags/dom">DOM</a>&nbsp;</span>
-
-    </div>
-    <div class="post-item post-summary markdown-body">
-        <blockquote>
-<p>总结常用的api ，学习jQuery的设计模式</p>
-</blockquote>
-    </div>
-</div>
+</article>
 
 
-
-
-
-
-
-
-<div class="pagination">
-    
-    <div class="pag-first">
-        <a href="/post/"><i class="iconfont icon-caret-back-circle-sharp"></i></a>
-    </div>
-    
-    
-    <div class="pag-previous">
-        <a href="/post/"><i class="iconfont icon-chevron-back-circle-sharp"></i></a>
-    </div>
-    
-    
-    
-    
-    
-    
-    
-    <div class="pag-item">
-        <a href="/post/">1</a>
-    </div>
-    
-    
-    
-    
-    
-    
-    
-    <div class="pag-item pag-current">
-        <a href="/post/page/2/">2</a>
-    </div>
-    
-    
-    
-    
-    
-    
-    
-    <div class="pag-item">
-        <a href="/post/page/3/">3</a>
-    </div>
-    
-    
-    
-    
-    
-    
-    
-    <div class="pag-item">
-        <a href="/post/page/4/">4</a>
-    </div>
-    
-    
-    
-    
-    
-    
-    
-    <div class="pag-item">
-        <a href="/post/page/5/">5</a>
-    </div>
-    
-    
-    
-    <div class="pag-next">
-        <a href="/post/page/3/"><i class="iconfont icon-chevron-forward-circle-sharp"></i></i></a>
-    </div>
-    
-    
-    <div class="pag-last">
-        <a href="/post/page/5/"><i class="iconfont icon-caret-forward-circle-sharp"></i></a>
-    </div>
-    
+<div class="license markdown-body">
+    <blockquote>
+        <p>除特殊注明部分，本站内容采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+               target="_blank">CC BY-NC-SA 4.0</a> 进行许可。</p>
+    </blockquote>
 </div>
 
 
@@ -437,6 +367,22 @@
     </div>
     
     
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>目录</h3>
+        <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#前言">前言</a></li>
+        <li><a href="#面向对象">面向对象</a></li>
+        <li><a href="#es5中类的实现">ES5中类的实现</a></li>
+        <li><a href="#es6中的类">ES6中的类</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
     
     
 </aside>
@@ -560,7 +506,18 @@
     
     <div class="sidebar-item sidebar-toc">
         <h3>目录</h3>
-        
+        <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#前言">前言</a></li>
+        <li><a href="#面向对象">面向对象</a></li>
+        <li><a href="#es5中类的实现">ES5中类的实现</a></li>
+        <li><a href="#es6中的类">ES6中的类</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
     
     

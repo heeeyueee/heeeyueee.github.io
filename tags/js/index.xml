@@ -6,7 +6,18 @@
     <description>Recent content in JS on moji code blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-hans</language>
-    <lastBuildDate>Sun, 31 Jan 2021 09:00:00 +0800</lastBuildDate><atom:link href="https://heeeyueee.github.io/tags/js/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 24 May 2021 09:00:00 +0800</lastBuildDate><atom:link href="https://heeeyueee.github.io/tags/js/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>理解JS中的类</title>
+      <link>https://heeeyueee.github.io/post/%E7%90%86%E8%A7%A3js%E4%B8%AD%E7%9A%84%E7%B1%BB/</link>
+      <pubDate>Mon, 24 May 2021 09:00:00 +0800</pubDate>
+      
+      <guid>https://heeeyueee.github.io/post/%E7%90%86%E8%A7%A3js%E4%B8%AD%E7%9A%84%E7%B1%BB/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;JS中的类&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
     <item>
       <title>理解JS中的this</title>
       <link>https://heeeyueee.github.io/post/%E7%90%86%E8%A7%A3js%E4%B8%AD%E7%9A%84this/</link>
